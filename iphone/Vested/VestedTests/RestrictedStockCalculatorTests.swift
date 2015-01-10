@@ -25,8 +25,10 @@ class RestrictedStockCalculatorTests : XCTestCase {
     
     func test_CalculatorWithDefaultInputs_Success() {
         var defaultInputs = RestrictedOptionGrant().withStartDateOneYearAgo()
-        
-        var result = vestingCalculator?.calculate(defaultInputs)
+        var result: VestingCalculatorResult?
+        self.measureBlock() {
+            result = self.vestingCalculator?.calculate(defaultInputs)
+        }
         XCTAssert(result?.vestedShares == 1250, "Vested shares should be 1250 but \(result?.vestedShares)")
         XCTAssert(result?.vestedSharesAtCliff == 1250, "Vested shares should be 1250 but \(result?.vestedShares)")
         XCTAssert(result?.startingShares == 0, "Starting shares should be 0 but \(result?.startingShares)")
