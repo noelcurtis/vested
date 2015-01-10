@@ -1,25 +1,22 @@
 //
-//  ViewController.swift
+//  RestrictedPlanDetailViewController.swift
 //  Vested
 //
-//  Created by ncurtis on 1/6/15.
+//  Created by ncurtis on 1/10/15.
 //  Copyright (c) 2015 noelcurtis. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class RestrictedPlanDetailViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
-
+    
 }
-
