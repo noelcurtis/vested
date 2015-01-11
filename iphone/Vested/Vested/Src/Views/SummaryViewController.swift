@@ -25,16 +25,16 @@ class SummaryViewController : UIViewController {
     
     func setupNavBar() {
         // setup the buttons
-        menuButton = UIBarButtonItem(image: UIImage(named: "menu_button"), style: UIBarButtonItemStyle.Plain, target: self, action: nil)
-        addButton = UIBarButtonItem(image: UIImage(named: "add_button"), style: UIBarButtonItemStyle.Plain, target: self, action: nil)
+//        menuButton = UIBarButtonItem(image: UIImage(named: "menu_button"), style: UIBarButtonItemStyle.Plain, target: self, action: nil)
+        addButton = UIBarButtonItem(image: UIImage(named: "add_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "performDetailViewSeague")
         
         // nav title image
         let navTitle = UIImage(named: "nav_title_vested")
         let navTitleView = UIImageView(image: navTitle)
         self.navigationItem.titleView = navTitleView
-        self.navigationItem.titleView?.hidden = true
+        self.navigationItem.titleView?.hidden = false
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationItem.leftBarButtonItem = menuButton
+//        self.navigationItem.leftBarButtonItem = menuButton
         self.navigationItem.rightBarButtonItem = addButton
         
         // make the nav bar translucent
@@ -42,6 +42,10 @@ class SummaryViewController : UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.view.backgroundColor = UIColor.clearColor()
         self.navigationController?.navigationBar.translucent = true
+    }
+    
+    func performDetailViewSeague() {
+        self.performSegueWithIdentifier("push_plan_detail_view_segue", sender: self)
     }
 
     
