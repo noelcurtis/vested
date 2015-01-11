@@ -55,6 +55,11 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="PUW-ML-lFX" id="StP-iT-QAm"/>
+                                    <outlet property="delegate" destination="PUW-ML-lFX" id="6Gk-hR-5uT"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -67,6 +72,9 @@
                             <constraint firstItem="8wa-ui-xRc" firstAttribute="leading" secondItem="KMI-XT-wNY" secondAttribute="leading" id="qfr-ii-kFb"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="8wa-ui-xRc" id="FA7-hT-rMw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8k2-cg-vYA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
