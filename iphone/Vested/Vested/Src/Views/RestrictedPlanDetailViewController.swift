@@ -8,43 +8,43 @@
 
 import UIKit
 
-class RestrictedPlanDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    @IBOutlet weak var tableView: UITableView!
-    
+class RestrictedPlanDetailViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView!.registerNib(UINib(nibName: "PlanNameInputCell", bundle: nil), forCellReuseIdentifier: "plan_name_input_cell")
+        setupTableView()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    func setupTableView() {
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
+        tableView.registerClass(PlanNameInputCell.self, forCellReuseIdentifier: "plan_name_input_cell")
+        tableView.registerClass(ValueInputCell.self, forCellReuseIdentifier: "value_input_cell")
+    }
+    
     // MARK: - UITableViewDelegate
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         
     }
     
     // MARK: - UITableViewDatasource
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(section) {
-            case 0: return 1
-            case 1: return 4
-            case 2: return 2
+            case 0: return 2
             default: return 0
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return self.tableView.dequeueReusableCellWithIdentifier("plan_name_input_cell") as PlanNameInputCell
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        switch(indexPath.row) {
+            case 0: return self.tableView.dequeueReusableCellWithIdentifier("plan_name_input_cell") as PlanNameInputCell
+            default: return self.tableView.dequeueReusableCellWithIdentifier("value_input_cell") as ValueInputCell
+        }
     }
-
     
 }

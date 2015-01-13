@@ -8,25 +8,30 @@
 
 import UIKit
 
-class SummaryViewController : UIViewController {
+class SummaryViewController : UITableViewController {
 
     var menuButton: UIBarButtonItem!
     var addButton: UIBarButtonItem!
-    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
+        setupTableView()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    func setupTableView() {
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
+    }
+    
     func setupNavBar() {
         // setup the buttons
-//        menuButton = UIBarButtonItem(image: UIImage(named: "menu_button"), style: UIBarButtonItemStyle.Plain, target: self, action: nil)
-        addButton = UIBarButtonItem(image: UIImage(named: "add_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "performDetailViewSeague")
+        menuButton = UIBarButtonItem(image: UIImage(named: "menu_button"), style: UIBarButtonItemStyle.Plain, target: self, action: nil)
+        addButton = UIBarButtonItem(image: UIImage(named: "add_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "pushRestrictedStockPlanDetailView")
         
         // nav title image
         let navTitle = UIImage(named: "nav_title_vested")
@@ -34,7 +39,7 @@ class SummaryViewController : UIViewController {
         self.navigationItem.titleView = navTitleView
         self.navigationItem.titleView?.hidden = false
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-//        self.navigationItem.leftBarButtonItem = menuButton
+        self.navigationItem.leftBarButtonItem = menuButton
         self.navigationItem.rightBarButtonItem = addButton
         
         // make the nav bar translucent
@@ -44,8 +49,8 @@ class SummaryViewController : UIViewController {
         self.navigationController?.navigationBar.translucent = true
     }
     
-    func performDetailViewSeague() {
-        self.performSegueWithIdentifier("push_plan_detail_view_segue", sender: self)
+    func pushRestrictedStockPlanDetailView() {
+        self.navigationController?.pushViewController(RestrictedPlanDetailViewController(), animated: true)
     }
 
     
