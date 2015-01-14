@@ -31,7 +31,7 @@ class PlanNameInputCell : UITableViewCell {
         self.addSubview(underLineImageView)
         
         let viewsDictionary : [NSObject: AnyObject] = ["input_field": titleInputField, "underline_image": underLineImageView]
-        let labelVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[input_field]-0-[underline_image]-0-|", options: nil, metrics: nil, views: viewsDictionary)
+        let labelVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-2-[input_field]-0-[underline_image]-0-|", options: nil, metrics: nil, views: viewsDictionary)
         let labelHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[input_field]-10-|", options: nil, metrics: nil, views: viewsDictionary)
 
         self.addConstraints(labelVerticalConstraints)

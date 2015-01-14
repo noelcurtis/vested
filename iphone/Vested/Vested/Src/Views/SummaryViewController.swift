@@ -42,15 +42,17 @@ class SummaryViewController : UITableViewController {
         self.navigationItem.leftBarButtonItem = menuButton
         self.navigationItem.rightBarButtonItem = addButton
         
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        
         // make the nav bar translucent
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.view.backgroundColor = UIColor.clearColor()
-        self.navigationController?.navigationBar.translucent = true
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        self.navigationController?.view.backgroundColor = UIColor.clearColor()
+//        self.navigationController?.navigationBar.translucent = false
     }
     
     func pushRestrictedStockPlanDetailView() {
-        self.navigationController?.pushViewController(RestrictedPlanDetailViewController(), animated: true)
+        self.navigationController?.pushViewController(RestrictedPlanDetailViewController(style: UITableViewStyle.Grouped), animated: true)
     }
 
     
