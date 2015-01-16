@@ -1,0 +1,10 @@
+platform :ios, '8.0'
+
+target 'Vested' do
+
+end
+
+target 'VestedTests' do
+
+end
+
