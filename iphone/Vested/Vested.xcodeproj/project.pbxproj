@@ -26,10 +26,20 @@
 		302F24B71A65FA3700FBF18A /* MonthsInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302F24B61A65FA3700FBF18A /* MonthsInputCell.swift */; };
 		302F24B91A66088C00FBF18A /* PercentInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302F24B81A66088C00FBF18A /* PercentInputCell.swift */; };
 		302F24BD1A66272F00FBF18A /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302F24BC1A66272F00FBF18A /* ColorUtils.swift */; };
+		30324EB41A6AB48100FBF9AF /* RestrictedOptionGrantDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30324EB31A6AB48100FBF9AF /* RestrictedOptionGrantDao.swift */; };
+		30324EB71A6AB92A00FBF9AF /* RestrictedOptionGrantDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30324EB31A6AB48100FBF9AF /* RestrictedOptionGrantDao.swift */; };
+		30324EB91A6ABD3A00FBF9AF /* RestrictedGrantDaoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30324EB81A6ABD3A00FBF9AF /* RestrictedGrantDaoTests.swift */; };
+		30324EBA1A6AD79600FBF9AF /* VestedDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30B5EA791A68A939002005B3 /* VestedDataModel.xcdatamodeld */; };
+		30324EBC1A6ADC7400FBF9AF /* Vested.RestrictedOptionGrantMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30324EBB1A6ADC7400FBF9AF /* Vested.RestrictedOptionGrantMO.swift */; };
+		30324EBD1A6ADC7400FBF9AF /* Vested.RestrictedOptionGrantMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30324EBB1A6ADC7400FBF9AF /* Vested.RestrictedOptionGrantMO.swift */; };
 		30462DDD1A64C30B00DCF5C6 /* ValueInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30462DDC1A64C30B00DCF5C6 /* ValueInputCell.swift */; };
 		30A1102F1A61DE3000DEB664 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A1102E1A61DE3000DEB664 /* SummaryViewController.swift */; };
 		30A110321A61EEBA00DEB664 /* RestrictedPlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A110311A61EEBA00DEB664 /* RestrictedPlanDetailViewController.swift */; };
 		30A110391A63119100DEB664 /* PlanNameInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A110381A63119100DEB664 /* PlanNameInputCell.swift */; };
+		30B5EA781A68A8EE002005B3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30B5EA771A68A8EE002005B3 /* CoreData.framework */; };
+		30B5EA7B1A68A939002005B3 /* VestedDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30B5EA791A68A939002005B3 /* VestedDataModel.xcdatamodeld */; };
+		30B5EA7D1A68A98F002005B3 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5EA7C1A68A98F002005B3 /* PersistenceService.swift */; };
+		30BB22841A68CA60001435DE /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5EA7C1A68A98F002005B3 /* PersistenceService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,10 +71,16 @@
 		302F24B61A65FA3700FBF18A /* MonthsInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MonthsInputCell.swift; path = Src/Views/MonthsInputCell.swift; sourceTree = "<group>"; };
 		302F24B81A66088C00FBF18A /* PercentInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PercentInputCell.swift; path = Src/Views/PercentInputCell.swift; sourceTree = "<group>"; };
 		302F24BC1A66272F00FBF18A /* ColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorUtils.swift; path = Src/Utils/ColorUtils.swift; sourceTree = "<group>"; };
+		30324EB31A6AB48100FBF9AF /* RestrictedOptionGrantDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestrictedOptionGrantDao.swift; path = Src/Services/RestrictedOptionGrantDao.swift; sourceTree = "<group>"; };
+		30324EB81A6ABD3A00FBF9AF /* RestrictedGrantDaoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestrictedGrantDaoTests.swift; sourceTree = "<group>"; };
+		30324EBB1A6ADC7400FBF9AF /* Vested.RestrictedOptionGrantMO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Vested.RestrictedOptionGrantMO.swift; path = Src/Models/Vested.RestrictedOptionGrantMO.swift; sourceTree = "<group>"; };
 		30462DDC1A64C30B00DCF5C6 /* ValueInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValueInputCell.swift; path = Src/Views/ValueInputCell.swift; sourceTree = "<group>"; };
 		30A1102E1A61DE3000DEB664 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryViewController.swift; path = Src/Views/SummaryViewController.swift; sourceTree = "<group>"; };
 		30A110311A61EEBA00DEB664 /* RestrictedPlanDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestrictedPlanDetailViewController.swift; path = Src/Views/RestrictedPlanDetailViewController.swift; sourceTree = "<group>"; };
 		30A110381A63119100DEB664 /* PlanNameInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlanNameInputCell.swift; path = Src/Views/PlanNameInputCell.swift; sourceTree = "<group>"; };
+		30B5EA771A68A8EE002005B3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		30B5EA7A1A68A939002005B3 /* VestedDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VestedDataModel.xcdatamodel; sourceTree = "<group>"; };
+		30B5EA7C1A68A98F002005B3 /* PersistenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersistenceService.swift; path = Src/Services/PersistenceService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30B5EA781A68A8EE002005B3 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +105,7 @@
 		3018D06E1A5CC04D00464D64 = {
 			isa = PBXGroup;
 			children = (
+				30B5EA771A68A8EE002005B3 /* CoreData.framework */,
 				3018D0791A5CC04D00464D64 /* Vested */,
 				3018D08F1A5CC04D00464D64 /* VestedTests */,
 				3018D0781A5CC04D00464D64 /* Products */,
@@ -127,8 +145,9 @@
 			children = (
 				3018D0921A5CC04D00464D64 /* VestedTests.swift */,
 				3018D0A31A5CCBF700464D64 /* StockPlanTests.swift */,
-				3018D0901A5CC04D00464D64 /* Supporting Files */,
 				301A28DC1A61851600891AE3 /* RestrictedStockCalculatorTests.swift */,
+				30324EB81A6ABD3A00FBF9AF /* RestrictedGrantDaoTests.swift */,
+				3018D0901A5CC04D00464D64 /* Supporting Files */,
 			);
 			path = VestedTests;
 			sourceTree = "<group>";
@@ -146,6 +165,7 @@
 			children = (
 				3018D0831A5CC04D00464D64 /* Images.xcassets */,
 				3018D0851A5CC04D00464D64 /* LaunchScreen.xib */,
+				30B5EA791A68A939002005B3 /* VestedDataModel.xcdatamodeld */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -164,6 +184,7 @@
 		3018D0A71A5CCF1B00464D64 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				30324EBB1A6ADC7400FBF9AF /* Vested.RestrictedOptionGrantMO.swift */,
 				3018D09F1A5CC43400464D64 /* StockPlan.swift */,
 				3018D0A11A5CC96000464D64 /* RestrictedOptionGrant.swift */,
 				3018D0AE1A5CD37200464D64 /* VestingCalculatorResult.swift */,
@@ -175,8 +196,9 @@
 			isa = PBXGroup;
 			children = (
 				3018D0A91A5CD16100464D64 /* VestingCalculator.swift */,
-				302F24B81A66088C00FBF18A /* PercentInputCell.swift */,
 				3018D0B31A5CD57700464D64 /* RestrictedStockOptionGrantCalculator.swift */,
+				30B5EA7C1A68A98F002005B3 /* PersistenceService.swift */,
+				30324EB31A6AB48100FBF9AF /* RestrictedOptionGrantDao.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -192,6 +214,7 @@
 		30A1102D1A61DE1800DEB664 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				302F24B81A66088C00FBF18A /* PercentInputCell.swift */,
 				30A1102E1A61DE3000DEB664 /* SummaryViewController.swift */,
 				30A110311A61EEBA00DEB664 /* RestrictedPlanDetailViewController.swift */,
 				30A110381A63119100DEB664 /* PlanNameInputCell.swift */,
@@ -302,9 +325,12 @@
 			files = (
 				302F24BD1A66272F00FBF18A /* ColorUtils.swift in Sources */,
 				30462DDD1A64C30B00DCF5C6 /* ValueInputCell.swift in Sources */,
+				30324EBC1A6ADC7400FBF9AF /* Vested.RestrictedOptionGrantMO.swift in Sources */,
 				302F24B71A65FA3700FBF18A /* MonthsInputCell.swift in Sources */,
 				302F24B91A66088C00FBF18A /* PercentInputCell.swift in Sources */,
+				30B5EA7B1A68A939002005B3 /* VestedDataModel.xcdatamodeld in Sources */,
 				3018D0A21A5CC96000464D64 /* RestrictedOptionGrant.swift in Sources */,
+				30324EB41A6AB48100FBF9AF /* RestrictedOptionGrantDao.swift in Sources */,
 				30A110321A61EEBA00DEB664 /* RestrictedPlanDetailViewController.swift in Sources */,
 				3018D0A01A5CC43400464D64 /* StockPlan.swift in Sources */,
 				3018D0AA1A5CD16100464D64 /* VestingCalculator.swift in Sources */,
@@ -313,6 +339,7 @@
 				3018D0AF1A5CD37200464D64 /* VestingCalculatorResult.swift in Sources */,
 				3018D07D1A5CC04D00464D64 /* AppDelegate.swift in Sources */,
 				3018D0B41A5CD57700464D64 /* RestrictedStockOptionGrantCalculator.swift in Sources */,
+				30B5EA7D1A68A98F002005B3 /* PersistenceService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,11 +349,16 @@
 			files = (
 				3018D0931A5CC04D00464D64 /* VestedTests.swift in Sources */,
 				301A28DD1A61851600891AE3 /* RestrictedStockCalculatorTests.swift in Sources */,
+				30324EBD1A6ADC7400FBF9AF /* Vested.RestrictedOptionGrantMO.swift in Sources */,
+				30324EBA1A6AD79600FBF9AF /* VestedDataModel.xcdatamodeld in Sources */,
+				30324EB71A6AB92A00FBF9AF /* RestrictedOptionGrantDao.swift in Sources */,
+				30324EB91A6ABD3A00FBF9AF /* RestrictedGrantDaoTests.swift in Sources */,
 				3018D0A61A5CCCE800464D64 /* StockPlan.swift in Sources */,
 				3018D0AB1A5CD18100464D64 /* VestingCalculator.swift in Sources */,
 				3018D0B21A5CD52600464D64 /* VestingCalculatorResult.swift in Sources */,
 				3018D0A41A5CCBF700464D64 /* StockPlanTests.swift in Sources */,
 				3018D0A51A5CCC8300464D64 /* RestrictedOptionGrant.swift in Sources */,
+				30BB22841A68CA60001435DE /* PersistenceService.swift in Sources */,
 				3018D0B51A5CD5CA00464D64 /* RestrictedStockOptionGrantCalculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,6 +547,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		30B5EA791A68A939002005B3 /* VestedDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				30B5EA7A1A68A939002005B3 /* VestedDataModel.xcdatamodel */,
+			);
+			currentVersion = 30B5EA7A1A68A939002005B3 /* VestedDataModel.xcdatamodel */;
+			name = VestedDataModel.xcdatamodeld;
+			path = Src/Resources/VestedDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3018D06F1A5CC04D00464D64 /* Project object */;
 }

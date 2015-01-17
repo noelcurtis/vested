@@ -10,7 +10,7 @@ import Foundation
 
 protocol StockPlan {
 
-    var uuid: NSUUID {get set}
+    var uuid: String {get set}
     // plan parameters
     var startingAcceleration: Double {get set}
     var endingAcceleration: Double {get set}

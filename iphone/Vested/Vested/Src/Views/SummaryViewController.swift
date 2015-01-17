@@ -12,6 +12,7 @@ class SummaryViewController : UITableViewController {
 
     var menuButton: UIBarButtonItem!
     var addButton: UIBarButtonItem!
+    let restrictedStockOptionDao = RestrictedOptionGrantDao(managedObjectContext: PersistenceService.sharedInstance.managedObjectContext!)
     
     override func viewDidLoad() {
         super.viewDidLoad()

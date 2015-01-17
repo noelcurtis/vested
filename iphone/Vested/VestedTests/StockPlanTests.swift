@@ -12,7 +12,7 @@ import XCTest
 class StockPlanTests : XCTestCase {
  
     func test_RestrictedOptionGrant_Defaults_Success() {
-        var stockGrant = RestrictedOptionGrant()
+        var stockGrant = RestrictedOptionGrant().withDefaults()
         
         XCTAssertEqual(stockGrant.shares, 5000, "Default shares count should be 4000")
         XCTAssertEqual(stockGrant.startingAcceleration, 0, "Acceleration should be 0")

@@ -12,6 +12,7 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
 
     var backButton: UIBarButtonItem!
     var checkButton: UIBarButtonItem!
+    let restrictedStockOptionDao = RestrictedOptionGrantDao(managedObjectContext: PersistenceService.sharedInstance.managedObjectContext!)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,7 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
     }
     
     func pushSummaryViewController() {
+        
         self.navigationController?.dismissViewControllerAnimated(true, completion: {})
     }
     

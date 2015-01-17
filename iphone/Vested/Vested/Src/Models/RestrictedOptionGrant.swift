@@ -11,15 +11,47 @@ import Foundation
 class RestrictedOptionGrant : StockPlan {
 
     // plan parameters
-    var uuid: NSUUID = NSUUID()
-    var startingAcceleration: Double = 0
-    var endingAcceleration: Double = 0
-    var cliff: Int = 12 // in months
-    var vestingPeriod: Int = 48 // in months
+    var uuid: String
+    var startingAcceleration: Double
+    var endingAcceleration: Double
+    var cliff: Int // in months
+    var vestingPeriod: Int // in months
     
     // individual parameters
-    var shares: Int = 5000
-    var startDate: NSDate = NSDate()
+    var shares: Int
+    var startDate: NSDate
+    
+    init() {
+        self.uuid = NSUUID().UUIDString
+        self.startingAcceleration = 0
+        self.endingAcceleration = 0
+        self.cliff = 0
+        self.vestingPeriod = 0
+        self.shares = 0
+        self.startDate = NSDate()
+    }
+    
+    init(stockPlan: RestrictedOptionGrantMO) {
+        self.uuid = stockPlan.uuid
+        self.startingAcceleration = stockPlan.startingAcceleration.doubleValue
+        self.endingAcceleration = stockPlan.endingAcceleration.doubleValue
+        self.cliff = stockPlan.cliff.integerValue
+        self.vestingPeriod = stockPlan.vestingPeriod.integerValue
+        self.shares = stockPlan.shares.integerValue
+        self.startDate = stockPlan.startDate
+    }
+    
+    func withDefaults() -> RestrictedOptionGrant {
+        self.uuid = NSUUID().UUIDString
+        self.startingAcceleration = 0
+        self.endingAcceleration = 0
+        self.cliff = 12
+        self.vestingPeriod = 48
+        self.shares = 5000
+        self.startDate = NSDate()
+        
+        return self
+    }
     
     func withStartDateOneYearAgo() -> RestrictedOptionGrant {
         var oneYearAgo = NSDate().dateByAddingTimeInterval(-365 * 24 * 60 * 60)
