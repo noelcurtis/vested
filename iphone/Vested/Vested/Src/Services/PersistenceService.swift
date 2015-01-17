@@ -36,7 +36,7 @@ class PersistenceService {
             dict[NSUnderlyingErrorKey] = error
             error = NSError(domain: "com.noelcurtis", code: 9999, userInfo: dict)
             //TODO (noelcurtis): should not abort here but allow to fail gracefully
-            NSLog("Unresolved error \(error), \(error!.userInfo)")
+            NSLog("Shizt! cant create the persistent store \(error), \(error!.userInfo)")
             abort()
         }
         
@@ -48,8 +48,10 @@ class PersistenceService {
         if coordinator == nil {
             return nil
         }
+        
         var managedObjectContext = NSManagedObjectContext()
         managedObjectContext.persistentStoreCoordinator = coordinator
+        
         return managedObjectContext
     }()
     
@@ -58,30 +60,18 @@ class PersistenceService {
         var error: NSError? = nil
         if coordinator!.addPersistentStoreWithType(NSInMemoryStoreType, configuration: nil, URL: nil, options: nil, error: &error) == nil {
             coordinator = nil
-            NSLog("Shizt! \(error), \(error!.userInfo)")
+            NSLog("Shizt adding persistent store \(error), \(error!.userInfo)")
             abort()
         }
         
         var managedObjextContext = NSManagedObjectContext()
         managedObjextContext.persistentStoreCoordinator = coordinator
+        
         return managedObjextContext
     }()
 
     class var sharedInstance: PersistenceService {
         return _PersistenceServiceSharedInstance
     }
-    
-    
-    //    func saveContext () {
-    //        if let moc = self.managedObjectContext {
-    //            var error: NSError? = nil
-    //            if moc.hasChanges && !moc.save(&error) {
-    //                // Replace this implementation with code to handle the error appropriately.
-    //                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-    //                NSLog("Unresolved error \(error), \(error!.userInfo)")
-    //                abort()
-    //            }
-    //        }
-    //    }
     
 }

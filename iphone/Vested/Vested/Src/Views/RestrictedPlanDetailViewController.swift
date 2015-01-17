@@ -26,7 +26,7 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
     
     func setupNavBar() {
         // setup the buttons
-        backButton = UIBarButtonItem(image: UIImage(named: "back_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "pushSummaryViewController")
+        backButton = UIBarButtonItem(image: UIImage(named: "back_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "popViewController")
         checkButton = UIBarButtonItem(image: UIImage(named: "check_button"), style: UIBarButtonItemStyle.Plain, target: self, action: nil)
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.rightBarButtonItem = checkButton
@@ -49,9 +49,8 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
         tableView.registerClass(PercentInputCell.self, forCellReuseIdentifier: "percent_input_cell")
     }
     
-    func pushSummaryViewController() {
-        
-        self.navigationController?.dismissViewControllerAnimated(true, completion: {})
+    func popViewController() {
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     // MARK: - UITableViewDelegate
