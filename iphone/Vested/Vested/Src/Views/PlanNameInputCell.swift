@@ -12,6 +12,9 @@ class PlanNameInputCell : UITableViewCell {
 
     let titleInputField = UITextField()
     let underLineImageView = UIImageView(image: UIImage(named: "title_line"))
+    class var REUSE_IDENTIFIER : String {
+        return "plan_name_input_cell"
+    }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)

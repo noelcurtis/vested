@@ -13,6 +13,9 @@ class ValueInputCell : UITableViewCell {
     let labelField = UILabel()
     let underlineImage = UIImageView(image: UIImage(named: "input_cell_line"))
     let inputField = UITextField()
+    class var REUSE_IDENTIFIER : String {
+        return "value_input_cell"
+    }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)

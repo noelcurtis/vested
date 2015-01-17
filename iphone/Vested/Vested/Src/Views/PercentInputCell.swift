@@ -14,6 +14,9 @@ class PercentInputCell : UITableViewCell {
     let underlineImage = UIImageView(image: UIImage(named: "input_cell_line"))
     let inputField = UITextField()
     let percentLabel = UILabel()
+    class var REUSE_IDENTIFIER : String {
+        return "percent_input_cell"
+    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)

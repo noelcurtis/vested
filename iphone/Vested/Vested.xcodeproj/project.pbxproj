@@ -105,10 +105,10 @@
 		3018D06E1A5CC04D00464D64 = {
 			isa = PBXGroup;
 			children = (
-				30B5EA771A68A8EE002005B3 /* CoreData.framework */,
 				3018D0791A5CC04D00464D64 /* Vested */,
 				3018D08F1A5CC04D00464D64 /* VestedTests */,
 				3018D0781A5CC04D00464D64 /* Products */,
+				303CF54B1A6AF283003B2AFF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -209,6 +209,14 @@
 				302F24BC1A66272F00FBF18A /* ColorUtils.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		303CF54B1A6AF283003B2AFF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				30B5EA771A68A8EE002005B3 /* CoreData.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		30A1102D1A61DE1800DEB664 /* Views */ = {
