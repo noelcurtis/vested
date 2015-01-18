@@ -67,6 +67,7 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
     }
     
     // MARK: - UITableViewDatasource
+    
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch(section) {
             case 1: return getSectionHeader("Plan Parameters")

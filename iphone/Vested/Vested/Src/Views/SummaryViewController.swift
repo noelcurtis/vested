@@ -12,7 +12,10 @@ class SummaryViewController : UITableViewController {
 
     //var menuButton: UIBarButtonItem!
     var addButton: UIBarButtonItem!
+
     let restrictedStockOptionDao = RestrictedOptionGrantDao(managedObjectContext: PersistenceService.sharedInstance.managedObjectContext!)
+    
+    var stockPlans = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +28,10 @@ class SummaryViewController : UITableViewController {
     }
     
     func setupTableView() {
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+//        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
+        stockPlans = restrictedStockOptionDao.findAllRestrictedOptionGrants()
+        tableView.reloadData()
     }
     
     func setupNavBar() {
@@ -51,5 +56,28 @@ class SummaryViewController : UITableViewController {
         self.navigationController?.pushViewController(RestrictedPlanDetailViewController(style: UITableViewStyle.Grouped), animated: true)
     }
 
+    // MARK: - UITableViewDelegate
     
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    // MARK: - UITableViewDatasource
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return stockPlans.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let c = tableView.dequeueReusableCellWithIdentifier("summary_cell") as UITableViewCell?
+        if let cell = c {
+            cell.textLabel?.text = (stockPlans[indexPath.row] as RestrictedOptionGrant).name
+            return cell
+        } else {
+            let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "summary_cell")
+            cell.textLabel?.text = (stockPlans[indexPath.row] as RestrictedOptionGrant).name
+            return cell
+        }
+        
+    }
 }

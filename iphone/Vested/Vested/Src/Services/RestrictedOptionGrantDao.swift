@@ -12,6 +12,12 @@ import CoreData
 class RestrictedOptionGrantDao {
     
     var managedObjectContext: NSManagedObjectContext
+
+    let fetchAllRestrictedOptionGrantRequest: NSFetchRequest = {
+        let f = NSFetchRequest(entityName: "RestrictedOptionGrantMO")
+        f.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        return f
+    }()
     
     init (managedObjectContext: NSManagedObjectContext) {
         self.managedObjectContext = managedObjectContext
@@ -32,10 +38,12 @@ class RestrictedOptionGrantDao {
     }
     
     func findAllRestrictedOptionGrants() -> [RestrictedOptionGrant] {
-        println("Finding all option grants")
-        let fetchRequest = NSFetchRequest(entityName: "RestrictedOptionGrantMO")
-        if let fetchResults = self.managedObjectContext.executeFetchRequest(fetchRequest, error: nil) as? [RestrictedOptionGrantMO] {
-            return fetchResults.map {
+        println("Finding all restricted option grants")
+        if let fetchResults = self.managedObjectContext.executeFetchRequest(self.fetchAllRestrictedOptionGrantRequest, error: nil) {
+            let resultsList = fetchResults as [RestrictedOptionGrantMO]
+            println("Found \(resultsList.count) restricted option grants")
+
+            return resultsList.map {
                 (result: RestrictedOptionGrantMO) -> RestrictedOptionGrant in
                 return RestrictedOptionGrant(stockPlan: result)
             }
