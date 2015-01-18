@@ -3,6 +3,7 @@
     <entity name="RestrictedOptionGrantMO" representedClassName="Vested.RestrictedOptionGrantMO" syncable="YES">
         <attribute name="cliff" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="endingAcceleration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="shares" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="startingAcceleration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -10,6 +11,6 @@
         <attribute name="vestingPeriod" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="RestrictedOptionGrantMO" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="RestrictedOptionGrantMO" positionX="-63" positionY="-18" width="128" height="165"/>
     </elements>
 </model>

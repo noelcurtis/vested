@@ -66,7 +66,7 @@ class PercentInputCell : UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func customize(label: String, value: Int) {
+    func customize(label: String, value: Double) {
         self.labelField.text = label
         self.inputField.text = "\(value)"
     }

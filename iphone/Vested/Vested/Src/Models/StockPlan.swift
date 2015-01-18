@@ -8,9 +8,10 @@
 
 import Foundation
 
-protocol StockPlan {
+protocol StockPlan : Printable {
 
     var uuid: String {get set}
+    var name: String {get set}
     // plan parameters
     var startingAcceleration: Double {get set}
     var endingAcceleration: Double {get set}

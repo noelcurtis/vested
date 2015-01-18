@@ -13,7 +13,8 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
     var backButton: UIBarButtonItem!
     var checkButton: UIBarButtonItem!
     let restrictedStockOptionDao = RestrictedOptionGrantDao(managedObjectContext: PersistenceService.sharedInstance.managedObjectContext!)
-
+    var restrictedOptionGrant: RestrictedOptionGrant = RestrictedOptionGrant().withDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
@@ -54,6 +55,8 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
     }
     
     func addPlanAndPopViewController() {
+        let restrictedStockPlan = getStockPlanFromCells()
+        self.restrictedStockOptionDao.createStockPlan(restrictedStockPlan)
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -102,53 +105,61 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
             
-            return getPlanNameInputCell()
+            return getPlanNameInputCell("Plan Name")
             
         } else if(indexPath.section == 1) {
             
             switch(indexPath.row) {
-                case 0: return getPercentInputCell("Starting Acceleration")
-                case 1: return getMonthsInputCell("Cliff")
-                case 2: return getMonthsInputCell("Vesting Period")
-                case 3: return getPercentInputCell("Ending Acceleration")
+                case 0: return getPercentInputCell("Starting Acceleration", value: self.restrictedOptionGrant.startingAcceleration)
+                case 1: return getMonthsInputCell("Cliff", value: self.restrictedOptionGrant.cliff)
+                case 2: return getMonthsInputCell("Vesting Period", value: self.restrictedOptionGrant.vestingPeriod)
+                case 3: return getPercentInputCell("Ending Acceleration", value: self.restrictedOptionGrant.endingAcceleration)
                 default: return self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
             }
             
         } else {
             
             switch(indexPath.row) {
-                case 0: return getValueInputCell("Grant Shares")
-                case 1: return getValueInputCell("Start Date")
+                case 0: return getValueInputCell("Grant Shares", value: self.restrictedOptionGrant.shares)
+                case 1: return getValueInputCell("Start Date", string: "WAT")
                 default: return self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
             }
             
         }
     }
     
-    func getPlanNameInputCell() -> PlanNameInputCell {
-        return self.tableView.dequeueReusableCellWithIdentifier(PlanNameInputCell.REUSE_IDENTIFIER) as PlanNameInputCell
+    func getPlanNameInputCell(name: String) -> PlanNameInputCell {
+        let cell: PlanNameInputCell = self.tableView.dequeueReusableCellWithIdentifier(PlanNameInputCell.REUSE_IDENTIFIER) as PlanNameInputCell
+        cell.titleInputField.text = name
+        return cell
     }
     
-    func getValueInputCell(label: String) -> ValueInputCell {
+    func getValueInputCell(label: String, value: Int) -> ValueInputCell {
         let cell: ValueInputCell = self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
-        cell.customize(label, value: 10000)
+        cell.customize(label, value: value)
         return cell
     }
     
-    func getMonthsInputCell(label: String) -> MonthsInputCell {
+    func getValueInputCell(label: String, string value: String) -> ValueInputCell {
+        let cell: ValueInputCell = self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
+        cell.customize(label, string: value)
+        return cell
+    }
+    
+    func getMonthsInputCell(label: String, value: Int) -> MonthsInputCell {
         let cell: MonthsInputCell = self.tableView.dequeueReusableCellWithIdentifier(MonthsInputCell.REUSE_IDENTIFIER) as MonthsInputCell
-        cell.customize(label, value: 24)
+        cell.customize(label, value: value)
         return cell
     }
     
-    func getPercentInputCell(label: String) -> PercentInputCell {
+    func getPercentInputCell(label: String, value: Double) -> PercentInputCell {
         let cell: PercentInputCell = self.tableView.dequeueReusableCellWithIdentifier(PercentInputCell.REUSE_IDENTIFIER) as PercentInputCell
-        cell.customize(label, value: 10)
+        cell.customize(label, value: value)
         return cell
     }
     
     func getStockPlanFromCells() -> StockPlan {
-        var r = RestrictedOptionGrant()
+        let r = RestrictedOptionGrant()
         
         if let startAccelerationCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) {
             let a = startAccelerationCell as PercentInputCell
@@ -170,18 +181,22 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
             r.endingAcceleration = (a.inputField.text as NSString).doubleValue
         }
 
-        if let grantSharesCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 4, inSection: 1)) {
+        if let grantSharesCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) {
             let a = grantSharesCell as ValueInputCell
             r.shares = (a.inputField.text as NSString).integerValue
         }
 
-        if let startDateCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 5, inSection: 1)) {
+        if let startDateCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) {
             let a = startDateCell as ValueInputCell
 //            r.startingAcceleration = (a.inputField.text as NSString)
         }
         
-        return r
+        if let nameCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) {
+            let a = nameCell as PlanNameInputCell
+            r.name = a.titleInputField.text
+        }
         
+        return r
     }
     
     func getSectionHeader(label: String) -> UIView {

@@ -12,6 +12,7 @@ class RestrictedOptionGrant : StockPlan {
 
     // plan parameters
     var uuid: String
+    var name: String
     var startingAcceleration: Double
     var endingAcceleration: Double
     var cliff: Int // in months
@@ -21,8 +22,12 @@ class RestrictedOptionGrant : StockPlan {
     var shares: Int
     var startDate: NSDate
     
+    var description: String { return  "{\"name:\"\(name)\", \"uuid:\"\(uuid)\", \"startingAcceleration:\(startingAcceleration), \"endingAcceleration:\(endingAcceleration), \"cliff:\(cliff), \"vestingPeriod:\(vestingPeriod), \"shares:\(shares), \"startDate:\"\(startDate)\"}" }
+    
+    
     init() {
         self.uuid = NSUUID().UUIDString
+        self.name = ""
         self.startingAcceleration = 0
         self.endingAcceleration = 0
         self.cliff = 0
@@ -39,6 +44,7 @@ class RestrictedOptionGrant : StockPlan {
         self.vestingPeriod = stockPlan.vestingPeriod.integerValue
         self.shares = stockPlan.shares.integerValue
         self.startDate = stockPlan.startDate
+        self.name = stockPlan.name
     }
     
     func withDefaults() -> RestrictedOptionGrant {
@@ -49,6 +55,7 @@ class RestrictedOptionGrant : StockPlan {
         self.vestingPeriod = 48
         self.shares = 5000
         self.startDate = NSDate()
+        self.name = "Plan Name"
         
         return self
     }
@@ -85,6 +92,11 @@ class RestrictedOptionGrant : StockPlan {
     
     func withEndingAcceleration(endingAcceleration: Double) -> RestrictedOptionGrant {
         self.endingAcceleration = endingAcceleration
+        return self
+    }
+    
+    func withName(name: String) -> RestrictedOptionGrant {
+        self.name = name
         return self
     }
     

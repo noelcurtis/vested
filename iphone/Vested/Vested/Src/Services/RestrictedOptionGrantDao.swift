@@ -18,7 +18,7 @@ class RestrictedOptionGrantDao {
     }
 
     func createStockPlan(stockPlan: StockPlan) {
-        println("Creating stock plan")
+        println("Creating stock plan \(stockPlan.description)")
         let s = NSEntityDescription.insertNewObjectForEntityForName("RestrictedOptionGrantMO", inManagedObjectContext: self.managedObjectContext) as RestrictedOptionGrantMO
         s.setupWithStockPlan(stockPlan)
         

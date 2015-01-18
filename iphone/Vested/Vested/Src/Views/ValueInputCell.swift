@@ -62,5 +62,10 @@ class ValueInputCell : UITableViewCell {
         self.inputField.text = "\(value)"
     }
     
+    func customize(label: String, string value: String) {
+        self.labelField.text = label
+        self.inputField.text = value
+    }
+    
 }
 

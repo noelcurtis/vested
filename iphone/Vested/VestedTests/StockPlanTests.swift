@@ -21,6 +21,7 @@ class StockPlanTests : XCTestCase {
         XCTAssertEqual(stockGrant.cliff, 12, "Default cliff should be 1")
         XCTAssertNotNil(stockGrant.startDate, "Start date can not be nil")
         XCTAssertNotNil(stockGrant.uuid, "UUID can not be nil")
+        XCTAssertEqual(stockGrant.name, "Plan Name", "Name should be Plan Name")
     }
     
 }

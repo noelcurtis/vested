@@ -18,15 +18,17 @@ class RestrictedOptionGrantMO: NSManagedObject {
     @NSManaged var startingAcceleration: NSNumber
     @NSManaged var uuid: String
     @NSManaged var vestingPeriod: NSNumber
+    @NSManaged var name: String
     
     func setupWithStockPlan(stockPlan: StockPlan) {
         self.uuid = stockPlan.uuid
         self.startingAcceleration = stockPlan.startingAcceleration
         self.endingAcceleration = stockPlan.endingAcceleration
         self.cliff = stockPlan.cliff
-        self.vestingPeriod = stockPlan.cliff
+        self.vestingPeriod = stockPlan.vestingPeriod
         self.shares = stockPlan.shares
         self.startDate = stockPlan.startDate
+        self.name = stockPlan.name
     }
 
 }
