@@ -78,7 +78,7 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch(section) {
             case 0: return 1.0
-            default: return 22
+            default: return 26
         }
     }
     
@@ -86,10 +86,19 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
         return 3
     }
     
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if (section == 1) {
+            return 26
+        } else {
+            return 1.0
+        }
+    }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        switch(indexPath.row) {
-            case 0: return 40
-            default: return 37
+        if (indexPath.section == 0) {
+            return 36
+        } else {
+            return 37
         }
     }
     
@@ -201,16 +210,17 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
     
     func getSectionHeader(label: String) -> UIView {
         let baseView = UIView()
+        baseView.backgroundColor = UIColor(rgba: "#252A2D")
         let labelField = UILabel()
         labelField.setTranslatesAutoresizingMaskIntoConstraints(false)
         labelField.font = UIFont(name: "AvenirNext-Medium", size: 20)
         labelField.text = label
-        labelField.textColor = UIColor(rgba: "#50E3C2")
+        labelField.textColor = UIColor(rgba: "#4C6DFE")
         baseView.addSubview(labelField)
         
         let viewsDictionary : [NSObject: AnyObject] = ["label_field": labelField]
         let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[label_field]", options: nil, metrics: nil, views: viewsDictionary)
-        let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-1-[label_field]-2-|", options: nil, metrics: nil, views: viewsDictionary)
+        let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[label_field]-0-|", options: nil, metrics: nil, views: viewsDictionary)
         
         baseView.addConstraints(hConstraints)
         baseView.addConstraints(vConstraints)

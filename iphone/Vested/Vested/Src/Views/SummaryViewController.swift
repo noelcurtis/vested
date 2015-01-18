@@ -10,7 +10,7 @@ import UIKit
 
 class SummaryViewController : UITableViewController {
 
-    var menuButton: UIBarButtonItem!
+    //var menuButton: UIBarButtonItem!
     var addButton: UIBarButtonItem!
     let restrictedStockOptionDao = RestrictedOptionGrantDao(managedObjectContext: PersistenceService.sharedInstance.managedObjectContext!)
     
@@ -31,7 +31,7 @@ class SummaryViewController : UITableViewController {
     
     func setupNavBar() {
         // setup the buttons
-        menuButton = UIBarButtonItem(image: UIImage(named: "menu_button"), style: UIBarButtonItemStyle.Plain, target: self, action: nil)
+        //menuButton = UIBarButtonItem(image: UIImage(named: "menu_button"), style: UIBarButtonItemStyle.Plain, target: self, action: nil)
         addButton = UIBarButtonItem(image: UIImage(named: "add_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "pushRestrictedStockPlanDetailView")
         
         // nav title image
@@ -40,16 +40,11 @@ class SummaryViewController : UITableViewController {
         self.navigationItem.titleView = navTitleView
         self.navigationItem.titleView?.hidden = false
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationItem.leftBarButtonItem = menuButton
+        //self.navigationItem.leftBarButtonItem = menuButton
         self.navigationItem.rightBarButtonItem = addButton
         
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
-        
-        // make the nav bar translucent
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-//        self.navigationController?.navigationBar.shadowImage = UIImage()
-//        self.navigationController?.view.backgroundColor = UIColor.clearColor()
-//        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor(rgba: "#252A2D")
+        self.navigationController?.navigationBar.translucent = false
     }
     
     func pushRestrictedStockPlanDetailView() {

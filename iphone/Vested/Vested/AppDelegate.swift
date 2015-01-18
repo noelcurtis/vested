@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let navController = UINavigationController(rootViewController: SummaryViewController())
         window?.rootViewController = navController

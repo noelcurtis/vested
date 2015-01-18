@@ -44,6 +44,7 @@ class MonthsInputCell : UITableViewCell {
         inputField.tintColor = UIColor.whiteColor()
         inputField.textColor = UIColor.whiteColor()
         inputField.textAlignment = NSTextAlignment.Right
+        inputField.keyboardType = UIKeyboardType.DecimalPad
         
         self.addSubview(labelField)
         self.addSubview(inputField)
