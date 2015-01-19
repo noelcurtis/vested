@@ -211,7 +211,7 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
     
     func getSectionHeader(label: String) -> UIView {
         let baseView = UIView()
-        baseView.backgroundColor = UIColor(rgba: "#252A2D")
+        baseView.addSubview(UIImageView(image: UIImage(named: "form_title_background")))
         let labelField = UILabel()
         labelField.setTranslatesAutoresizingMaskIntoConstraints(false)
         labelField.font = UIFont(name: "AvenirNext-Medium", size: 20)

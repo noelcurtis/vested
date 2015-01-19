@@ -10,10 +10,10 @@ import UIKit
 
 class SummaryViewController : UITableViewController {
 
-    //var menuButton: UIBarButtonItem!
     var addButton: UIBarButtonItem!
 
     let restrictedStockOptionDao = RestrictedOptionGrantDao(managedObjectContext: PersistenceService.sharedInstance.managedObjectContext!)
+    let restrictedStockVestingCalulator = RestrictedStockOptionGrantCalculator()
     
     var stockPlans = []
     
@@ -22,21 +22,26 @@ class SummaryViewController : UITableViewController {
         setupNavBar()
         setupTableView()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        setupTableView()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     func setupTableView() {
-//        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
+        tableView.registerClass(SummaryCell.self, forCellReuseIdentifier: SummaryCell.REUSE_IDENTIFIER)
+        
         stockPlans = restrictedStockOptionDao.findAllRestrictedOptionGrants()
         tableView.reloadData()
     }
     
     func setupNavBar() {
         // setup the buttons
-        //menuButton = UIBarButtonItem(image: UIImage(named: "menu_button"), style: UIBarButtonItemStyle.Plain, target: self, action: nil)
         addButton = UIBarButtonItem(image: UIImage(named: "add_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "pushRestrictedStockPlanDetailView")
         
         // nav title image
@@ -69,15 +74,46 @@ class SummaryViewController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let c = tableView.dequeueReusableCellWithIdentifier("summary_cell") as UITableViewCell?
-        if let cell = c {
-            cell.textLabel?.text = (stockPlans[indexPath.row] as RestrictedOptionGrant).name
-            return cell
-        } else {
-            let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "summary_cell")
-            cell.textLabel?.text = (stockPlans[indexPath.row] as RestrictedOptionGrant).name
-            return cell
-        }
+        return getSummaryCell(indexPath)
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 98
+    }
+    
+    
+    func getSummaryCell(indexPath: NSIndexPath) -> UITableViewCell {
+        let stockPlan = stockPlans[indexPath.row] as RestrictedOptionGrant
+        let vestingResult = restrictedStockVestingCalulator.calculate(stockPlan)
         
+        let summaryCell = tableView.dequeueReusableCellWithIdentifier(SummaryCell.REUSE_IDENTIFIER) as SummaryCell
+        summaryCell.customize(stockPlan, vestingResult: vestingResult)
+        return summaryCell
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
