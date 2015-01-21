@@ -20,6 +20,7 @@ class SummaryCell: UITableViewCell {
     let unvestedAmountLabel = UILabel()
     let leftWrapperView = UIView()
     let rightWrapperView = UIView()
+    let radialGraphView = MDRadialProgressView()
     
     class var REUSE_IDENTIFIER : String {
         return "summary_cell"
@@ -39,6 +40,7 @@ class SummaryCell: UITableViewCell {
         unvestedAmountLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         leftWrapperView.setTranslatesAutoresizingMaskIntoConstraints(false)
         rightWrapperView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        radialGraphView.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         planNameLabel.font = UIFont(name: "AvenirNext-Medium", size: 16)
         planNameLabel.text = "Label"
@@ -69,6 +71,10 @@ class SummaryCell: UITableViewCell {
         unvestedAmountLabel.textColor = UIColor(rgba: "#FF6565")
         unvestedAmountLabel.textAlignment  = NSTextAlignment.Center
         
+        radialGraphView.progressCounter = 4000
+        radialGraphView.progressTotal = 5000
+        radialGraphView.theme.sliceDividerHidden = true
+        
         self.addSubview(planNameBackground)
         self.addSubview(planSummaryBackground)
         self.addSubview(planNameLabel)
@@ -78,8 +84,9 @@ class SummaryCell: UITableViewCell {
         rightWrapperView.addSubview(unvestedAmountLabel)
         self.addSubview(leftWrapperView)
         self.addSubview(rightWrapperView)
+        self.addSubview(radialGraphView)
         
-        let viewsDictionary = ["plan_name_background": planNameBackground, "plan_summary_background": planSummaryBackground, "plan_name_label": planNameLabel, "vested_label": vestedLabel, "unvested_label": unvestedLabel, "unvested_amount_label": unvestedAmountLabel, "vested_amount_label": vestedAmountLabel, "left_wrapper": leftWrapperView, "right_wrapper": rightWrapperView]
+        let viewsDictionary = ["plan_name_background": planNameBackground, "plan_summary_background": planSummaryBackground, "plan_name_label": planNameLabel, "vested_label": vestedLabel, "unvested_label": unvestedLabel, "unvested_amount_label": unvestedAmountLabel, "vested_amount_label": vestedAmountLabel, "left_wrapper": leftWrapperView, "right_wrapper": rightWrapperView, "radial_graph_view": radialGraphView]
         
         let hPlacement1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[plan_name_background]-0-|", options: nil, metrics: nil, views: viewsDictionary)
         let hplacement2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[plan_summary_background]-0-|", options: nil, metrics: nil, views: viewsDictionary)
@@ -88,7 +95,8 @@ class SummaryCell: UITableViewCell {
         let hplacement5 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[vested_amount_label]-0-|", options: nil, metrics: nil, views: viewsDictionary)
         let hplacement6 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[unvested_label]-0-|", options: nil, metrics: nil, views: viewsDictionary)
         let hplacement7 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[unvested_amount_label]-0-|", options: nil, metrics: nil, views: viewsDictionary)
-        let hplacement8 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[left_wrapper(==right_wrapper)]-[right_wrapper(==left_wrapper)]-0-|", options: nil, metrics: nil, views: viewsDictionary)
+        let hplacement8 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[left_wrapper(==right_wrapper)]-[radial_graph_view]-[right_wrapper(==left_wrapper)]-0-|", options: nil, metrics: nil, views: viewsDictionary)
+        let hplacement9 = NSLayoutConstraint(item: radialGraphView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: leftWrapperView, attribute: NSLayoutAttribute.Width, multiplier: 0.50, constant: 0.0)
 
         let vplacement1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-8-[plan_name_background]-0-[plan_summary_background]", options: nil, metrics: nil, views: viewsDictionary)
         let vplacement2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-6-[vested_label]", options: nil, metrics: nil, views: viewsDictionary)
@@ -100,7 +108,9 @@ class SummaryCell: UITableViewCell {
         let vplacement8 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[plan_name_label]", options: nil, metrics: nil, views: viewsDictionary)
         let vplacement9 = NSLayoutConstraint(item: leftWrapperView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: planSummaryBackground, attribute: NSLayoutAttribute.Height, multiplier: 1.0, constant: 0.0)
         let vplacement10 = NSLayoutConstraint(item: rightWrapperView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: planSummaryBackground, attribute: NSLayoutAttribute.Height, multiplier: 1.0, constant: 0.0)
-        
+        let vplacement11 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-32-[radial_graph_view]", options: nil, metrics: nil, views: viewsDictionary)
+        let vplacement12 = NSLayoutConstraint(item: radialGraphView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: planSummaryBackground, attribute: NSLayoutAttribute.Height, multiplier: 1.0, constant: 0.0)
+            
         self.addConstraints(hPlacement1)
         self.addConstraints(hplacement2)
         self.addConstraints(hplacement3)
@@ -109,6 +119,7 @@ class SummaryCell: UITableViewCell {
         self.addConstraints(hplacement6)
         self.addConstraints(hplacement7)
         self.addConstraints(hplacement8)
+        self.addConstraint(hplacement9)
         
         self.addConstraints(vplacement1)
         self.addConstraints(vplacement2)
@@ -120,6 +131,8 @@ class SummaryCell: UITableViewCell {
         self.addConstraints(vplacement8)
         self.addConstraint(vplacement9)
         self.addConstraint(vplacement10)
+        self.addConstraints(vplacement11)
+        self.addConstraint(vplacement12)
     }
 
     required init(coder aDecoder: NSCoder) {

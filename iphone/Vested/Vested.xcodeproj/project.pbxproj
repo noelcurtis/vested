@@ -42,6 +42,7 @@
 		30B5EA7B1A68A939002005B3 /* VestedDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30B5EA791A68A939002005B3 /* VestedDataModel.xcdatamodeld */; };
 		30B5EA7D1A68A98F002005B3 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5EA7C1A68A98F002005B3 /* PersistenceService.swift */; };
 		30BB22841A68CA60001435DE /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5EA7C1A68A98F002005B3 /* PersistenceService.swift */; };
+		6A46E3E29B516BAA24870270 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F004C45D47B4A63EA0F8FBB /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F004C45D47B4A63EA0F8FBB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3018D0771A5CC04D00464D64 /* Vested.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vested.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3018D07B1A5CC04D00464D64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3018D07C1A5CC04D00464D64 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,12 +81,15 @@
 		303CF54C1A6D4EC0003B2AFF /* SummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryCell.swift; path = Src/Views/SummaryCell.swift; sourceTree = "<group>"; };
 		303CF54E1A6D7BCE003B2AFF /* NumberUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberUtils.swift; path = Src/Utils/NumberUtils.swift; sourceTree = "<group>"; };
 		30462DDC1A64C30B00DCF5C6 /* ValueInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValueInputCell.swift; path = Src/Views/ValueInputCell.swift; sourceTree = "<group>"; };
+		309CCBE81A6DECD20081DCD2 /* Vested-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Vested-Bridging-Header.h"; sourceTree = "<group>"; };
 		30A1102E1A61DE3000DEB664 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryViewController.swift; path = Src/Views/SummaryViewController.swift; sourceTree = "<group>"; };
 		30A110311A61EEBA00DEB664 /* RestrictedPlanDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestrictedPlanDetailViewController.swift; path = Src/Views/RestrictedPlanDetailViewController.swift; sourceTree = "<group>"; };
 		30A110381A63119100DEB664 /* PlanNameInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlanNameInputCell.swift; path = Src/Views/PlanNameInputCell.swift; sourceTree = "<group>"; };
 		30B5EA771A68A8EE002005B3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		30B5EA7A1A68A939002005B3 /* VestedDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VestedDataModel.xcdatamodel; sourceTree = "<group>"; };
 		30B5EA7C1A68A98F002005B3 /* PersistenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersistenceService.swift; path = Src/Services/PersistenceService.swift; sourceTree = "<group>"; };
+		3EC524A0639C79B14BEFE5F8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B0B54C40606F82D6C8161673 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "../../Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +98,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30B5EA781A68A8EE002005B3 /* CoreData.framework in Frameworks */,
+				6A46E3E29B516BAA24870270 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +119,7 @@
 				3018D08F1A5CC04D00464D64 /* VestedTests */,
 				3018D0781A5CC04D00464D64 /* Products */,
 				303CF54B1A6AF283003B2AFF /* Frameworks */,
+				B02E3BD8E2C8900A58FDEEA3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -212,6 +219,7 @@
 			children = (
 				302F24BC1A66272F00FBF18A /* ColorUtils.swift */,
 				303CF54E1A6D7BCE003B2AFF /* NumberUtils.swift */,
+				309CCBE81A6DECD20081DCD2 /* Vested-Bridging-Header.h */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -220,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				30B5EA771A68A8EE002005B3 /* CoreData.framework */,
+				2F004C45D47B4A63EA0F8FBB /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -238,6 +247,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		B02E3BD8E2C8900A58FDEEA3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3EC524A0639C79B14BEFE5F8 /* Pods.debug.xcconfig */,
+				B0B54C40606F82D6C8161673 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -245,9 +263,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3018D0961A5CC04D00464D64 /* Build configuration list for PBXNativeTarget "Vested" */;
 			buildPhases = (
+				99759D55C8023CC5FC654DE0 /* Check Pods Manifest.lock */,
 				3018D0731A5CC04D00464D64 /* Sources */,
 				3018D0741A5CC04D00464D64 /* Frameworks */,
 				3018D0751A5CC04D00464D64 /* Resources */,
+				C88DA02688231123D03C5404 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -331,6 +351,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		99759D55C8023CC5FC654DE0 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C88DA02688231123D03C5404 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3018D0731A5CC04D00464D64 /* Sources */ = {
@@ -480,21 +533,28 @@
 		};
 		3018D0971A5CC04D00464D64 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3EC524A0639C79B14BEFE5F8 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Vested/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Vested/Vested-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		3018D0981A5CC04D00464D64 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0B54C40606F82D6C8161673 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Vested/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Vested/Vested-Bridging-Header.h";
 			};
 			name = Release;
 		};
