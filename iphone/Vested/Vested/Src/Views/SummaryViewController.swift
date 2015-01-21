@@ -63,9 +63,6 @@ class SummaryViewController : UITableViewController {
 
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
     
     // MARK: - UITableViewDatasource
     

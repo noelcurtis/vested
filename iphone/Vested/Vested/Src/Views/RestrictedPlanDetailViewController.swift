@@ -8,17 +8,20 @@
 
 import UIKit
 
-class RestrictedPlanDetailViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
+class RestrictedPlanDetailViewController: UITableViewController, UITextFieldDelegate {
 
     var backButton: UIBarButtonItem!
     var checkButton: UIBarButtonItem!
     let restrictedStockOptionDao = RestrictedOptionGrantDao(managedObjectContext: PersistenceService.sharedInstance.managedObjectContext!)
     var restrictedOptionGrant: RestrictedOptionGrant = RestrictedOptionGrant().withDefaults()
+    var datePickerShown = false
+    var activeTextField: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
         setupTableView()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardShown", name: UIKeyboardWillShowNotification, object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -48,6 +51,7 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
         tableView.registerClass(ValueInputCell.self, forCellReuseIdentifier: ValueInputCell.REUSE_IDENTIFIER)
         tableView.registerClass(MonthsInputCell.self, forCellReuseIdentifier: MonthsInputCell.REUSE_IDENTIFIER)
         tableView.registerClass(PercentInputCell.self, forCellReuseIdentifier: PercentInputCell.REUSE_IDENTIFIER)
+        tableView.registerClass(DatePickerCell.self, forCellReuseIdentifier: DatePickerCell.REUSE_IDENTIFIER)
     }
     
     func popViewController() {
@@ -60,10 +64,22 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    // MARK: -UITextViewDelegate
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        activeTextField = textField
+    }
+    
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if (indexPath.section == 2 && indexPath.row == 1) {
+            if (datePickerShown) {
+                hideDatePicker()
+            } else {
+                showDatePicker()
+            }
+        }
     }
     
     // MARK: - UITableViewDatasource
@@ -96,10 +112,11 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if (indexPath.section == 0) {
-            return 36
-        } else {
-            return 37
+        switch(indexPath.section) {
+            case 0: return 36
+            case 1: return 37
+            case 2: return indexPath.row == 2 ? 130 : 37
+            default: return 0
         }
     }
     
@@ -107,7 +124,7 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
         switch(section) {
             case 0: return 1
             case 1: return 4
-            case 2: return 2
+            case 2: return datePickerShown ? 3 : 2
             default: return 0
         }
     }
@@ -131,40 +148,59 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
             
             switch(indexPath.row) {
                 case 0: return getValueInputCell("Grant Shares", value: self.restrictedOptionGrant.shares)
-                case 1: return getValueInputCell("Start Date", string: "WAT")
+                case 1: return getDateCell("Start Date", string: "WAT")
+                case 2: return getDatepickerCell(self.restrictedOptionGrant.startDate)
                 default: return self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
             }
             
         }
     }
     
+    func getDatepickerCell(date: NSDate) -> DatePickerCell {
+        let cell: DatePickerCell = self.tableView.dequeueReusableCellWithIdentifier(DatePickerCell.REUSE_IDENTIFIER) as DatePickerCell
+        cell.customize(date)
+        return cell
+    }
+    
     func getPlanNameInputCell(name: String) -> PlanNameInputCell {
         let cell: PlanNameInputCell = self.tableView.dequeueReusableCellWithIdentifier(PlanNameInputCell.REUSE_IDENTIFIER) as PlanNameInputCell
         cell.titleInputField.text = name
+        cell.titleInputField.delegate = self
         return cell
     }
     
     func getValueInputCell(label: String, value: Int) -> ValueInputCell {
         let cell: ValueInputCell = self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
         cell.customize(label, value: value)
+        cell.inputField.delegate = self
         return cell
     }
     
     func getValueInputCell(label: String, string value: String) -> ValueInputCell {
         let cell: ValueInputCell = self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
         cell.customize(label, string: value)
+        cell.inputField.delegate = self
+        return cell
+    }
+    
+    func getDateCell(label: String, string value: String) -> ValueInputCell {
+        let cell: ValueInputCell = self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
+        cell.customize(label, string: value)
+        cell.inputField.enabled = false
         return cell
     }
     
     func getMonthsInputCell(label: String, value: Int) -> MonthsInputCell {
         let cell: MonthsInputCell = self.tableView.dequeueReusableCellWithIdentifier(MonthsInputCell.REUSE_IDENTIFIER) as MonthsInputCell
         cell.customize(label, value: value)
+        cell.inputField.delegate = self
         return cell
     }
     
     func getPercentInputCell(label: String, value: Double) -> PercentInputCell {
         let cell: PercentInputCell = self.tableView.dequeueReusableCellWithIdentifier(PercentInputCell.REUSE_IDENTIFIER) as PercentInputCell
         cell.customize(label, value: value)
+        cell.inputField.delegate = self
         return cell
     }
     
@@ -198,7 +234,6 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
 
         if let startDateCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) {
             let a = startDateCell as ValueInputCell
-//            r.startingAcceleration = (a.inputField.text as NSString)
         }
         
         if let nameCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) {
@@ -229,4 +264,24 @@ class RestrictedPlanDetailViewController: UITableViewController, UITableViewData
         return baseView
     }
     
+    func showDatePicker() {
+        println("Showing date picker")
+        datePickerShown = true
+        activeTextField?.resignFirstResponder()
+        (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) as ValueInputCell).hideUnderline()
+        tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 2)], withRowAnimation: UITableViewRowAnimation.Fade)
+    }
+    
+    func hideDatePicker() {
+        println("Hiding date picker")
+        datePickerShown = false
+        (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) as ValueInputCell).showUnderline()
+        tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 2)], withRowAnimation: UITableViewRowAnimation.Fade)
+    }
+    
+    func keyboardShown() {
+        if (datePickerShown) {
+            hideDatePicker()
+        }
+    }
 }

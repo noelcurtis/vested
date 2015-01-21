@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ValueInputCell : UITableViewCell {
+class ValueInputCell : UITableViewCell{
     
     let labelField = UILabel()
     let underlineImage = UIImageView(image: UIImage(named: "input_cell_line"))
@@ -66,6 +66,14 @@ class ValueInputCell : UITableViewCell {
     func customize(label: String, string value: String) {
         self.labelField.text = label
         self.inputField.text = value
+    }
+    
+    func hideUnderline() {
+        self.underlineImage.hidden = true
+    }
+    
+    func showUnderline() {
+        self.underlineImage.hidden = false
     }
     
 }
