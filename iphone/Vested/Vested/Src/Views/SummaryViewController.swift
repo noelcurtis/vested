@@ -50,7 +50,6 @@ class SummaryViewController : UITableViewController {
         self.navigationItem.titleView = navTitleView
         self.navigationItem.titleView?.hidden = false
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        //self.navigationItem.leftBarButtonItem = menuButton
         self.navigationItem.rightBarButtonItem = addButton
         
         self.navigationController?.navigationBar.barTintColor = UIColor(rgba: "#252A2D")

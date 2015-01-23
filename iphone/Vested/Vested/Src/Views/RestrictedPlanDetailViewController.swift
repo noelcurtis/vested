@@ -16,6 +16,12 @@ class RestrictedPlanDetailViewController: UITableViewController, UITextFieldDele
     var restrictedOptionGrant: RestrictedOptionGrant = RestrictedOptionGrant().withDefaults()
     var datePickerShown = false
     var activeTextField: UITextField?
+    lazy var dateTimeFormatter: NSDateFormatter  = {
+        let dt = NSDateFormatter()
+        dt.dateStyle = NSDateFormatterStyle.ShortStyle
+        dt.timeStyle = NSDateFormatterStyle.NoStyle
+        return dt
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,6 +165,7 @@ class RestrictedPlanDetailViewController: UITableViewController, UITextFieldDele
     func getDatepickerCell(date: NSDate) -> DatePickerCell {
         let cell: DatePickerCell = self.tableView.dequeueReusableCellWithIdentifier(DatePickerCell.REUSE_IDENTIFIER) as DatePickerCell
         cell.customize(date)
+        cell.datePicker.addTarget(self, action: Selector("dateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         return cell
     }
     
@@ -283,5 +290,9 @@ class RestrictedPlanDetailViewController: UITableViewController, UITextFieldDele
         if (datePickerShown) {
             hideDatePicker()
         }
+    }
+    
+    func dateChanged(datePicker: UIDatePicker) {
+        (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) as ValueInputCell).inputField.text = dateTimeFormatter.stringFromDate(datePicker.date)
     }
 }
