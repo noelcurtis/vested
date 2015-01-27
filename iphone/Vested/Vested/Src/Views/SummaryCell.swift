@@ -42,30 +42,30 @@ class SummaryCell: UITableViewCell {
         rightWrapperView.setTranslatesAutoresizingMaskIntoConstraints(false)
         radialGraphView.setTranslatesAutoresizingMaskIntoConstraints(false)
         
-        planNameLabel.font = UIFont(name: "AvenirNext-Medium", size: 16)
+        planNameLabel.font = UIFont(name: ColorsAndFonts.baseFont, size: ColorsAndFonts.summaryCellFontSize)
         planNameLabel.text = "Label"
         planNameLabel.tintColor = UIColor.whiteColor()
         planNameLabel.textColor = UIColor.whiteColor()
         
-        vestedLabel.font = UIFont(name: "AvenirNext-Medium", size: 16)
+        vestedLabel.font = UIFont(name: ColorsAndFonts.baseFont, size: 16)
         vestedLabel.text = "Vested"
         vestedLabel.tintColor = UIColor.whiteColor()
         vestedLabel.textColor = UIColor.whiteColor()
         vestedLabel.textAlignment = NSTextAlignment.Center
         
-        unvestedLabel.font = UIFont(name: "AvenirNext-Medium", size: 16)
+        unvestedLabel.font = UIFont(name: ColorsAndFonts.baseFont, size: 16)
         unvestedLabel.text = "Unvested"
         unvestedLabel.tintColor = UIColor.whiteColor()
         unvestedLabel.textColor = UIColor.whiteColor()
         unvestedLabel.textAlignment  = NSTextAlignment.Center
         
-        vestedAmountLabel.font = UIFont(name: "AvenirNext-Medium", size: 28)
+        vestedAmountLabel.font = UIFont(name: ColorsAndFonts.baseFont, size: 28)
         vestedAmountLabel.text = ""
         vestedAmountLabel.tintColor = UIColor(rgba: "#5BE350")
         vestedAmountLabel.textColor = UIColor(rgba: "#5BE350")
         vestedAmountLabel.textAlignment  = NSTextAlignment.Center
         
-        unvestedAmountLabel.font = UIFont(name: "AvenirNext-Medium", size: 28)
+        unvestedAmountLabel.font = UIFont(name: ColorsAndFonts.baseFont, size: 28)
         unvestedAmountLabel.text = ""
         unvestedAmountLabel.tintColor = UIColor(rgba: "#FF6565")
         unvestedAmountLabel.textColor = UIColor(rgba: "#FF6565")
@@ -145,10 +145,4 @@ class SummaryCell: UITableViewCell {
         unvestedAmountLabel.text = NumberUtils.commatoze(vestingResult.unvestedShares)
     }
 }
-
-
-
-
-
-
 

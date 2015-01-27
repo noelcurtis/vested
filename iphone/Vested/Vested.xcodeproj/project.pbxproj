@@ -35,6 +35,8 @@
 		303CF54D1A6D4EC0003B2AFF /* SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303CF54C1A6D4EC0003B2AFF /* SummaryCell.swift */; };
 		303CF54F1A6D7BCE003B2AFF /* NumberUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303CF54E1A6D7BCE003B2AFF /* NumberUtils.swift */; };
 		30462DDD1A64C30B00DCF5C6 /* ValueInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30462DDC1A64C30B00DCF5C6 /* ValueInputCell.swift */; };
+		3076ECC01A71D62500CCC493 /* SummaryCellV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3076ECBF1A71D62500CCC493 /* SummaryCellV2.swift */; };
+		3076ECC21A71D66D00CCC493 /* ColorsAndFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3076ECC11A71D66D00CCC493 /* ColorsAndFonts.swift */; };
 		30A1102F1A61DE3000DEB664 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A1102E1A61DE3000DEB664 /* SummaryViewController.swift */; };
 		30A110321A61EEBA00DEB664 /* RestrictedPlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A110311A61EEBA00DEB664 /* RestrictedPlanDetailViewController.swift */; };
 		30A110391A63119100DEB664 /* PlanNameInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A110381A63119100DEB664 /* PlanNameInputCell.swift */; };
@@ -82,6 +84,8 @@
 		303CF54C1A6D4EC0003B2AFF /* SummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryCell.swift; path = Src/Views/SummaryCell.swift; sourceTree = "<group>"; };
 		303CF54E1A6D7BCE003B2AFF /* NumberUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberUtils.swift; path = Src/Utils/NumberUtils.swift; sourceTree = "<group>"; };
 		30462DDC1A64C30B00DCF5C6 /* ValueInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValueInputCell.swift; path = Src/Views/ValueInputCell.swift; sourceTree = "<group>"; };
+		3076ECBF1A71D62500CCC493 /* SummaryCellV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryCellV2.swift; path = Src/Views/SummaryCellV2.swift; sourceTree = "<group>"; };
+		3076ECC11A71D66D00CCC493 /* ColorsAndFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorsAndFonts.swift; path = Src/Utils/ColorsAndFonts.swift; sourceTree = "<group>"; };
 		309CCBE81A6DECD20081DCD2 /* Vested-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Vested-Bridging-Header.h"; sourceTree = "<group>"; };
 		30A1102E1A61DE3000DEB664 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryViewController.swift; path = Src/Views/SummaryViewController.swift; sourceTree = "<group>"; };
 		30A110311A61EEBA00DEB664 /* RestrictedPlanDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestrictedPlanDetailViewController.swift; path = Src/Views/RestrictedPlanDetailViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 				302F24BC1A66272F00FBF18A /* ColorUtils.swift */,
 				303CF54E1A6D7BCE003B2AFF /* NumberUtils.swift */,
 				309CCBE81A6DECD20081DCD2 /* Vested-Bridging-Header.h */,
+				3076ECC11A71D66D00CCC493 /* ColorsAndFonts.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				302F24B61A65FA3700FBF18A /* MonthsInputCell.swift */,
 				303CF54C1A6D4EC0003B2AFF /* SummaryCell.swift */,
 				30BE11861A6F304400C1E35D /* DatePickerCell.swift */,
+				3076ECBF1A71D62500CCC493 /* SummaryCellV2.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -399,6 +405,7 @@
 				302F24B71A65FA3700FBF18A /* MonthsInputCell.swift in Sources */,
 				303CF54D1A6D4EC0003B2AFF /* SummaryCell.swift in Sources */,
 				302F24B91A66088C00FBF18A /* PercentInputCell.swift in Sources */,
+				3076ECC21A71D66D00CCC493 /* ColorsAndFonts.swift in Sources */,
 				30B5EA7B1A68A939002005B3 /* VestedDataModel.xcdatamodeld in Sources */,
 				3018D0A21A5CC96000464D64 /* RestrictedOptionGrant.swift in Sources */,
 				30324EB41A6AB48100FBF9AF /* RestrictedOptionGrantDao.swift in Sources */,
@@ -407,6 +414,7 @@
 				3018D0AA1A5CD16100464D64 /* VestingCalculator.swift in Sources */,
 				30A110391A63119100DEB664 /* PlanNameInputCell.swift in Sources */,
 				30A1102F1A61DE3000DEB664 /* SummaryViewController.swift in Sources */,
+				3076ECC01A71D62500CCC493 /* SummaryCellV2.swift in Sources */,
 				3018D0AF1A5CD37200464D64 /* VestingCalculatorResult.swift in Sources */,
 				3018D07D1A5CC04D00464D64 /* AppDelegate.swift in Sources */,
 				303CF54F1A6D7BCE003B2AFF /* NumberUtils.swift in Sources */,

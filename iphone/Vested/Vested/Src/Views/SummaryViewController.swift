@@ -34,7 +34,7 @@ class SummaryViewController : UITableViewController {
     func setupTableView() {
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
-        tableView.registerClass(SummaryCell.self, forCellReuseIdentifier: SummaryCell.REUSE_IDENTIFIER)
+        tableView.registerClass(SummaryCellV2.self, forCellReuseIdentifier: SummaryCellV2.REUSE_IDENTIFIER)
         
         stockPlans = restrictedStockOptionDao.findAllRestrictedOptionGrants()
         tableView.reloadData()
@@ -74,15 +74,14 @@ class SummaryViewController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 98
+        return 99
     }
-    
     
     func getSummaryCell(indexPath: NSIndexPath) -> UITableViewCell {
         let stockPlan = stockPlans[indexPath.row] as RestrictedOptionGrant
         let vestingResult = restrictedStockVestingCalulator.calculate(stockPlan)
         
-        let summaryCell = tableView.dequeueReusableCellWithIdentifier(SummaryCell.REUSE_IDENTIFIER) as SummaryCell
+        let summaryCell = tableView.dequeueReusableCellWithIdentifier(SummaryCellV2.REUSE_IDENTIFIER) as SummaryCellV2
         summaryCell.customize(stockPlan, vestingResult: vestingResult)
         return summaryCell
     }

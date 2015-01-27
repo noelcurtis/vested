@@ -154,7 +154,7 @@ class RestrictedPlanDetailViewController: UITableViewController, UITextFieldDele
             
             switch(indexPath.row) {
                 case 0: return getValueInputCell("Grant Shares", value: self.restrictedOptionGrant.shares)
-                case 1: return getDateCell("Start Date", string: "WAT")
+                case 1: return getDateCell("Start Date", string: dateTimeFormatter.stringFromDate(self.restrictedOptionGrant.startDate))
                 case 2: return getDatepickerCell(self.restrictedOptionGrant.startDate)
                 default: return self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
             }
@@ -241,6 +241,9 @@ class RestrictedPlanDetailViewController: UITableViewController, UITextFieldDele
 
         if let startDateCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) {
             let a = startDateCell as ValueInputCell
+            if let date : NSDate = dateTimeFormatter.dateFromString(a.inputField.text) {
+                r.startDate = date
+            }
         }
         
         if let nameCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) {
