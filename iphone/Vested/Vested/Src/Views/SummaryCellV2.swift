@@ -81,6 +81,8 @@ class SummaryCellV2 : UITableViewCell {
         infoButton.enabled = true
         infoButton.addTarget(self, action: "buttonClick:", forControlEvents: UIControlEvents.TouchUpInside)
         infoButton.userInteractionEnabled = true
+
+        infoView.backgroundColor = UIColor.yellowColor()
 //        infoButton.backgroundColor = UIColor.blackColor()
         
 //        leftWrapperView.backgroundColor = UIColor.yellowColor()
@@ -168,16 +170,16 @@ class SummaryCellV2 : UITableViewCell {
         infoButton.addSubview(planNameLabel)
         infoButton.addSubview(infoImage)
         cellBackgroundLower.addSubview(infoButton)
-//        infoView.addSubview(cliffBreachLabel)
+        
+        infoView.addSubview(cliffBreachLabel)
+        infoView.addSubview(cliffBreachCheck)
 //        infoView.addSubview(monthsToVestLabel)
 //        infoView.addSubview(monthsToVestValueLabel)
-//        infoView.addSubview(cliffBreachCheck)
 //        infoView.addSubview(cliffBreachCross)
 //        infoView.addSubview(lineSeparator)
-//        contentView.addSubview(infoView)
-//        
-//        cliffBreachCross.hidden = true
+        cellBackgroundLower.addSubview(infoView)
         
+        cliffBreachCross.hidden = true
         
         let viewsDictionary = [
             "summary_background_upper": cellBackgroundUpper,
@@ -193,14 +195,14 @@ class SummaryCellV2 : UITableViewCell {
             "plan_name_label": planNameLabel,
             "info_image": infoImage,
             "info_button": infoButton,
-            "percent_label": percentLabel
-//            "cliff_breach_cross": cliffBreachCross,
-//            "cliff_breach_check": cliffBreachCheck,
-//            "line_separator": lineSeparator,
-//            "cliff_breach_label" : cliffBreachLabel,
-//            "months_to_vest_label": monthsToVestLabel,
-//            "months_to_vest_value_label": monthsToVestValueLabel,
-//            "info_view": infoView
+            "percent_label": percentLabel,
+            "cliff_breach_cross": cliffBreachCross,
+            "cliff_breach_check": cliffBreachCheck,
+            "line_separator": lineSeparator,
+            "cliff_breach_label" : cliffBreachLabel,
+            "months_to_vest_label": monthsToVestLabel,
+            "months_to_vest_value_label": monthsToVestValueLabel,
+            "info_view": infoView
         ]
         
         let hPlacement1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-2-[summary_background_upper]-2-|", options: nil, metrics: nil, views: viewsDictionary)
@@ -218,8 +220,9 @@ class SummaryCellV2 : UITableViewCell {
         let hPlacement12 = NSLayoutConstraint.constraintsWithVisualFormat("H:[info_image]-10-|", options: nil, metrics: nil, views: viewsDictionary)
         let hPlacement13 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[percent_label]-0-|", options: nil, metrics: nil, views: viewsDictionary)
         let hPlacement14 = NSLayoutConstraint(item: middleWrapperView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Width, multiplier: 0.20, constant: 0.0)
-//        let hPlacement15 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[cliff_breach_label]-[cliff_breach_check]-|", options: nil, metrics: nil, views: viewsDictionary)
-//        let hPlacement16 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[months_to_vest_label]-[months_to_vest_value_label]-|", options: nil, metrics: nil, views: viewsDictionary)
+
+        let hPlacement15 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[info_view]", options: nil, metrics: nil, views: viewsDictionary)
+        let hPlacement16 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[cliff_breach_label]-[cliff_breach_check]", options: nil, metrics: nil, views: viewsDictionary)
         
 
         let vPlacement1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[summary_background_upper]", options: nil, metrics: nil, views: viewsDictionary)
@@ -241,6 +244,10 @@ class SummaryCellV2 : UITableViewCell {
         let vPlacement18 = NSLayoutConstraint(item: cellBackgroundLower, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Height, multiplier: 1.0, constant: 0.0)
         let vPlacement19 = NSLayoutConstraint(item: vestedLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Top, multiplier: 2.5, constant: 0.0)
         let vPlacement20 = NSLayoutConstraint(item: unvestedLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Top, multiplier: 2.5, constant: 0.0)
+
+        let vPlacement21 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[info_view]", options: nil, metrics: nil, views: viewsDictionary)
+        let vPlacement22 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[cliff_breach_label]-0-|", options: nil, metrics: nil, views: viewsDictionary)
+        let vPlacement23 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[cliff_breach_check]", options: nil, metrics: nil, views: viewsDictionary)
         
         vPlacement2 = NSLayoutConstraint(item: cellBackgroundLower, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 28.0)
         
@@ -258,8 +265,8 @@ class SummaryCellV2 : UITableViewCell {
         self.addConstraints(hPlacement12)
         self.addConstraints(hPlacement13)
         self.addConstraint(hPlacement14)
-//        self.addConstraints(hPlacement15)
-//        self.addConstraints(hPlacement16)
+        self.addConstraints(hPlacement15)
+        self.addConstraints(hPlacement16)
         
         self.addConstraints(vPlacement1)
         self.addConstraint(vPlacement2)
@@ -281,6 +288,9 @@ class SummaryCellV2 : UITableViewCell {
         self.addConstraint(vPlacement18)
         self.addConstraint(vPlacement19)
         self.addConstraint(vPlacement20)
+        self.addConstraints(vPlacement21)
+        self.addConstraints(vPlacement22)
+        self.addConstraints(vPlacement23)
     }
     
     required init(coder aDecoder: NSCoder) {
