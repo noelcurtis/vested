@@ -8,21 +8,95 @@
 
 import Foundation
 
-struct ColorsAndFonts {
+class ColorsAndFonts {
+    
+    class var screenWidth: CGFloat {
+        return UIScreen.mainScreen().bounds.size.width
+    }
     
     // MARK: - Colors
-    static let backgroundBlack = UIColor(rgba: "#252A2D")
-    static let generalFontColor = UIColor.whiteColor()
-    static let vestedGreen = UIColor(rgba: "#5BE350")
-    static let unvestedRed = UIColor(rgba: "#FF6565")
+    class var backgroundBlack : UIColor {
+        return UIColor(rgba: "#252A2D")
+    }
+    
+    class var generalFontColor : UIColor {
+        return UIColor.whiteColor()
+    }
+    
+    class var vestedGreen : UIColor {
+        return UIColor(rgba: "#5BE350")
+    }
+    
+    class var unvestedRed : UIColor {
+        return UIColor(rgba: "#FF6565")
+    }
     
     // MARK: - Font Sizes
-    static let summaryCellFontSize = CGFloat(24.0)
-    static let summaryCellSubFontSize = CGFloat(16.0)
-    static let summaryCellPercentLabelSize = CGFloat(18)
+    class var summaryCellFontSize : CGFloat {
+        switch(screenWidth) {
+        case ColorsAndFonts.smallSize: return CGFloat(20)
+        case ColorsAndFonts.mediumSize: return CGFloat(24)
+        case ColorsAndFonts.largeSize: return CGFloat(26)
+        default: return CGFloat(20)
+        }
+
+    }
+    
+    class var summaryCellSubFontSize : CGFloat {
+        switch(screenWidth) {
+        case ColorsAndFonts.smallSize: return CGFloat(14)
+        case ColorsAndFonts.mediumSize: return CGFloat(16)
+        case ColorsAndFonts.largeSize: return CGFloat(18)
+        default: return CGFloat(16)
+        }
+    }
+    
+    class var summaryCellPercentLabelFontSize : CGFloat {
+        switch(screenWidth) {
+        case ColorsAndFonts.smallSize: return CGFloat(15)
+        case ColorsAndFonts.mediumSize: return CGFloat(18)
+        case ColorsAndFonts.largeSize: return CGFloat(22)
+        default: return CGFloat(15)
+        }
+    }
+    
+    class var infoButtonLabelSize : CGFloat {
+        switch(screenWidth) {
+        case ColorsAndFonts.smallSize: return CGFloat(18)
+        case ColorsAndFonts.mediumSize: return CGFloat(18)
+        case ColorsAndFonts.largeSize: return CGFloat(20)
+        default: return CGFloat(16)
+        }
+    }
+    
+    class var infoTextSize : CGFloat {
+        switch(screenWidth) {
+        case ColorsAndFonts.smallSize: return CGFloat(14)
+        case ColorsAndFonts.mediumSize: return CGFloat(14)
+        case ColorsAndFonts.largeSize: return CGFloat(16)
+        default: return CGFloat(14)
+        }
+    }
     
     // MARK: - Fonts
-    static let baseFont = "AvenirNext-Medium"
-    static let slimFont = "AvenirNext-Regular"
+    class var baseFont : String {
+        return "AvenirNext-Medium"
+    }
+    class var slimFont : String {
+        return "AvenirNext-Regular"
+    }
+    
+    // MARK: - Sizes
+    class var smallSize : CGFloat {
+        return CGFloat(320.0)
+    }
+    
+    class var mediumSize : CGFloat {
+        return CGFloat(375.0)
+    }
+    
+    class var largeSize : CGFloat {
+        return CGFloat(414.0)
+    }
     
 }

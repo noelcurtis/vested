@@ -76,9 +76,9 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if (expandedIndexPaths.filter({$0 == indexPath}).count != 0) {
-            return 129
+            return SizeClass.getClassForSize().rowHeightExpanded
         } else {
-            return 112
+            return SizeClass.getClassForSize().rowHeight
         }
     }
     
@@ -113,6 +113,7 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
             NSLog("Cell has no index path, no displaying summary detail")
         }
     }
+    
 }
 
 
