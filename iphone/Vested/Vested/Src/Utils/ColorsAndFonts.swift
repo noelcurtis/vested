@@ -17,10 +17,12 @@ struct ColorsAndFonts {
     static let unvestedRed = UIColor(rgba: "#FF6565")
     
     // MARK: - Font Sizes
-    static let summaryCellFontSize = CGFloat(22.0)
-    static let summaryCellSubFontSize = CGFloat(14.0)
+    static let summaryCellFontSize = CGFloat(24.0)
+    static let summaryCellSubFontSize = CGFloat(16.0)
+    static let summaryCellPercentLabelSize = CGFloat(18)
     
     // MARK: - Fonts
     static let baseFont = "AvenirNext-Medium"
+    static let slimFont = "AvenirNext-Regular"
     
 }

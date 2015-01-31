@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SummaryViewController : UITableViewController {
+class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
 
     var addButton: UIBarButtonItem!
 
@@ -16,6 +16,7 @@ class SummaryViewController : UITableViewController {
     let restrictedStockVestingCalulator = RestrictedStockOptionGrantCalculator()
     
     var stockPlans = []
+    var expandedIndexPaths:[NSIndexPath] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +75,11 @@ class SummaryViewController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 99
+        if (expandedIndexPaths.filter({$0 == indexPath}).count != 0) {
+            return 129
+        } else {
+            return 112
+        }
     }
     
     func getSummaryCell(indexPath: NSIndexPath) -> UITableViewCell {
@@ -82,8 +87,31 @@ class SummaryViewController : UITableViewController {
         let vestingResult = restrictedStockVestingCalulator.calculate(stockPlan)
         
         let summaryCell = tableView.dequeueReusableCellWithIdentifier(SummaryCellV2.REUSE_IDENTIFIER) as SummaryCellV2
-        summaryCell.customize(stockPlan, vestingResult: vestingResult)
+        summaryCell.customize(stockPlan, vestingResult: vestingResult, indexPath: indexPath)
+        summaryCell.cellDetailButtonPressedDelegate = self
         return summaryCell
+    }
+    
+    func detailButtonPressed(cell: UITableViewCell) {
+        if let indexPath = (cell as SummaryCellV2).indexPath {
+            
+            // check if the cell at indexPath is already expanded
+            if (expandedIndexPaths.filter({$0 == indexPath}).count != 0) {
+                // if its already expanded remove it so it can be contracted
+                expandedIndexPaths = expandedIndexPaths.filter({$0 != indexPath})
+                (cell as SummaryCellV2).contractDetailView()
+                tableView.reloadData()
+            } else {
+                // if its not already expanded add it to the expanded list
+                expandedIndexPaths.append(indexPath)
+                tableView.reloadData()
+                (cell as SummaryCellV2).expandDetailView()
+            }
+        
+            
+        } else {
+            NSLog("Cell has no index path, no displaying summary detail")
+        }
     }
 }
 
