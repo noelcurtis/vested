@@ -38,6 +38,7 @@
 		30462DDD1A64C30B00DCF5C6 /* ValueInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30462DDC1A64C30B00DCF5C6 /* ValueInputCell.swift */; };
 		3076ECC01A71D62500CCC493 /* SummaryCellV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3076ECBF1A71D62500CCC493 /* SummaryCellV2.swift */; };
 		3076ECC21A71D66D00CCC493 /* ColorsAndFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3076ECC11A71D66D00CCC493 /* ColorsAndFonts.swift */; };
+		30877F261A7DCC14001166E1 /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30877F251A7DCC14001166E1 /* InfoView.xib */; };
 		30A1102F1A61DE3000DEB664 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A1102E1A61DE3000DEB664 /* SummaryViewController.swift */; };
 		30A110321A61EEBA00DEB664 /* RestrictedPlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A110311A61EEBA00DEB664 /* RestrictedPlanDetailViewController.swift */; };
 		30A110391A63119100DEB664 /* PlanNameInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A110381A63119100DEB664 /* PlanNameInputCell.swift */; };
@@ -88,6 +89,7 @@
 		30462DDC1A64C30B00DCF5C6 /* ValueInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValueInputCell.swift; path = Src/Views/ValueInputCell.swift; sourceTree = "<group>"; };
 		3076ECBF1A71D62500CCC493 /* SummaryCellV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryCellV2.swift; path = Src/Views/SummaryCellV2.swift; sourceTree = "<group>"; };
 		3076ECC11A71D66D00CCC493 /* ColorsAndFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorsAndFonts.swift; path = Src/Utils/ColorsAndFonts.swift; sourceTree = "<group>"; };
+		30877F251A7DCC14001166E1 /* InfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoView.xib; path = Src/Views/InfoView.xib; sourceTree = "<group>"; };
 		309CCBE81A6DECD20081DCD2 /* Vested-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Vested-Bridging-Header.h"; sourceTree = "<group>"; };
 		30A1102E1A61DE3000DEB664 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryViewController.swift; path = Src/Views/SummaryViewController.swift; sourceTree = "<group>"; };
 		30A110311A61EEBA00DEB664 /* RestrictedPlanDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestrictedPlanDetailViewController.swift; path = Src/Views/RestrictedPlanDetailViewController.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				303CF54C1A6D4EC0003B2AFF /* SummaryCell.swift */,
 				30BE11861A6F304400C1E35D /* DatePickerCell.swift */,
 				3076ECBF1A71D62500CCC493 /* SummaryCellV2.swift */,
+				30877F251A7DCC14001166E1 /* InfoView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30877F261A7DCC14001166E1 /* InfoView.xib in Resources */,
 				3018D0871A5CC04D00464D64 /* LaunchScreen.xib in Resources */,
 				3018D0841A5CC04D00464D64 /* Images.xcassets in Resources */,
 			);
