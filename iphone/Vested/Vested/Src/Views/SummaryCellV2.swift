@@ -30,6 +30,7 @@ class SummaryCellV2 : UITableViewCell {
     let infoImage = UIImageView(image: UIImage(named: "info_image"))
     let infoButton = UIButton()
     let percentLabel = UILabel()
+    var infoView : SummaryCellInfoView?
     
     var cellDetailButtonPressedDelegate : CellDetailButtonDelegate?
     var indexPath: NSIndexPath?
@@ -48,6 +49,9 @@ class SummaryCellV2 : UITableViewCell {
         self.backgroundColor = UIColor.clearColor()
         self.selectionStyle = UITableViewCellSelectionStyle.None
         
+        let bundle = NSBundle(forClass: self.dynamicType)
+        infoView = bundle.loadNibNamed("InfoView", owner: nil, options: nil)[0] as? SummaryCellInfoView
+        
         cellBackgroundLower.setTranslatesAutoresizingMaskIntoConstraints(false)
         cellBackgroundUpper.setTranslatesAutoresizingMaskIntoConstraints(false)
         leftWrapperView.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -62,6 +66,7 @@ class SummaryCellV2 : UITableViewCell {
         infoImage.setTranslatesAutoresizingMaskIntoConstraints(false)
         infoButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         percentLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        infoView?.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         infoButton.enabled = true
         infoButton.addTarget(self, action: "buttonClick:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -121,20 +126,22 @@ class SummaryCellV2 : UITableViewCell {
         radialGraphView.theme.thickness = 6
         radialGraphView.clockwise = false
 
-        contentView.addSubview(cellBackgroundLower)
-        contentView.addSubview(cellBackgroundUpper)
         leftWrapperView.addSubview(vestedLabel)
         leftWrapperView.addSubview(vestedAmountLabel)
         rightWrapperView.addSubview(unvestedLabel)
         rightWrapperView.addSubview(unvestedAmountLabel)
         middleWrapperView.addSubview(radialGraphView)
         middleWrapperView.addSubview(percentLabel)
-        contentView.addSubview(leftWrapperView)
-        contentView.addSubview(middleWrapperView)
-        contentView.addSubview(rightWrapperView)
         infoButton.addSubview(planNameLabel)
         infoButton.addSubview(infoImage)
         cellBackgroundLower.addSubview(infoButton)
+        cellBackgroundLower.addSubview(infoView!)
+        contentView.addSubview(cellBackgroundLower)
+        contentView.addSubview(cellBackgroundUpper)
+        contentView.addSubview(leftWrapperView)
+        contentView.addSubview(middleWrapperView)
+        contentView.addSubview(rightWrapperView)
+
         
         let viewsDictionary = [
             "summary_background_upper": cellBackgroundUpper,
@@ -150,7 +157,8 @@ class SummaryCellV2 : UITableViewCell {
             "plan_name_label": planNameLabel,
             "info_image": infoImage,
             "info_button": infoButton,
-            "percent_label": percentLabel
+            "percent_label": percentLabel,
+            "info_view": infoView!
         ]
         
         let hPlacement1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-2-[summary_background_upper]-2-|", options: nil, metrics: nil, views: viewsDictionary)
@@ -168,6 +176,7 @@ class SummaryCellV2 : UITableViewCell {
         let hPlacement12 = NSLayoutConstraint.constraintsWithVisualFormat("H:[info_image]-10-|", options: nil, metrics: nil, views: viewsDictionary)
         let hPlacement13 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[percent_label]-0-|", options: nil, metrics: nil, views: viewsDictionary)
         let hPlacement14 = NSLayoutConstraint(item: middleWrapperView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Width, multiplier: 0.20, constant: 0.0)
+        let hPlacement15 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-75-[info_view]-75-|", options: nil, metrics: nil, views: viewsDictionary)
 
         let vPlacement1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[summary_background_upper]", options: nil, metrics: nil, views: viewsDictionary)
         let vPlacement3 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-12-[left_wrapper]", options: nil, metrics: nil, views: viewsDictionary)
@@ -189,6 +198,9 @@ class SummaryCellV2 : UITableViewCell {
         let vPlacement19 = NSLayoutConstraint(item: vestedLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Top, multiplier: 2.5, constant: 0.0)
         let vPlacement20 = NSLayoutConstraint(item: unvestedLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Top, multiplier: 2.5, constant: 0.0)
 
+        
+        let vPlacement21 = NSLayoutConstraint(item: infoView!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundLower, attribute: NSLayoutAttribute.Height, multiplier: 0.65, constant: 0.0)
+        let vPlacement22 = NSLayoutConstraint.constraintsWithVisualFormat("V:[info_view]-20-|", options: nil, metrics: nil, views: viewsDictionary)
         vPlacement2 = NSLayoutConstraint(item: cellBackgroundLower, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 28.0)
         
         self.addConstraints(hPlacement1)
@@ -205,6 +217,7 @@ class SummaryCellV2 : UITableViewCell {
         self.addConstraints(hPlacement12)
         self.addConstraints(hPlacement13)
         self.addConstraint(hPlacement14)
+        self.addConstraints(hPlacement15)
         
         self.addConstraints(vPlacement1)
         self.addConstraint(vPlacement2)
@@ -226,6 +239,8 @@ class SummaryCellV2 : UITableViewCell {
         self.addConstraint(vPlacement18)
         self.addConstraint(vPlacement19)
         self.addConstraint(vPlacement20)
+        self.addConstraint(vPlacement21)
+        self.addConstraints(vPlacement22)
     }
     
     required init(coder aDecoder: NSCoder) {

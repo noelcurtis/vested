@@ -24,7 +24,7 @@ class SizeClass : Printable {
     }
     
     class func small() -> SizeClass {
-        return SizeClass(rowHeight: 108, rowHeightExpanded: 158, summaryButtomOffset: 63)
+        return SizeClass(rowHeight: 108, rowHeightExpanded: 138, summaryButtomOffset: 63)
     }
     
     class func medium() -> SizeClass {

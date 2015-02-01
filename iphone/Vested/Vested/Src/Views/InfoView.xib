@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SummaryCellInfoView" customModule="Vested" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="199" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -39,12 +39,16 @@
                     <rect key="frame" x="181" y="5" width="12" height="12"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="b5t-9Q-mDu" secondAttribute="trailing" constant="4.5" id="29G-K4-20P"/>
+                <constraint firstItem="5vi-IG-Onj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="6vd-z2-3Yo"/>
+                <constraint firstAttribute="bottom" secondItem="Oqs-CQ-d0d" secondAttribute="bottom" id="Bhs-BS-yId"/>
+                <constraint firstAttribute="bottom" secondItem="eyT-ya-HzB" secondAttribute="bottom" id="D9l-AK-hoQ"/>
                 <constraint firstAttribute="trailing" secondItem="5vi-IG-Onj" secondAttribute="trailing" constant="6" id="Gmj-bV-5ve"/>
                 <constraint firstItem="eyT-ya-HzB" firstAttribute="top" secondItem="b5t-9Q-mDu" secondAttribute="bottom" constant="3.5" id="Hgd-od-c4n"/>
                 <constraint firstAttribute="centerX" secondItem="b5t-9Q-mDu" secondAttribute="centerX" id="MFo-Jn-QaK"/>
+                <constraint firstItem="irg-mj-Wjd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Nr0-Mf-jvl"/>
                 <constraint firstItem="Oqs-CQ-d0d" firstAttribute="top" secondItem="b5t-9Q-mDu" secondAttribute="bottom" constant="3.5" id="SDc-8v-F8f"/>
                 <constraint firstItem="eyT-ya-HzB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="6" id="fwf-eG-f2J"/>
                 <constraint firstAttribute="trailing" secondItem="Oqs-CQ-d0d" secondAttribute="trailing" constant="6" id="g2q-0s-nu5"/>
