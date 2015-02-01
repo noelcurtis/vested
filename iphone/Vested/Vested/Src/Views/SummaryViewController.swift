@@ -26,6 +26,7 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
     
     override func viewDidAppear(animated: Bool) {
         setupTableView()
+        loadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,7 +37,9 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
         tableView.registerClass(SummaryCellV2.self, forCellReuseIdentifier: SummaryCellV2.REUSE_IDENTIFIER)
-        
+    }
+    
+    func loadData() {
         stockPlans = restrictedStockOptionDao.findAllRestrictedOptionGrants()
         tableView.reloadData()
     }
