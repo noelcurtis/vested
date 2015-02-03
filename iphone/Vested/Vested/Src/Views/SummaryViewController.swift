@@ -102,13 +102,13 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
             if (expandedIndexPaths.filter({$0 == indexPath}).count != 0) {
                 // if its already expanded remove it so it can be contracted
                 expandedIndexPaths = expandedIndexPaths.filter({$0 != indexPath})
-                (cell as SummaryCellV2).contractDetailView()
+//                (cell as SummaryCellV2).contractDetailView()
                 tableView.reloadData()
             } else {
                 // if its not already expanded add it to the expanded list
                 expandedIndexPaths.append(indexPath)
                 tableView.reloadData()
-                (cell as SummaryCellV2).expandDetailView()
+//                (cell as SummaryCellV2).expandDetailView()
             }
         
             

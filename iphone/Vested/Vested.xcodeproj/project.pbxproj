@@ -48,6 +48,7 @@
 		30BB22841A68CA60001435DE /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5EA7C1A68A98F002005B3 /* PersistenceService.swift */; };
 		30BE11871A6F304400C1E35D /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BE11861A6F304400C1E35D /* DatePickerCell.swift */; };
 		30F595041A7E769C00F04BC3 /* SummaryCellInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F595031A7E769C00F04BC3 /* SummaryCellInfoView.swift */; };
+		30F595061A7EB38100F04BC3 /* InfoViewV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30F595051A7EB38100F04BC3 /* InfoViewV2.xib */; };
 		6A46E3E29B516BAA24870270 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F004C45D47B4A63EA0F8FBB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +101,7 @@
 		30B5EA7C1A68A98F002005B3 /* PersistenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersistenceService.swift; path = Src/Services/PersistenceService.swift; sourceTree = "<group>"; };
 		30BE11861A6F304400C1E35D /* DatePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatePickerCell.swift; path = Src/Views/DatePickerCell.swift; sourceTree = "<group>"; };
 		30F595031A7E769C00F04BC3 /* SummaryCellInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryCellInfoView.swift; path = Src/Views/SummaryCellInfoView.swift; sourceTree = "<group>"; };
+		30F595051A7EB38100F04BC3 /* InfoViewV2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoViewV2.xib; path = Src/Views/InfoViewV2.xib; sourceTree = "<group>"; };
 		3EC524A0639C79B14BEFE5F8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B0B54C40606F82D6C8161673 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "../../Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -261,6 +263,7 @@
 				3076ECBF1A71D62500CCC493 /* SummaryCellV2.swift */,
 				30877F251A7DCC14001166E1 /* InfoView.xib */,
 				30F595031A7E769C00F04BC3 /* SummaryCellInfoView.swift */,
+				30F595051A7EB38100F04BC3 /* InfoViewV2.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 			files = (
 				30877F261A7DCC14001166E1 /* InfoView.xib in Resources */,
 				3018D0871A5CC04D00464D64 /* LaunchScreen.xib in Resources */,
+				30F595061A7EB38100F04BC3 /* InfoViewV2.xib in Resources */,
 				3018D0841A5CC04D00464D64 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
