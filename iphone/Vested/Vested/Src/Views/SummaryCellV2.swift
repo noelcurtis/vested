@@ -16,6 +16,7 @@ protocol CellDetailButtonDelegate {
 
 class SummaryCellV2 : UITableViewCell {
     
+    let cellBackgroundLower : InfoViewV2!
     let cellBackgroundUpper = UIImageView(image: UIImage(named: "summary_background_upper"))
     let leftWrapperView = UIView()
     let middleWrapperView = UIView()
@@ -30,9 +31,11 @@ class SummaryCellV2 : UITableViewCell {
     var cellDetailButtonPressedDelegate : CellDetailButtonDelegate?
     var indexPath: NSIndexPath?
     
-    let duration = 2.0
+    let duration = 200.0
     let delay = 0.0
     let options = UIViewKeyframeAnimationOptions.LayoutSubviews
+    
+    var vPlacementDynamic: NSLayoutConstraint?
     
     class var REUSE_IDENTIFIER : String {
         return "summary_cell_v2"
@@ -40,6 +43,10 @@ class SummaryCellV2 : UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
+        
+        let bundle = NSBundle(forClass: self.dynamicType)
+        cellBackgroundLower = bundle.loadNibNamed("InfoViewV2", owner: nil, options: nil)[0] as? InfoViewV2
+        
         self.backgroundColor = UIColor.clearColor()
         self.selectionStyle = UITableViewCellSelectionStyle.None
         
@@ -53,6 +60,7 @@ class SummaryCellV2 : UITableViewCell {
         unvestedAmountLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         radialGraphView.setTranslatesAutoresizingMaskIntoConstraints(false)
         percentLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        cellBackgroundLower.setTranslatesAutoresizingMaskIntoConstraints(false)
 
 //        infoButton.backgroundColor = UIColor.blackColor()
 //        leftWrapperView.backgroundColor = UIColor.yellowColor()
@@ -98,7 +106,7 @@ class SummaryCellV2 : UITableViewCell {
         radialGraphView.theme.completedColor = ColorsAndFonts.vestedGreen
         radialGraphView.theme.incompletedColor = ColorsAndFonts.unvestedRed
         radialGraphView.label.hidden = true
-        radialGraphView.theme.thickness = 6
+        radialGraphView.theme.thickness = 8
         radialGraphView.clockwise = false
 
         leftWrapperView.addSubview(vestedLabel)
@@ -107,6 +115,7 @@ class SummaryCellV2 : UITableViewCell {
         rightWrapperView.addSubview(unvestedAmountLabel)
         middleWrapperView.addSubview(radialGraphView)
         middleWrapperView.addSubview(percentLabel)
+        contentView.addSubview(cellBackgroundLower)
         contentView.addSubview(cellBackgroundUpper)
         contentView.addSubview(leftWrapperView)
         contentView.addSubview(middleWrapperView)
@@ -114,6 +123,7 @@ class SummaryCellV2 : UITableViewCell {
 
         
         let viewsDictionary = [
+            "summary_background_lower": cellBackgroundLower,
             "summary_background_upper": cellBackgroundUpper,
             "left_wrapper": leftWrapperView,
             "right_wrapper": rightWrapperView,
@@ -127,6 +137,7 @@ class SummaryCellV2 : UITableViewCell {
         ]
         
         let hPlacement1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-2-[summary_background_upper]-2-|", options: nil, metrics: nil, views: viewsDictionary)
+        let hPlacement2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-8-[summary_background_lower]-8-|", options: nil, metrics: nil, views: viewsDictionary)
         let hPlacement3 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-5-[left_wrapper(==right_wrapper)]-[middle_wrapper]-[right_wrapper(==left_wrapper)]-5-|",
             options: nil, metrics: nil, views: viewsDictionary)
         let hPlacement4 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[vested_label]-2-|", options: nil, metrics: nil, views: viewsDictionary)
@@ -139,6 +150,7 @@ class SummaryCellV2 : UITableViewCell {
         let hPlacement14 = NSLayoutConstraint(item: middleWrapperView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Width, multiplier: 0.20, constant: 0.0)
 
         let vPlacement1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[summary_background_upper]", options: nil, metrics: nil, views: viewsDictionary)
+        let vPlacement2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-38-[summary_background_lower]", options: nil, metrics: nil, views: viewsDictionary)
         let vPlacement3 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-12-[left_wrapper]", options: nil, metrics: nil, views: viewsDictionary)
         let vPlacement4 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-12-[right_wrapper]", options: nil, metrics: nil, views: viewsDictionary)
         let vPlacement5 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-12-[middle_wrapper]", options: nil, metrics: nil, views: viewsDictionary)
@@ -153,8 +165,11 @@ class SummaryCellV2 : UITableViewCell {
         let vPlacement17 = NSLayoutConstraint(item: middleWrapperView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: middleWrapperView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0.0)
         let vPlacement19 = NSLayoutConstraint(item: vestedLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Top, multiplier: 2.5, constant: 0.0)
         let vPlacement20 = NSLayoutConstraint(item: unvestedLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Top, multiplier: 2.5, constant: 0.0)
+        
+        vPlacementDynamic = NSLayoutConstraint(item: cellBackgroundLower, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Height, multiplier: 1.0, constant: 0.0)
 
         contentView.addConstraints(hPlacement1)
+        contentView.addConstraints(hPlacement2)
         contentView.addConstraints(hPlacement3)
         contentView.addConstraints(hPlacement4)
         contentView.addConstraints(hPlacement5)
@@ -166,6 +181,7 @@ class SummaryCellV2 : UITableViewCell {
         contentView.addConstraint(hPlacement14)
         
         contentView.addConstraints(vPlacement1)
+        contentView.addConstraints(vPlacement2)
         contentView.addConstraints(vPlacement3)
         contentView.addConstraints(vPlacement4)
         contentView.addConstraints(vPlacement5)
@@ -180,6 +196,7 @@ class SummaryCellV2 : UITableViewCell {
         contentView.addConstraint(vPlacement17)
         contentView.addConstraint(vPlacement19)
         contentView.addConstraint(vPlacement20)
+        contentView.addConstraint(vPlacementDynamic!)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -191,34 +208,37 @@ class SummaryCellV2 : UITableViewCell {
         unvestedAmountLabel.text = NumberUtils.commatoze(vestingResult.unvestedShares)
         radialGraphView.progressCounter =  max(UInt(round(vestingResult.vestedPercent)), 1)
         percentLabel.text = "\(round(vestingResult.vestedPercent * 10) / 10)%"
+        
+        cellBackgroundLower.hideInfo(false)
+        cellBackgroundLower.backgroundButton.addTarget(self, action: "buttonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        
         self.indexPath = indexPath
     }
     
-//    func buttonClick(sender: UIButton!) {
-//        NSLog("I was clicked!")
-//        if let delegate = cellDetailButtonPressedDelegate {
-//            delegate.detailButtonPressed(self)
-//        }
-//    }
-//    
-//    func expandDetailView() {
-//        NSLog("Expanding view")
-//        vPlacement2.constant = SizeClass.getClassForSize().summaryButtomOffset
-//        UIView.animateKeyframesWithDuration(duration, delay: delay, options: options, animations: {
-//            self.contentView.layoutIfNeeded()
-//            }, completion: {(finished) -> Void in
-//        
-//        })
-//    }
-//    
-//    func contractDetailView() {
-//        NSLog("Contract view")
-//        vPlacement2.constant = 28.0
-//        UIView.animateKeyframesWithDuration(duration, delay: delay, options: options, animations: {
-//            self.contentView.layoutIfNeeded()
-//            }, completion: {(finished) -> Void in
-//        
-//        })
-//    }
+    func buttonClick(sender: UIButton!) {
+        NSLog("I was clicked!")
+        if let delegate = cellDetailButtonPressedDelegate {
+            delegate.detailButtonPressed(self)
+        }
+    }
+
+    func expandDetailView() {
+        NSLog("Expanding view")
+        vPlacementDynamic?.constant = 65
+        UIView.animateKeyframesWithDuration(duration, delay: delay, options: options, animations: {
+            self.contentView.layoutIfNeeded()
+            }, completion: {(finished) -> Void in
+        })
+    }
+    
+    func contractDetailView() {
+        NSLog("Contract view")
+        vPlacementDynamic?.constant = 0.0
+        UIView.animateKeyframesWithDuration(duration, delay: delay, options: options, animations: {
+            self.contentView.layoutIfNeeded()
+            }, completion: {(finished) -> Void in
+        
+        })
+    }
     
 }
