@@ -50,13 +50,16 @@ class RestrictedStockOptionGrantCalculator : VestingCalculator {
         
         var vestedPercent = Double(vestedShares) / Double(stockPlan.shares) * 100
         
+        var monthsLeftToVest = stockPlan.vestingPeriod - monthsPassedSinceStart
+        
         return VestingCalculatorResult(
             startingShares: startingShares,
             vestedShares: vestedShares,
             vestedSharesAtCliff: vestedSharesAtCliff,
             monthlyVestedShares: monthlyVestedShares,
             unvestedShares: unvestedShares,
-            vestedPercent: vestedPercent
+            vestedPercent: vestedPercent,
+            monthsLeftToVest: monthsLeftToVest
         )
     }
     

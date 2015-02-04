@@ -16,19 +16,22 @@ class VestingCalculatorResult {
     var monthlyVestedShares: Double = 0
     var unvestedShares: Int = 0
     var vestedPercent: Double = 0.0
+    var monthsLeftToVest: Int = 0
     
     init(startingShares: Int,
         vestedShares: Int,
         vestedSharesAtCliff: Int,
         monthlyVestedShares: Double,
         unvestedShares: Int,
-        vestedPercent: Double) {
+        vestedPercent: Double,
+        monthsLeftToVest: Int) {
             self.startingShares = startingShares
             self.vestedShares = vestedShares
             self.vestedSharesAtCliff = vestedSharesAtCliff
             self.monthlyVestedShares = monthlyVestedShares
             self.unvestedShares = unvestedShares
             self.vestedPercent = vestedPercent
+            self.monthsLeftToVest = monthsLeftToVest
     }
 
 }

@@ -23,7 +23,7 @@
                     </accessibility>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plan Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZs-GA-roi">
-                    <rect key="frame" x="10" y="67" width="80" height="22"/>
+                    <rect key="frame" x="10" y="67" width="79.5" height="22"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
                     </accessibility>
@@ -32,7 +32,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="srh-J2-GaK" userLabel="separator_line">
-                    <rect key="frame" x="41" y="32" width="229" height="1"/>
+                    <rect key="frame" x="41" y="35" width="229" height="1"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
@@ -42,7 +42,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Months to fully vest" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEi-MZ-Soz">
-                    <rect key="frame" x="41" y="39" width="141" height="22"/>
+                    <rect key="frame" x="41" y="42" width="141" height="22"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
                     </accessibility>
@@ -51,7 +51,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7a-3k-73s">
-                    <rect key="frame" x="251" y="39" width="19" height="22"/>
+                    <rect key="frame" x="251" y="42" width="19" height="22"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
                     </accessibility>
@@ -60,7 +60,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cliff breached" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSN-kV-81L">
-                    <rect key="frame" x="41" y="4" width="104" height="22"/>
+                    <rect key="frame" x="41" y="7" width="103.5" height="22"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
                     </accessibility>
@@ -69,7 +69,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="info_check" translatesAutoresizingMaskIntoConstraints="NO" id="mzv-rG-Ofi">
-                    <rect key="frame" x="256" y="8" width="14" height="14"/>
+                    <rect key="frame" x="256" y="11" width="14" height="14"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" image="YES" notEnabled="YES"/>
                     </accessibility>
@@ -80,7 +80,7 @@
                 <constraint firstAttribute="trailing" secondItem="N7a-3k-73s" secondAttribute="trailing" constant="41" id="4sl-5B-MYY"/>
                 <constraint firstItem="sSN-kV-81L" firstAttribute="bottom" secondItem="srh-J2-GaK" secondAttribute="bottom" constant="-7" id="Akx-31-7hn"/>
                 <constraint firstItem="sSN-kV-81L" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="41" id="Erp-e7-jfo"/>
-                <constraint firstAttribute="bottom" secondItem="srh-J2-GaK" secondAttribute="bottom" constant="60" id="F9b-l8-8Qj"/>
+                <constraint firstAttribute="bottom" secondItem="srh-J2-GaK" secondAttribute="bottom" constant="57" id="F9b-l8-8Qj"/>
                 <constraint firstAttribute="centerX" secondItem="srh-J2-GaK" secondAttribute="centerX" id="FzP-iq-prm"/>
                 <constraint firstAttribute="trailing" secondItem="srh-J2-GaK" secondAttribute="trailing" constant="41" id="Lc8-T7-g7b"/>
                 <constraint firstItem="gEi-MZ-Soz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="41" id="OH8-KX-Ubo"/>

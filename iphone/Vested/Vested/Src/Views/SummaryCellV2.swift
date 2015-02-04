@@ -27,6 +27,7 @@ class SummaryCellV2 : UITableViewCell {
     let unvestedAmountLabel = UILabel()
     let radialGraphView = MDRadialProgressView()
     let percentLabel = UILabel()
+    let detailButton = UIButton()
     
     var cellDetailButtonPressedDelegate : CellDetailButtonDelegate?
     var indexPath: NSIndexPath?
@@ -61,14 +62,17 @@ class SummaryCellV2 : UITableViewCell {
         radialGraphView.setTranslatesAutoresizingMaskIntoConstraints(false)
         percentLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         cellBackgroundLower.setTranslatesAutoresizingMaskIntoConstraints(false)
+        detailButton.setTranslatesAutoresizingMaskIntoConstraints(false)
 
 //        infoButton.backgroundColor = UIColor.blackColor()
 //        leftWrapperView.backgroundColor = UIColor.yellowColor()
 //        rightWrapperView.backgroundColor = UIColor.greenColor()
 //        middleWrapperView.backgroundColor = UIColor.grayColor()
+//        detailButton.backgroundColor = UIColor.yellowColor()
         
         cellBackgroundUpper.userInteractionEnabled = true
         contentView.userInteractionEnabled = true
+        detailButton.userInteractionEnabled = true
         
         vestedLabel.font = UIFont(name: ColorsAndFonts.baseFont, size: ColorsAndFonts.summaryCellSubFontSize)
         vestedLabel.text = "Vested"
@@ -120,7 +124,7 @@ class SummaryCellV2 : UITableViewCell {
         contentView.addSubview(leftWrapperView)
         contentView.addSubview(middleWrapperView)
         contentView.addSubview(rightWrapperView)
-
+        contentView.addSubview(detailButton)
         
         let viewsDictionary = [
             "summary_background_lower": cellBackgroundLower,
@@ -133,7 +137,8 @@ class SummaryCellV2 : UITableViewCell {
             "unvested_label": unvestedLabel,
             "unvested_amount_label": unvestedAmountLabel,
             "radial_graph_view": radialGraphView,
-            "percent_label": percentLabel
+            "percent_label": percentLabel,
+            "detail_button": detailButton
         ]
         
         let hPlacement1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-2-[summary_background_upper]-2-|", options: nil, metrics: nil, views: viewsDictionary)
@@ -148,6 +153,7 @@ class SummaryCellV2 : UITableViewCell {
         let hPlacement9 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[radial_graph_view]", options: nil, metrics: nil, views: viewsDictionary)
         let hPlacement13 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[percent_label]-0-|", options: nil, metrics: nil, views: viewsDictionary)
         let hPlacement14 = NSLayoutConstraint(item: middleWrapperView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Width, multiplier: 0.20, constant: 0.0)
+        let hPlacement15 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[detail_button]-0-|", options: nil, metrics: nil, views: viewsDictionary)
 
         let vPlacement1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[summary_background_upper]", options: nil, metrics: nil, views: viewsDictionary)
         let vPlacement2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-38-[summary_background_lower]", options: nil, metrics: nil, views: viewsDictionary)
@@ -165,6 +171,8 @@ class SummaryCellV2 : UITableViewCell {
         let vPlacement17 = NSLayoutConstraint(item: middleWrapperView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: middleWrapperView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0.0)
         let vPlacement19 = NSLayoutConstraint(item: vestedLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Top, multiplier: 2.5, constant: 0.0)
         let vPlacement20 = NSLayoutConstraint(item: unvestedLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Top, multiplier: 2.5, constant: 0.0)
+        let vPlacement21 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[detail_button]", options: nil, metrics: nil, views: viewsDictionary)
+        let vPlacement22 = NSLayoutConstraint(item: detailButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Height, multiplier: 0.80, constant: 0.0)
         
         vPlacementDynamic = NSLayoutConstraint(item: cellBackgroundLower, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Height, multiplier: 1.0, constant: 0.0)
 
@@ -179,6 +187,7 @@ class SummaryCellV2 : UITableViewCell {
         contentView.addConstraints(hPlacement9)
         contentView.addConstraints(hPlacement13)
         contentView.addConstraint(hPlacement14)
+        contentView.addConstraints(hPlacement15)
         
         contentView.addConstraints(vPlacement1)
         contentView.addConstraints(vPlacement2)
@@ -197,6 +206,8 @@ class SummaryCellV2 : UITableViewCell {
         contentView.addConstraint(vPlacement19)
         contentView.addConstraint(vPlacement20)
         contentView.addConstraint(vPlacementDynamic!)
+        contentView.addConstraints(vPlacement21)
+        contentView.addConstraint(vPlacement22)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -211,6 +222,10 @@ class SummaryCellV2 : UITableViewCell {
         
         cellBackgroundLower.hideInfo(false)
         cellBackgroundLower.backgroundButton.addTarget(self, action: "buttonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        cellBackgroundLower.monthsToVestLabel.text = "\(vestingResult.monthsLeftToVest)"
+        cellBackgroundLower.cliffIndicator.image = vestingResult.vestedSharesAtCliff > 0 ? UIImage(named: "info_check") : UIImage(named: "info_cross");
+        
+        detailButton.addTarget(self, action: "detailButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
         
         self.indexPath = indexPath
     }
@@ -220,6 +235,10 @@ class SummaryCellV2 : UITableViewCell {
         if let delegate = cellDetailButtonPressedDelegate {
             delegate.detailButtonPressed(self)
         }
+    }
+    
+    func  detailButtonClick(sender: UIButton!) {
+        println("detail button clicked")
     }
 
     func expandDetailView() {
