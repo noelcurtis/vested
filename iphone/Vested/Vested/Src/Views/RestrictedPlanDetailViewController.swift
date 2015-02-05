@@ -16,12 +16,32 @@ class RestrictedPlanDetailViewController: UITableViewController, UITextFieldDele
     var restrictedOptionGrant: RestrictedOptionGrant = RestrictedOptionGrant().withDefaults()
     var datePickerShown = false
     var activeTextField: UITextField?
-    lazy var dateTimeFormatter: NSDateFormatter  = {
+    lazy var dateTimeFormatter: NSDateFormatter = {
         let dt = NSDateFormatter()
         dt.dateStyle = NSDateFormatterStyle.ShortStyle
         dt.timeStyle = NSDateFormatterStyle.NoStyle
         return dt
     }()
+    var setupForUpdate = false
+    
+    override init(style: UITableViewStyle) {
+        super.init(style: style)
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    init(restrictedOptionGrant: RestrictedOptionGrant, style: UITableViewStyle) {
+        super.init(style: style)
+        self.restrictedOptionGrant = restrictedOptionGrant
+        self.setupForUpdate = true
+        NSLog("Setup detail view controller with grant \(restrictedOptionGrant.description)")
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,17 +57,20 @@ class RestrictedPlanDetailViewController: UITableViewController, UITextFieldDele
     func setupNavBar() {
         // setup the buttons
         backButton = UIBarButtonItem(image: UIImage(named: "back_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "popViewController")
-        checkButton = UIBarButtonItem(image: UIImage(named: "check_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "addPlanAndPopViewController")
+        if (!setupForUpdate) {
+            checkButton = UIBarButtonItem(image: UIImage(named: "check_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "addPlanAndPopViewController")
+        } else {
+            checkButton = UIBarButtonItem(image: UIImage(named: "check_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "updatePlanAndPopViewController")
+        }
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.rightBarButtonItem = checkButton
         
-        // nav title image
+        // nav title imagenibNameOrNil
         let navTitle = UIImage(named: "nav_title_vested")
         let navTitleView = UIImageView(image: navTitle)
         self.navigationItem.titleView = navTitleView
         self.navigationItem.titleView?.hidden = false
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-
     }
     
     func setupTableView() {
@@ -66,8 +89,14 @@ class RestrictedPlanDetailViewController: UITableViewController, UITextFieldDele
     
     func addPlanAndPopViewController() {
         let restrictedStockPlan = getStockPlanFromCells()
-        self.restrictedStockOptionDao.createStockPlan(restrictedStockPlan)
-        self.navigationController?.popViewControllerAnimated(true)
+        restrictedStockOptionDao.createStockPlan(restrictedStockPlan)
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func updatePlanAndPopViewController() {
+        let restrictedStockPlan = getStockPlanFromCells()
+        restrictedStockOptionDao.updateStockPlan(restrictedStockPlan)
+        navigationController?.popToRootViewControllerAnimated(true)
     }
     
     // MARK: -UITextViewDelegate
@@ -138,14 +167,14 @@ class RestrictedPlanDetailViewController: UITableViewController, UITextFieldDele
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
             
-            return getPlanNameInputCell("Plan Name")
+            return getPlanNameInputCell(restrictedOptionGrant.name)
             
         } else if(indexPath.section == 1) {
             
             switch(indexPath.row) {
-                case 0: return getPercentInputCell("Starting Acceleration", value: self.restrictedOptionGrant.startingAcceleration)
-                case 1: return getMonthsInputCell("Cliff", value: self.restrictedOptionGrant.cliff)
-                case 2: return getMonthsInputCell("Vesting Period", value: self.restrictedOptionGrant.vestingPeriod)
+                case 0: return getMonthsInputCell("Cliff", value: self.restrictedOptionGrant.cliff)
+                case 1: return getMonthsInputCell("Vesting Period", value: self.restrictedOptionGrant.vestingPeriod)
+                case 2: return getPercentInputCell("Starting Acceleration", value: self.restrictedOptionGrant.startingAcceleration)
                 case 3: return getPercentInputCell("Ending Acceleration", value: self.restrictedOptionGrant.endingAcceleration)
                 default: return self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
             }
@@ -212,46 +241,45 @@ class RestrictedPlanDetailViewController: UITableViewController, UITextFieldDele
     }
     
     func getStockPlanFromCells() -> StockPlan {
-        let r = RestrictedOptionGrant()
-        
-        if let startAccelerationCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) {
+
+        if let startAccelerationCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 1)) {
             let a = startAccelerationCell as PercentInputCell
-            r.startingAcceleration = (a.inputField.text as NSString).doubleValue
+            restrictedOptionGrant.startingAcceleration = (a.inputField.text as NSString).doubleValue
         }
         
-        if let cliffCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1)) {
+        if let cliffCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) {
             let a = cliffCell as MonthsInputCell
-            r.cliff = (a.inputField.text as NSString).integerValue
+            restrictedOptionGrant.cliff = (a.inputField.text as NSString).integerValue
         }
 
-        if let vestingPeriodCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 1)) {
+        if let vestingPeriodCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1)) {
             let a = vestingPeriodCell as MonthsInputCell
-            r.vestingPeriod = (a.inputField.text as NSString).integerValue
+            restrictedOptionGrant.vestingPeriod = (a.inputField.text as NSString).integerValue
         }
 
         if let endingAccelerationCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 3, inSection: 1)) {
             let a = endingAccelerationCell as PercentInputCell
-            r.endingAcceleration = (a.inputField.text as NSString).doubleValue
+            restrictedOptionGrant.endingAcceleration = (a.inputField.text as NSString).doubleValue
         }
 
         if let grantSharesCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) {
             let a = grantSharesCell as ValueInputCell
-            r.shares = (a.inputField.text as NSString).integerValue
+            restrictedOptionGrant.shares = (a.inputField.text as NSString).integerValue
         }
 
         if let startDateCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) {
             let a = startDateCell as ValueInputCell
             if let date : NSDate = dateTimeFormatter.dateFromString(a.inputField.text) {
-                r.startDate = date
+                restrictedOptionGrant.startDate = date
             }
         }
         
         if let nameCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) {
             let a = nameCell as PlanNameInputCell
-            r.name = a.titleInputField.text
+            restrictedOptionGrant.name = a.titleInputField.text
         }
         
-        return r
+        return restrictedOptionGrant
     }
     
     func getSectionHeader(label: String) -> UIView {

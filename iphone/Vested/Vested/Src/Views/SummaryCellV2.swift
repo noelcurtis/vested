@@ -10,7 +10,9 @@ import Foundation
 
 protocol CellDetailButtonDelegate {
     
-    func detailButtonPressed(cell: UITableViewCell)
+    func detailButtonPressed(stockPlan: StockPlan?)
+    
+    func infoButtonPressed(cell: UITableViewCell)
     
 }
 
@@ -35,6 +37,7 @@ class SummaryCellV2 : UITableViewCell {
     let duration = 200.0
     let delay = 0.0
     let options = UIViewKeyframeAnimationOptions.LayoutSubviews
+    var stockPlan : StockPlan?
     
     var vPlacementDynamic: NSLayoutConstraint?
     
@@ -224,25 +227,27 @@ class SummaryCellV2 : UITableViewCell {
         cellBackgroundLower.backgroundButton.addTarget(self, action: "buttonClick:", forControlEvents: UIControlEvents.TouchUpInside)
         cellBackgroundLower.monthsToVestLabel.text = "\(vestingResult.monthsLeftToVest)"
         cellBackgroundLower.cliffIndicator.image = vestingResult.vestedSharesAtCliff > 0 ? UIImage(named: "info_check") : UIImage(named: "info_cross");
+        cellBackgroundLower.planNameLabel.text = stockPlan.name
         
         detailButton.addTarget(self, action: "detailButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
         
         self.indexPath = indexPath
+        self.stockPlan = stockPlan
     }
     
     func buttonClick(sender: UIButton!) {
-        NSLog("I was clicked!")
         if let delegate = cellDetailButtonPressedDelegate {
-            delegate.detailButtonPressed(self)
+            delegate.infoButtonPressed(self)
         }
     }
     
     func  detailButtonClick(sender: UIButton!) {
-        println("detail button clicked")
+        if let delegate = cellDetailButtonPressedDelegate {
+            delegate.detailButtonPressed(self.stockPlan)
+        }
     }
 
     func expandDetailView() {
-        NSLog("Expanding view")
         vPlacementDynamic?.constant = 65
         UIView.animateKeyframesWithDuration(duration, delay: delay, options: options, animations: {
             self.contentView.layoutIfNeeded()
@@ -251,7 +256,6 @@ class SummaryCellV2 : UITableViewCell {
     }
     
     func contractDetailView() {
-        NSLog("Contract view")
         vPlacementDynamic?.constant = 0.0
         UIView.animateKeyframesWithDuration(duration, delay: delay, options: options, animations: {
             self.contentView.layoutIfNeeded()

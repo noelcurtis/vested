@@ -23,17 +23,17 @@
                     </accessibility>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plan Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZs-GA-roi">
-                    <rect key="frame" x="10" y="67" width="79.5" height="22"/>
+                    <rect key="frame" x="10" y="67" width="80" height="22"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
                     </accessibility>
                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="srh-J2-GaK" userLabel="separator_line">
-                    <rect key="frame" x="41" y="35" width="229" height="1"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="60" y="35" width="191" height="1"/>
+                    <color key="backgroundColor" red="1" green="0.91785218170000005" blue="0.72479918499999996" alpha="1" colorSpace="calibratedRGB"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
                     </accessibility>
@@ -42,34 +42,34 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Months to fully vest" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEi-MZ-Soz">
-                    <rect key="frame" x="41" y="42" width="141" height="22"/>
+                    <rect key="frame" x="60" y="42" width="141" height="22"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
                     </accessibility>
                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="1" green="0.91785218170000005" blue="0.72479918499999996" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7a-3k-73s">
-                    <rect key="frame" x="251" y="42" width="19" height="22"/>
+                    <rect key="frame" x="232" y="42" width="19" height="22"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
                     </accessibility>
                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="1" green="0.91785218170000005" blue="0.72479918499999996" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cliff breached" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSN-kV-81L">
-                    <rect key="frame" x="41" y="7" width="103.5" height="22"/>
+                    <rect key="frame" x="60" y="7" width="104" height="22"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
                     </accessibility>
                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="1" green="0.91785218169335558" blue="0.72479918497395479" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="info_check" translatesAutoresizingMaskIntoConstraints="NO" id="mzv-rG-Ofi">
-                    <rect key="frame" x="256" y="11" width="14" height="14"/>
+                    <rect key="frame" x="237" y="11" width="14" height="14"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" image="YES" notEnabled="YES"/>
                     </accessibility>
@@ -77,19 +77,19 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="N7a-3k-73s" secondAttribute="trailing" constant="41" id="4sl-5B-MYY"/>
+                <constraint firstAttribute="trailing" secondItem="N7a-3k-73s" secondAttribute="trailing" constant="60" id="4sl-5B-MYY"/>
                 <constraint firstItem="sSN-kV-81L" firstAttribute="bottom" secondItem="srh-J2-GaK" secondAttribute="bottom" constant="-7" id="Akx-31-7hn"/>
-                <constraint firstItem="sSN-kV-81L" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="41" id="Erp-e7-jfo"/>
+                <constraint firstItem="sSN-kV-81L" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="Erp-e7-jfo"/>
                 <constraint firstAttribute="bottom" secondItem="srh-J2-GaK" secondAttribute="bottom" constant="57" id="F9b-l8-8Qj"/>
                 <constraint firstAttribute="centerX" secondItem="srh-J2-GaK" secondAttribute="centerX" id="FzP-iq-prm"/>
-                <constraint firstAttribute="trailing" secondItem="srh-J2-GaK" secondAttribute="trailing" constant="41" id="Lc8-T7-g7b"/>
-                <constraint firstItem="gEi-MZ-Soz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="41" id="OH8-KX-Ubo"/>
+                <constraint firstAttribute="trailing" secondItem="srh-J2-GaK" secondAttribute="trailing" constant="60" id="Lc8-T7-g7b"/>
+                <constraint firstItem="gEi-MZ-Soz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="OH8-KX-Ubo"/>
                 <constraint firstAttribute="bottom" secondItem="CLp-et-4u2" secondAttribute="bottom" constant="5" id="SAs-qT-Ko4"/>
                 <constraint firstItem="uZs-GA-roi" firstAttribute="height" secondItem="CLp-et-4u2" secondAttribute="height" id="Vq4-2y-zVk"/>
                 <constraint firstAttribute="centerX" secondItem="srh-J2-GaK" secondAttribute="centerX" id="WQ7-5I-24c"/>
                 <constraint firstItem="c0o-G6-sVO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="apy-0n-s5I"/>
                 <constraint firstItem="uZs-GA-roi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="fIi-nm-hyK"/>
-                <constraint firstItem="srh-J2-GaK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="41" id="ftz-Cg-hrY"/>
+                <constraint firstItem="srh-J2-GaK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="ftz-Cg-hrY"/>
                 <constraint firstItem="gEi-MZ-Soz" firstAttribute="top" secondItem="srh-J2-GaK" secondAttribute="top" constant="7" id="hM3-0N-iQ3"/>
                 <constraint firstItem="N7a-3k-73s" firstAttribute="top" secondItem="srh-J2-GaK" secondAttribute="top" constant="7" id="iim-ZC-dBb"/>
                 <constraint firstAttribute="bottom" secondItem="uZs-GA-roi" secondAttribute="bottom" constant="4" id="jwf-IW-WZc"/>
@@ -98,7 +98,7 @@
                 <constraint firstAttribute="trailing" secondItem="c0o-G6-sVO" secondAttribute="trailing" id="sbC-BO-eci"/>
                 <constraint firstItem="mzv-rG-Ofi" firstAttribute="top" secondItem="srh-J2-GaK" secondAttribute="top" constant="-24" id="udg-oz-mdd"/>
                 <constraint firstItem="c0o-G6-sVO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="wID-fo-WIb"/>
-                <constraint firstAttribute="trailing" secondItem="mzv-rG-Ofi" secondAttribute="trailing" constant="41" id="zXe-FN-Cae"/>
+                <constraint firstAttribute="trailing" secondItem="mzv-rG-Ofi" secondAttribute="trailing" constant="60" id="zXe-FN-Cae"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>

@@ -30,5 +30,17 @@ class RestrictedOptionGrantMO: NSManagedObject {
         self.startDate = stockPlan.startDate
         self.name = stockPlan.name
     }
+    
+    func updateWithStockPlan(stockPlan: StockPlan) {
+        self.startingAcceleration = stockPlan.startingAcceleration
+        self.endingAcceleration = stockPlan.endingAcceleration
+        self.cliff = stockPlan.cliff
+        self.vestingPeriod = stockPlan.vestingPeriod
+        self.shares = stockPlan.shares
+        self.startDate = stockPlan.startDate
+        self.name = stockPlan.name
+    }
+    
+    override var description: String { return  "{\"name:\"\(name)\", \"uuid:\"\(uuid)\", \"startingAcceleration:\(startingAcceleration), \"endingAcceleration:\(endingAcceleration), \"cliff:\(cliff), \"vestingPeriod:\(vestingPeriod), \"shares:\(shares), \"startDate:\"\(startDate)\"}" }
 
 }

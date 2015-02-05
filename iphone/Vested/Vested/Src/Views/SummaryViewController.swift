@@ -95,7 +95,7 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
         return summaryCell
     }
     
-    func detailButtonPressed(cell: UITableViewCell) {
+    func infoButtonPressed(cell: UITableViewCell) {
         if let indexPath = (cell as SummaryCellV2).indexPath {
             
             // check if the cell at indexPath is already expanded
@@ -113,10 +113,21 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
         
             
         } else {
-            NSLog("Cell has no index path, no displaying summary detail")
+            NSLog("Cell has no index path, not displaying summary info")
         }
     }
     
+    func detailButtonPressed(stockPlan: StockPlan?) {
+        if let plan = stockPlan {
+            self.navigationController?.pushViewController(
+                RestrictedPlanDetailViewController(
+                    restrictedOptionGrant: stockPlan as RestrictedOptionGrant, style: UITableViewStyle.Grouped),
+                    animated: true
+                )
+        } else {
+            NSLog("Cell has no associated stock plan, not displaying detail view")
+        }
+    }
 }
 
 
