@@ -92,5 +92,13 @@ class ValueInputCell : UITableViewCell, UITextFieldDelegate {
         }
     }
     
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        var currentText = textField.text
+        currentText = (currentText as NSString).stringByReplacingCharactersInRange(range, withString: string)
+        currentText = currentText.stringByReplacingOccurrencesOfString(",", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        textField.text = NumberUtils.commatoze(string: currentText)
+        return false
+    }
+    
 }
 

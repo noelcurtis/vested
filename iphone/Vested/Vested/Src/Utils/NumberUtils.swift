@@ -12,7 +12,7 @@ let commatozeNumberFormatter: NSNumberFormatter = {
     let numberFormatter = NSNumberFormatter()
     numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
     return numberFormatter
-    }()
+}()
 
 
 class NumberUtils {
@@ -20,6 +20,14 @@ class NumberUtils {
     class func commatoze(value: NSNumber) -> String {
         if let s = commatozeNumberFormatter.stringFromNumber(value) {
             return s
+        } else {
+            return ""
+        }
+    }
+    
+    class func commatoze(string value:String) -> String {
+        if let s = value.toInt() {
+            return commatoze(s)
         } else {
             return ""
         }

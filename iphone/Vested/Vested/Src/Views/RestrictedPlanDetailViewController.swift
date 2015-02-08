@@ -262,7 +262,8 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
 
         if let grantSharesCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) {
             let a = grantSharesCell as ValueInputCell
-            restrictedOptionGrant.shares = (a.inputField.text as NSString).integerValue
+            let value = a.inputField.text.stringByReplacingOccurrencesOfString(",", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            restrictedOptionGrant.shares = (value as NSString).integerValue
         }
 
         if let startDateCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) {
