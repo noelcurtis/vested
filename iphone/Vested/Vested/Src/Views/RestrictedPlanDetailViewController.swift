@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RestrictedPlanDetailViewController: UITableViewController, UITextFieldDelegate {
+class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDelegate {
 
     var backButton: UIBarButtonItem!
     var checkButton: UIBarButtonItem!
@@ -99,9 +99,7 @@ class RestrictedPlanDetailViewController: UITableViewController, UITextFieldDele
         navigationController?.popToRootViewControllerAnimated(true)
     }
     
-    // MARK: -UITextViewDelegate
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func inputFieldDidBeginEditing(textField: UITextField) {
         activeTextField = textField
     }
     
@@ -201,21 +199,21 @@ class RestrictedPlanDetailViewController: UITableViewController, UITextFieldDele
     func getPlanNameInputCell(name: String) -> PlanNameInputCell {
         let cell: PlanNameInputCell = self.tableView.dequeueReusableCellWithIdentifier(PlanNameInputCell.REUSE_IDENTIFIER) as PlanNameInputCell
         cell.titleInputField.text = name
-        cell.titleInputField.delegate = self
+        cell.inputCellFormDelegate = self
         return cell
     }
     
     func getValueInputCell(label: String, value: Int) -> ValueInputCell {
         let cell: ValueInputCell = self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
         cell.customize(label, value: value)
-        cell.inputField.delegate = self
+        cell.inputCellFormDelegate = self
         return cell
     }
     
     func getValueInputCell(label: String, string value: String) -> ValueInputCell {
         let cell: ValueInputCell = self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
         cell.customize(label, string: value)
-        cell.inputField.delegate = self
+        cell.inputCellFormDelegate = self
         return cell
     }
     
@@ -229,14 +227,14 @@ class RestrictedPlanDetailViewController: UITableViewController, UITextFieldDele
     func getMonthsInputCell(label: String, value: Int) -> MonthsInputCell {
         let cell: MonthsInputCell = self.tableView.dequeueReusableCellWithIdentifier(MonthsInputCell.REUSE_IDENTIFIER) as MonthsInputCell
         cell.customize(label, value: value)
-        cell.inputField.delegate = self
+        cell.inputCellFormDelegate = self
         return cell
     }
     
     func getPercentInputCell(label: String, value: Double) -> PercentInputCell {
         let cell: PercentInputCell = self.tableView.dequeueReusableCellWithIdentifier(PercentInputCell.REUSE_IDENTIFIER) as PercentInputCell
         cell.customize(label, value: value)
-        cell.inputField.delegate = self
+        cell.inputCellFormDelegate = self
         return cell
     }
     

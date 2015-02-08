@@ -8,13 +8,14 @@
 
 import UIKit
 
-class PlanNameInputCell : UITableViewCell {
+class PlanNameInputCell : UITableViewCell, UITextFieldDelegate {
 
     let titleInputField = UITextField()
     let underLineImageView = UIImageView(image: UIImage(named: "title_line"))
     class var REUSE_IDENTIFIER : String {
         return "plan_name_input_cell"
     }
+    var inputCellFormDelegate : InputCellFormDelegate?
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
@@ -29,6 +30,7 @@ class PlanNameInputCell : UITableViewCell {
         titleInputField.text = "Plan Name"
         titleInputField.tintColor = UIColor.whiteColor()
         titleInputField.textColor = UIColor.whiteColor()
+        titleInputField.delegate = self
 
         self.addSubview(titleInputField)
         
@@ -39,5 +41,11 @@ class PlanNameInputCell : UITableViewCell {
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if let d = inputCellFormDelegate {
+            d.inputFieldDidBeginEditing(textField)
+        }
     }
 }

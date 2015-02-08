@@ -8,12 +8,14 @@
 
 import UIKit
 
-class PercentInputCell : UITableViewCell {
+class PercentInputCell : UITableViewCell, UITextFieldDelegate {
     
     let labelField = UILabel()
     let underlineImage = UIImageView(image: UIImage(named: "input_cell_line"))
     let inputField = UITextField()
     let percentLabel = UILabel()
+    var inputCellFormDelegate : InputCellFormDelegate?
+    
     class var REUSE_IDENTIFIER : String {
         return "percent_input_cell"
     }
@@ -45,6 +47,7 @@ class PercentInputCell : UITableViewCell {
         inputField.textColor = UIColor.whiteColor()
         inputField.textAlignment = NSTextAlignment.Right
         inputField.keyboardType = UIKeyboardType.DecimalPad
+        inputField.delegate = self
         
         self.addSubview(labelField)
         self.addSubview(inputField)
@@ -72,5 +75,10 @@ class PercentInputCell : UITableViewCell {
         self.inputField.text = "\(value)"
     }
 
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if let d = inputCellFormDelegate {
+            d.inputFieldDidBeginEditing(textField)
+        }
+    }
     
 }

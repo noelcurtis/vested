@@ -8,12 +8,14 @@
 
 import UIKit
 
-class MonthsInputCell : UITableViewCell {
+class MonthsInputCell : UITableViewCell, UITextFieldDelegate {
 
     let labelField = UILabel()
     let underlineImage = UIImageView(image: UIImage(named: "input_cell_line"))
     let inputField = UITextField()
     let monthsLabel = UILabel()
+    var inputCellFormDelegate : InputCellFormDelegate?
+    
     class var REUSE_IDENTIFIER : String {
         return "months_input_cell"
     }
@@ -45,6 +47,7 @@ class MonthsInputCell : UITableViewCell {
         inputField.textColor = UIColor.whiteColor()
         inputField.textAlignment = NSTextAlignment.Right
         inputField.keyboardType = UIKeyboardType.DecimalPad
+        inputField.delegate = self
         
         self.addSubview(labelField)
         self.addSubview(inputField)
@@ -73,4 +76,11 @@ class MonthsInputCell : UITableViewCell {
         self.labelField.text = label
         self.inputField.text = "\(value)"
     }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if let d = inputCellFormDelegate {
+            d.inputFieldDidBeginEditing(textField)
+        }
+    }
+    
 }

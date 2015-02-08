@@ -8,11 +8,19 @@
 
 import UIKit
 
-class ValueInputCell : UITableViewCell{
+protocol InputCellFormDelegate {
+
+    func inputFieldDidBeginEditing(textField: UITextField)
+    
+}
+
+class ValueInputCell : UITableViewCell, UITextFieldDelegate {
     
     let labelField = UILabel()
     let underlineImage = UIImageView(image: UIImage(named: "input_cell_line"))
     let inputField = UITextField()
+    var inputCellFormDelegate : InputCellFormDelegate?
+    
     class var REUSE_IDENTIFIER : String {
         return "value_input_cell"
     }
@@ -37,6 +45,7 @@ class ValueInputCell : UITableViewCell{
         inputField.textColor = UIColor.whiteColor()
         inputField.textAlignment = NSTextAlignment.Right
         inputField.keyboardType = UIKeyboardType.DecimalPad
+        inputField.delegate = self
         
         self.addSubview(labelField)
         self.addSubview(inputField)
@@ -74,6 +83,13 @@ class ValueInputCell : UITableViewCell{
     
     func showUnderline() {
         self.underlineImage.hidden = false
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if let d = inputCellFormDelegate {
+            println("began editing")
+            d.inputFieldDidBeginEditing(textField)
+        }
     }
     
 }
