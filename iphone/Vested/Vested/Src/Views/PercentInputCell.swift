@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PercentInputCell : UITableViewCell, UITextFieldDelegate {
+class PercentInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
     
     let labelField = UILabel()
     let underlineImage = UIImageView(image: UIImage(named: "input_cell_line"))
@@ -55,7 +55,7 @@ class PercentInputCell : UITableViewCell, UITextFieldDelegate {
         self.addSubview(percentLabel)
         
         let viewsDictionary : [NSObject: AnyObject] = ["label_field": labelField, "underline_image": underlineImage, "input_field": inputField, "percent_label": percentLabel]
-        let labelInputHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[label_field]-[input_field(==50)]-2-[percent_label]-10-|", options: nil, metrics: nil, views: viewsDictionary)
+        let labelInputHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[label_field]-[input_field(==70)]-2-[percent_label]-10-|", options: nil, metrics: nil, views: viewsDictionary)
         let labelVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-8-[label_field]", options: nil, metrics: nil, views: viewsDictionary)
         let underlineImageHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[underline_image(==140)]-0-|", options: nil, metrics: nil, views: viewsDictionary)
         let underlineImageVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[input_field]-0-[underline_image]", options: nil, metrics: nil, views: viewsDictionary)
@@ -72,6 +72,7 @@ class PercentInputCell : UITableViewCell, UITextFieldDelegate {
     
     func customize(label: String, value: Double) {
         self.labelField.text = label
+        let val = round(value * 10) / 10
         self.inputField.text = "\(value)"
     }
 
@@ -79,6 +80,15 @@ class PercentInputCell : UITableViewCell, UITextFieldDelegate {
         if let d = inputCellFormDelegate {
             d.inputFieldDidBeginEditing(textField)
         }
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        let acceleration = round((textField.text as NSString).doubleValue * 10) / 10
+        textField.text = "\(acceleration)"
+    }
+    
+    func getInputTextField() -> UITextField {
+        return inputField
     }
     
 }

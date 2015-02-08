@@ -44,6 +44,4 @@ class DatePickerCell : UITableViewCell {
     func customize(date: NSDate) {
         datePicker.date = NSDate()
     }
-    
-    
 }

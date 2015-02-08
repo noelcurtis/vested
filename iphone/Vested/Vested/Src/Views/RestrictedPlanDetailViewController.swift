@@ -112,6 +112,10 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
             } else {
                 showDatePicker()
             }
+        } else if (indexPath.section == 1 || indexPath.section == 0 || (indexPath.section == 2 && indexPath.row == 0)) {
+            // make the text view the first responder
+            let inputField = (tableView.cellForRowAtIndexPath(indexPath) as FormCell).getInputTextField()
+            inputField.becomeFirstResponder()
         }
     }
     

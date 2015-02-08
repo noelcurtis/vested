@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlanNameInputCell : UITableViewCell, UITextFieldDelegate {
+class PlanNameInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
 
     let titleInputField = UITextField()
     let underLineImageView = UIImageView(image: UIImage(named: "title_line"))
@@ -31,6 +31,7 @@ class PlanNameInputCell : UITableViewCell, UITextFieldDelegate {
         titleInputField.tintColor = UIColor.whiteColor()
         titleInputField.textColor = UIColor.whiteColor()
         titleInputField.delegate = self
+        titleInputField.clearButtonMode = UITextFieldViewMode.WhileEditing
 
         self.addSubview(titleInputField)
         
@@ -47,5 +48,9 @@ class PlanNameInputCell : UITableViewCell, UITextFieldDelegate {
         if let d = inputCellFormDelegate {
             d.inputFieldDidBeginEditing(textField)
         }
+    }
+    
+    func getInputTextField() -> UITextField {
+        return titleInputField
     }
 }

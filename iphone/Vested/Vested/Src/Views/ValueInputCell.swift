@@ -14,7 +14,7 @@ protocol InputCellFormDelegate {
     
 }
 
-class ValueInputCell : UITableViewCell, UITextFieldDelegate {
+class ValueInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
     
     let labelField = UILabel()
     let underlineImage = UIImageView(image: UIImage(named: "input_cell_line"))
@@ -69,7 +69,11 @@ class ValueInputCell : UITableViewCell, UITextFieldDelegate {
 
     func customize(label: String, value: Int) {
         self.labelField.text = label
-        self.inputField.text = "\(value)"
+        if let val = commatozeNumberFormatter.stringFromNumber(value) {
+            self.inputField.text = val
+        } else {
+            self.inputField.text = "0"
+        }
     }
     
     func customize(label: String, string value: String) {
@@ -98,6 +102,10 @@ class ValueInputCell : UITableViewCell, UITextFieldDelegate {
         currentText = currentText.stringByReplacingOccurrencesOfString(",", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         textField.text = NumberUtils.commatoze(string: currentText)
         return false
+    }
+    
+    func getInputTextField() -> UITextField {
+        return inputField
     }
     
 }

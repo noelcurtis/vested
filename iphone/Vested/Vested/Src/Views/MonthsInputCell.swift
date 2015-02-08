@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MonthsInputCell : UITableViewCell, UITextFieldDelegate {
+class MonthsInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
 
     let labelField = UILabel()
     let underlineImage = UIImageView(image: UIImage(named: "input_cell_line"))
@@ -81,6 +81,10 @@ class MonthsInputCell : UITableViewCell, UITextFieldDelegate {
         if let d = inputCellFormDelegate {
             d.inputFieldDidBeginEditing(textField)
         }
+    }
+    
+    func getInputTextField() -> UITextField {
+        return inputField
     }
     
 }

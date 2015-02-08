@@ -37,6 +37,7 @@
 		303CF54D1A6D4EC0003B2AFF /* SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303CF54C1A6D4EC0003B2AFF /* SummaryCell.swift */; };
 		303CF54F1A6D7BCE003B2AFF /* NumberUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303CF54E1A6D7BCE003B2AFF /* NumberUtils.swift */; };
 		30462DDD1A64C30B00DCF5C6 /* ValueInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30462DDC1A64C30B00DCF5C6 /* ValueInputCell.swift */; };
+		30651C381A87BF18007BC617 /* FormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30651C371A87BF18007BC617 /* FormCell.swift */; };
 		3076ECC01A71D62500CCC493 /* SummaryCellV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3076ECBF1A71D62500CCC493 /* SummaryCellV2.swift */; };
 		3076ECC21A71D66D00CCC493 /* ColorsAndFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3076ECC11A71D66D00CCC493 /* ColorsAndFonts.swift */; };
 		30877F261A7DCC14001166E1 /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30877F251A7DCC14001166E1 /* InfoView.xib */; };
@@ -91,6 +92,7 @@
 		303CF54C1A6D4EC0003B2AFF /* SummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryCell.swift; path = Src/Views/SummaryCell.swift; sourceTree = "<group>"; };
 		303CF54E1A6D7BCE003B2AFF /* NumberUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberUtils.swift; path = Src/Utils/NumberUtils.swift; sourceTree = "<group>"; };
 		30462DDC1A64C30B00DCF5C6 /* ValueInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValueInputCell.swift; path = Src/Views/ValueInputCell.swift; sourceTree = "<group>"; };
+		30651C371A87BF18007BC617 /* FormCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormCell.swift; path = Src/Views/FormCell.swift; sourceTree = "<group>"; };
 		3076ECBF1A71D62500CCC493 /* SummaryCellV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryCellV2.swift; path = Src/Views/SummaryCellV2.swift; sourceTree = "<group>"; };
 		3076ECC11A71D66D00CCC493 /* ColorsAndFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorsAndFonts.swift; path = Src/Utils/ColorsAndFonts.swift; sourceTree = "<group>"; };
 		30877F251A7DCC14001166E1 /* InfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoView.xib; path = Src/Views/InfoView.xib; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				30F595031A7E769C00F04BC3 /* SummaryCellInfoView.swift */,
 				30F595051A7EB38100F04BC3 /* InfoViewV2.xib */,
 				300D6CE41A807DCC0027E360 /* InfoViewV2.swift */,
+				30651C371A87BF18007BC617 /* FormCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				3018D0A01A5CC43400464D64 /* StockPlan.swift in Sources */,
 				3018D0AA1A5CD16100464D64 /* VestingCalculator.swift in Sources */,
 				30A110391A63119100DEB664 /* PlanNameInputCell.swift in Sources */,
+				30651C381A87BF18007BC617 /* FormCell.swift in Sources */,
 				30A1102F1A61DE3000DEB664 /* SummaryViewController.swift in Sources */,
 				3076ECC01A71D62500CCC493 /* SummaryCellV2.swift in Sources */,
 				3018D0AF1A5CD37200464D64 /* VestingCalculatorResult.swift in Sources */,
