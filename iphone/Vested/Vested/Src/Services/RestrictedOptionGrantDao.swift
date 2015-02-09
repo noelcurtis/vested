@@ -51,6 +51,21 @@ class RestrictedOptionGrantDao {
         }
     }
     
+    func deleteStockPlan(stockPlan: StockPlan) {
+        println("Deleting stock plan \(stockPlan.description)")
+        if let fetchResults = self.managedObjectContext.executeFetchRequest(fetchRestrictedOptionGrantRequest(stockPlan.uuid), error: nil) {
+            let resultOption = (fetchResults as [RestrictedOptionGrantMO]).first
+            
+            if let result = resultOption {
+                self.managedObjectContext.deleteObject(result)
+                save()
+            } else {
+                NSLog("Could not find stock plan with id \(stockPlan.uuid), update failed")
+            }
+        }
+
+    }
+    
     func updateStockPlan(stockPlan: StockPlan) {
         println("Updating stock plan \(stockPlan.description)")
         if let fetchResults = self.managedObjectContext.executeFetchRequest(fetchRestrictedOptionGrantRequest(stockPlan.uuid), error: nil) {

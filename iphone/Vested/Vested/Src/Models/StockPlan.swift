@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol StockPlan : Printable {
+@objc protocol StockPlan {
 
     var uuid: String {get set}
     var name: String {get set}
@@ -21,5 +21,8 @@ protocol StockPlan : Printable {
     // individual parameters
     var shares: Int {get set}
     var startDate: NSDate {get set}
+    
+    /// A textual representation of `self`.
+    var description: String { get }
     
 }

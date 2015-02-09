@@ -15,8 +15,10 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
     let restrictedStockOptionDao = RestrictedOptionGrantDao(managedObjectContext: PersistenceService.sharedInstance.managedObjectContext!)
     let restrictedStockVestingCalulator = RestrictedStockOptionGrantCalculator()
     
-    var stockPlans = []
+    var stockPlans: Array <AnyObject> = []
     var expandedIndexPaths:[NSIndexPath] = []
+    
+    var isEditing = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +67,27 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
     }
 
     // MARK: - UITableViewDelegate
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
     
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            let toRemove = stockPlans[indexPath.row] as StockPlan
+            restrictedStockOptionDao.deleteStockPlan(toRemove)
+            stockPlans.removeAtIndex(indexPath.row)
+            tableView.reloadData()
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
+        isEditing = false
+    }
+    
+    override func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath) {
+        println("editing begining")
+        isEditing = true
+    }
     
     // MARK: - UITableViewDatasource
     
@@ -118,14 +140,17 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
     }
     
     func detailButtonPressed(stockPlan: StockPlan?) {
-        if let plan = stockPlan {
-            self.navigationController?.pushViewController(
-                RestrictedPlanDetailViewController(
-                    restrictedOptionGrant: stockPlan as RestrictedOptionGrant, style: UITableViewStyle.Grouped),
+        if (!isEditing) {
+            println("button pressed")
+            if let plan = stockPlan {
+                self.navigationController?.pushViewController(
+                    RestrictedPlanDetailViewController(
+                        restrictedOptionGrant: stockPlan as RestrictedOptionGrant, style: UITableViewStyle.Grouped),
                     animated: true
                 )
-        } else {
-            NSLog("Cell has no associated stock plan, not displaying detail view")
+            } else {
+                NSLog("Cell has no associated stock plan, not displaying detail view")
+            }
         }
     }
 }
