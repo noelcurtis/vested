@@ -261,7 +261,11 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
 
         if let vestingPeriodCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1)) {
             let a = vestingPeriodCell as MonthsInputCell
-            restrictedOptionGrant.vestingPeriod = (a.inputField.text as NSString).integerValue
+            let vestingPeriod = (a.inputField.text as NSString).integerValue
+            if (vestingPeriod < restrictedOptionGrant.cliff) {
+                restrictedOptionGrant.cliff = vestingPeriod
+            }
+            restrictedOptionGrant.vestingPeriod = vestingPeriod
         }
 
         if let endingAccelerationCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 3, inSection: 1)) {
