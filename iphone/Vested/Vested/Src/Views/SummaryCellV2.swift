@@ -225,7 +225,7 @@ class SummaryCellV2 : UITableViewCell {
         
         cellBackgroundLower.hideInfo(false)
         cellBackgroundLower.backgroundButton.addTarget(self, action: "buttonClick:", forControlEvents: UIControlEvents.TouchUpInside)
-        cellBackgroundLower.monthsToVestLabel.text = "\(vestingResult.monthsLeftToVest)"
+        cellBackgroundLower.monthsToVestLabel.text = "\(max(vestingResult.monthsLeftToVest, 0))"
         cellBackgroundLower.cliffIndicator.image = vestingResult.vestedSharesAtCliff > 0 ? UIImage(named: "info_check") : UIImage(named: "info_cross");
         cellBackgroundLower.planNameLabel.text = stockPlan.name
         

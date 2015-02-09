@@ -23,6 +23,8 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
         return dt
     }()
     var setupForUpdate = false
+    var currentDate : NSDate!
+    
     
     override init(style: UITableViewStyle) {
         super.init(style: style)
@@ -45,6 +47,9 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        currentDate = restrictedOptionGrant.startDate
+        
         setupNavBar()
         setupTableView()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardShown", name: UIKeyboardWillShowNotification, object: nil)
@@ -185,8 +190,8 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
             
             switch(indexPath.row) {
                 case 0: return getValueInputCell("Grant Shares", value: self.restrictedOptionGrant.shares)
-                case 1: return getDateCell("Start Date", string: dateTimeFormatter.stringFromDate(self.restrictedOptionGrant.startDate))
-                case 2: return getDatepickerCell(self.restrictedOptionGrant.startDate)
+                case 1: return getDateCell("Start Date", string: dateTimeFormatter.stringFromDate(currentDate))
+                case 2: return getDatepickerCell(currentDate)
                 default: return self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
             }
             
@@ -327,6 +332,7 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
     }
     
     func dateChanged(datePicker: UIDatePicker) {
+        currentDate = datePicker.date
         (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) as ValueInputCell).inputField.text = dateTimeFormatter.stringFromDate(datePicker.date)
     }
 }

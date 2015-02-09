@@ -20,7 +20,7 @@ class InfoViewV2 : UIView {
     
     func setup(monthsLeftToVest: Int, planName: String, cliffBreached: Bool) {
         planNameLabel.text = planName
-        monthsToVestLabel.text = "\(monthsLeftToVest)"
+        monthsToVestLabel.text = "\(max(monthsLeftToVest, 0))"
     }
     
     func hideInfo(hidden: Bool) {
