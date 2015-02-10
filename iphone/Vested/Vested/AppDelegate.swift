@@ -12,15 +12,25 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let restrictedStockOptionDao = RestrictedOptionGrantDao(managedObjectContext: PersistenceService.sharedInstance.managedObjectContext!)
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        let navController = UINavigationController(rootViewController: SummaryViewController())
-        window?.rootViewController = navController
+        let allGrants = restrictedStockOptionDao.findAllRestrictedOptionGrants()
+        if (allGrants.isEmpty) {
+            // if there are no grants setup already then just push the form
+            let restrictedPlanDetailViewController = RestrictedPlanDetailViewController(style: UITableViewStyle.Grouped)
+            restrictedPlanDetailViewController.setupAsRootView = true
+            let navController = UINavigationController(rootViewController: restrictedPlanDetailViewController)
+            window?.rootViewController = navController
+        } else {
+            // else push the summary view
+            let navController = UINavigationController(rootViewController: SummaryViewController())
+            window?.rootViewController = navController
+        }
         window?.makeKeyAndVisible()
         return true
     }

@@ -24,7 +24,7 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
     }()
     var setupForUpdate = false
     var currentDate : NSDate!
-    
+    var setupAsRootView = false
     
     override init(style: UITableViewStyle) {
         super.init(style: style)
@@ -61,21 +61,27 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
     
     func setupNavBar() {
         // setup the buttons
-        backButton = UIBarButtonItem(image: UIImage(named: "back_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "popViewController")
-        if (!setupForUpdate) {
-            checkButton = UIBarButtonItem(image: UIImage(named: "check_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "addPlanAndPopViewController")
+        if (setupAsRootView) {
+            checkButton = UIBarButtonItem(image: UIImage(named: "check_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "addPlanAndPushViewController")
         } else {
-            checkButton = UIBarButtonItem(image: UIImage(named: "check_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "updatePlanAndPopViewController")
+            backButton = UIBarButtonItem(image: UIImage(named: "back_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "popViewController")
+            if (!setupForUpdate) {
+                checkButton = UIBarButtonItem(image: UIImage(named: "check_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "addPlanAndPopViewController")
+            } else {
+                checkButton = UIBarButtonItem(image: UIImage(named: "check_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "updatePlanAndPopViewController")
+            }
         }
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.rightBarButtonItem = checkButton
         
-        // nav title imagenibNameOrNil
         let navTitle = UIImage(named: "nav_title_vested")
         let navTitleView = UIImageView(image: navTitle)
         self.navigationItem.titleView = navTitleView
         self.navigationItem.titleView?.hidden = false
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(rgba: "#252A2D")
+        self.navigationController?.navigationBar.translucent = false
     }
     
     func setupTableView() {
@@ -102,6 +108,12 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
         let restrictedStockPlan = getStockPlanFromCells()
         restrictedStockOptionDao.updateStockPlan(restrictedStockPlan)
         navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
+    func addPlanAndPushViewController() {
+        let restrictedStockPlan = getStockPlanFromCells()
+        restrictedStockOptionDao.createStockPlan(restrictedStockPlan)
+        self.navigationController?.pushViewController(SummaryViewController(), animated: true)
     }
     
     func inputFieldDidBeginEditing(textField: UITextField) {

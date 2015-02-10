@@ -49,14 +49,15 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
     func setupNavBar() {
         // setup the buttons
         addButton = UIBarButtonItem(image: UIImage(named: "add_button"), style: UIBarButtonItemStyle.Plain, target: self, action: "pushRestrictedStockPlanDetailView")
-        
-        // nav title image
+
         let navTitle = UIImage(named: "nav_title_vested")
         let navTitleView = UIImageView(image: navTitle)
         self.navigationItem.titleView = navTitleView
         self.navigationItem.titleView?.hidden = false
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationItem.rightBarButtonItem = addButton
+        self.navigationItem.leftBarButtonItem = nil
+        self.navigationItem.hidesBackButton = true
         
         self.navigationController?.navigationBar.barTintColor = UIColor(rgba: "#252A2D")
         self.navigationController?.navigationBar.translucent = false

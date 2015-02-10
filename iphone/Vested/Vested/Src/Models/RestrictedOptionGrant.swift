@@ -55,7 +55,7 @@ class RestrictedOptionGrant : StockPlan {
         self.vestingPeriod = 48
         self.shares = 5000
         self.startDate = NSDate()
-        self.name = "Plan Name"
+        self.name = "My Stock Grant"
         
         return self
     }
