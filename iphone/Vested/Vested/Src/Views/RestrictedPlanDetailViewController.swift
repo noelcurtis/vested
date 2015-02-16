@@ -107,7 +107,7 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
     func updatePlanAndPopViewController() {
         let restrictedStockPlan = getStockPlanFromCells()
         restrictedStockOptionDao.updateStockPlan(restrictedStockPlan)
-        navigationController?.popToRootViewControllerAnimated(true)
+        navigationController?.popViewControllerAnimated(true)
     }
     
     func addPlanAndPushViewController() {

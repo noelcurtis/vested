@@ -59,11 +59,13 @@ class PercentInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
         let labelVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-8-[label_field]", options: nil, metrics: nil, views: viewsDictionary)
         let underlineImageHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[underline_image(==140)]-0-|", options: nil, metrics: nil, views: viewsDictionary)
         let underlineImageVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[input_field]-0-[underline_image]", options: nil, metrics: nil, views: viewsDictionary)
+        let percentLabelVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[percent_label]", options: nil, metrics: nil, views: viewsDictionary)
         
         self.addConstraints(labelInputHorizontalConstraints)
         self.addConstraints(labelVerticalConstraints)
         self.addConstraints(underlineImageHorizontalConstraints)
         self.addConstraints(underlineImageVerticalConstraints)
+        self.addConstraints(percentLabelVerticalConstraints)
     }
     
     required init(coder aDecoder: NSCoder) {

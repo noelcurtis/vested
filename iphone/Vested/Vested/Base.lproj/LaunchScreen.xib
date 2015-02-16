@@ -13,12 +13,17 @@
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="NvY-mZ-846">
                     <rect key="frame" x="0.0" y="0.0" width="372" height="665"/>
                 </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="launch_screen_image" translatesAutoresizingMaskIntoConstraints="NO" id="Nrp-Au-2of">
+                    <rect key="frame" x="130" y="276" width="113" height="113"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="NvY-mZ-846" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LWs-uZ-XfE"/>
+                <constraint firstAttribute="centerX" secondItem="Nrp-Au-2of" secondAttribute="centerX" id="bFf-7v-lx0"/>
                 <constraint firstAttribute="trailing" secondItem="NvY-mZ-846" secondAttribute="trailing" id="hdG-Nn-HOd"/>
                 <constraint firstAttribute="bottom" secondItem="NvY-mZ-846" secondAttribute="bottom" id="nzV-hL-bns"/>
+                <constraint firstAttribute="centerY" secondItem="Nrp-Au-2of" secondAttribute="centerY" id="qmR-hr-ZIO"/>
                 <constraint firstItem="NvY-mZ-846" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yXJ-8A-tDE"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -28,5 +33,6 @@
     </objects>
     <resources>
         <image name="background" width="375" height="667"/>
+        <image name="launch_screen_image" width="113" height="113"/>
     </resources>
 </document>

@@ -37,7 +37,10 @@ class PlanNameInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
         
         let viewsDictionary : [NSObject: AnyObject] = ["input_field": titleInputField, "underline_image": underLineImageView]
         let labelHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[input_field]-10-|", options: nil, metrics: nil, views: viewsDictionary)
+        let labelVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[input_field]-0-|", options: nil, metrics: nil, views: viewsDictionary)
+        
         self.addConstraints(labelHorizontalConstraints)
+        self.addConstraints(labelVerticalConstraints)
     }
 
     required init(coder aDecoder: NSCoder) {
