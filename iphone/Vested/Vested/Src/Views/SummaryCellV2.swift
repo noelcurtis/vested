@@ -68,10 +68,11 @@ class SummaryCellV2 : UITableViewCell {
         detailButton.setTranslatesAutoresizingMaskIntoConstraints(false)
 
 //        infoButton.backgroundColor = UIColor.blackColor()
-//        leftWrapperView.backgroundColor = UIColor.yellowColor()
+//        leftWrapperView.backgroundColor = UIColor.purpleColor()
 //        rightWrapperView.backgroundColor = UIColor.greenColor()
 //        middleWrapperView.backgroundColor = UIColor.grayColor()
 //        detailButton.backgroundColor = UIColor.yellowColor()
+        contentView.backgroundColor = UIColor.yellowColor()
         
         cellBackgroundUpper.userInteractionEnabled = true
         contentView.userInteractionEnabled = true
@@ -124,9 +125,9 @@ class SummaryCellV2 : UITableViewCell {
         middleWrapperView.addSubview(percentLabel)
         contentView.addSubview(cellBackgroundLower)
         contentView.addSubview(cellBackgroundUpper)
-        contentView.addSubview(leftWrapperView)
-        contentView.addSubview(middleWrapperView)
-        contentView.addSubview(rightWrapperView)
+        cellBackgroundUpper.addSubview(leftWrapperView)
+        cellBackgroundUpper.addSubview(middleWrapperView)
+        cellBackgroundUpper.addSubview(rightWrapperView)
         contentView.addSubview(detailButton)
         
         let viewsDictionary = [
@@ -158,23 +159,27 @@ class SummaryCellV2 : UITableViewCell {
         let hPlacement14 = NSLayoutConstraint(item: middleWrapperView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Width, multiplier: 0.20, constant: 0.0)
         let hPlacement15 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[detail_button]-0-|", options: nil, metrics: nil, views: viewsDictionary)
 
-        let vPlacement1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[summary_background_upper]", options: nil, metrics: nil, views: viewsDictionary)
-        let vPlacement2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-38-[summary_background_lower]", options: nil, metrics: nil, views: viewsDictionary)
-        let vPlacement3 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-12-[left_wrapper]", options: nil, metrics: nil, views: viewsDictionary)
-        let vPlacement4 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-12-[right_wrapper]", options: nil, metrics: nil, views: viewsDictionary)
-        let vPlacement5 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-12-[middle_wrapper]", options: nil, metrics: nil, views: viewsDictionary)
-        let vPlacement6 = NSLayoutConstraint(item: leftWrapperView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Height, multiplier: 0.93, constant: 0.0)
-        let vPlacement7 = NSLayoutConstraint(item: rightWrapperView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Height, multiplier: 0.93, constant: 0.0)
+        let vPlacement1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[summary_background_upper]", options: nil, metrics: nil, views: viewsDictionary)
+        let vPlacement2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-28-[summary_background_lower]", options: nil, metrics: nil, views: viewsDictionary)
+//        let vPlacement3 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[left_wrapper]-|", options: nil, metrics: nil, views: viewsDictionary)
+//        let vPlacement4 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[right_wrapper]-|", options: nil, metrics: nil, views: viewsDictionary)
+        let vPlacement5 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-2-[middle_wrapper]", options: nil, metrics: nil, views: viewsDictionary)
+        let vPlacement6 = NSLayoutConstraint(item: leftWrapperView, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: 0.0)
+        let vPlacement7 = NSLayoutConstraint(item: rightWrapperView, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: 0.0)
+        
+//        let vPlacement6 = NSLayoutConstraint(item: leftWrapperView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Height, multiplier: 0.93, constant: 0.0)
+//        let vPlacement7 = NSLayoutConstraint(item: rightWrapperView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Height, multiplier: 0.93, constant: 0.0)
         let vPlacement8 = NSLayoutConstraint(item: middleWrapperView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Height, multiplier: 0.93, constant: 0.0)
-        let vPlacement9 = NSLayoutConstraint.constraintsWithVisualFormat("V:[vested_label]-(-2)-[vested_amount_label]", options: nil, metrics: nil, views: viewsDictionary)
-        let vPlacement10 = NSLayoutConstraint.constraintsWithVisualFormat("V:[unvested_label]-(-2)-[unvested_amount_label]", options: nil, metrics: nil, views: viewsDictionary)
+        let vPlacement9 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[vested_label]-(-2)-[vested_amount_label]-0-|", options: nil, metrics: nil, views: viewsDictionary)
+        let vPlacement10 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[unvested_label]-(-2)-[unvested_amount_label]-0-|", options: nil, metrics: nil, views: viewsDictionary)
         let vPlacement11 = NSLayoutConstraint(item: radialGraphView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: middleWrapperView, attribute: NSLayoutAttribute.Height, multiplier: 1.0, constant: 0.0)
         let vPlacement12 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[radial_graph_view]", options: nil, metrics: nil, views: viewsDictionary)
         let vPlacement16 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[percent_label]-0-|", options: nil, metrics: nil, views: viewsDictionary)
         let vPlacement17 = NSLayoutConstraint(item: middleWrapperView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: middleWrapperView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0.0)
-        let vPlacement19 = NSLayoutConstraint(item: vestedLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Top, multiplier: 2.5, constant: 0.0)
-        let vPlacement20 = NSLayoutConstraint(item: unvestedLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Top, multiplier: 2.5, constant: 0.0)
-        let vPlacement21 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[detail_button]", options: nil, metrics: nil, views: viewsDictionary)
+        //let vPlacement19 = NSLayoutConstraint(item: vestedLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Top, multiplier: 4.5, constant: 0.0)
+        
+        let vPlacement20 = NSLayoutConstraint(item: unvestedLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: vestedLabel, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0.0)
+        let vPlacement21 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-2-[detail_button]", options: nil, metrics: nil, views: viewsDictionary)
         let vPlacement22 = NSLayoutConstraint(item: detailButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Height, multiplier: 0.80, constant: 0.0)
         
         vPlacementDynamic = NSLayoutConstraint(item: cellBackgroundLower, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Height, multiplier: 1.0, constant: 0.0)
@@ -194,8 +199,8 @@ class SummaryCellV2 : UITableViewCell {
         
         contentView.addConstraints(vPlacement1)
         contentView.addConstraints(vPlacement2)
-        contentView.addConstraints(vPlacement3)
-        contentView.addConstraints(vPlacement4)
+//        contentView.addConstraints(vPlacement3)
+//        contentView.addConstraints(vPlacement4)
         contentView.addConstraints(vPlacement5)
         contentView.addConstraint(vPlacement6)
         contentView.addConstraint(vPlacement7)
@@ -206,7 +211,7 @@ class SummaryCellV2 : UITableViewCell {
         contentView.addConstraints(vPlacement12)
         contentView.addConstraints(vPlacement16)
         contentView.addConstraint(vPlacement17)
-        contentView.addConstraint(vPlacement19)
+        //contentView.addConstraint(vPlacement19)
         contentView.addConstraint(vPlacement20)
         contentView.addConstraint(vPlacementDynamic!)
         contentView.addConstraints(vPlacement21)
@@ -263,5 +268,5 @@ class SummaryCellV2 : UITableViewCell {
         
         })
     }
-    
+        
 }

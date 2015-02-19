@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="311" height="94"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0o-G6-sVO" userLabel="background_button">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0o-G6-sVO" userLabel="background_button" customClass="InfoButton" customModule="Vested" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="311" height="94"/>
                     <state key="normal" backgroundImage="summary_background_lower">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -23,7 +23,7 @@
                     </accessibility>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plan Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZs-GA-roi">
-                    <rect key="frame" x="10" y="68" width="79.5" height="22"/>
+                    <rect key="frame" x="10" y="68" width="80" height="22"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
                     </accessibility>
@@ -104,7 +104,7 @@
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="backgroundButton" destination="c0o-G6-sVO" id="Lmp-8O-qVp"/>
+                <outlet property="backgroundButton" destination="c0o-G6-sVO" id="a2F-UX-ZJb"/>
                 <outlet property="cliffBreachedTitleLabel" destination="sSN-kV-81L" id="6OU-gz-RNT"/>
                 <outlet property="cliffIndicator" destination="mzv-rG-Ofi" id="u17-52-P7s"/>
                 <outlet property="monthsToVestLabel" destination="N7a-3k-73s" id="Rns-zv-fqN"/>

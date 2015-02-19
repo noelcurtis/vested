@@ -92,6 +92,16 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
     
     // MARK: - UITableViewDatasource
     
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(10)
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.clearColor()
+        return view
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stockPlans.count
     }
@@ -142,7 +152,6 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
     
     func detailButtonPressed(stockPlan: StockPlan?) {
         if (!isEditing) {
-            println("button pressed")
             if let plan = stockPlan {
                 self.navigationController?.pushViewController(
                     RestrictedPlanDetailViewController(

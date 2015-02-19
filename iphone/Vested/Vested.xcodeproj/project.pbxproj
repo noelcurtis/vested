@@ -48,6 +48,7 @@
 		30B5EA7B1A68A939002005B3 /* VestedDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30B5EA791A68A939002005B3 /* VestedDataModel.xcdatamodeld */; };
 		30B5EA7D1A68A98F002005B3 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5EA7C1A68A98F002005B3 /* PersistenceService.swift */; };
 		30BB22841A68CA60001435DE /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5EA7C1A68A98F002005B3 /* PersistenceService.swift */; };
+		30BC0C081A95AA540078C4A4 /* InfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BC0C071A95AA530078C4A4 /* InfoButton.swift */; };
 		30BE11871A6F304400C1E35D /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BE11861A6F304400C1E35D /* DatePickerCell.swift */; };
 		30F595041A7E769C00F04BC3 /* SummaryCellInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F595031A7E769C00F04BC3 /* SummaryCellInfoView.swift */; };
 		30F595061A7EB38100F04BC3 /* InfoViewV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30F595051A7EB38100F04BC3 /* InfoViewV2.xib */; };
@@ -103,6 +104,7 @@
 		30B5EA771A68A8EE002005B3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		30B5EA7A1A68A939002005B3 /* VestedDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VestedDataModel.xcdatamodel; sourceTree = "<group>"; };
 		30B5EA7C1A68A98F002005B3 /* PersistenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersistenceService.swift; path = Src/Services/PersistenceService.swift; sourceTree = "<group>"; };
+		30BC0C071A95AA530078C4A4 /* InfoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoButton.swift; path = Src/Views/InfoButton.swift; sourceTree = "<group>"; };
 		30BE11861A6F304400C1E35D /* DatePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatePickerCell.swift; path = Src/Views/DatePickerCell.swift; sourceTree = "<group>"; };
 		30F595031A7E769C00F04BC3 /* SummaryCellInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryCellInfoView.swift; path = Src/Views/SummaryCellInfoView.swift; sourceTree = "<group>"; };
 		30F595051A7EB38100F04BC3 /* InfoViewV2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoViewV2.xib; path = Src/Views/InfoViewV2.xib; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				30F595051A7EB38100F04BC3 /* InfoViewV2.xib */,
 				300D6CE41A807DCC0027E360 /* InfoViewV2.swift */,
 				30651C371A87BF18007BC617 /* FormCell.swift */,
+				30BC0C071A95AA530078C4A4 /* InfoButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				300D6CE51A807DCC0027E360 /* InfoViewV2.swift in Sources */,
 				303CF54D1A6D4EC0003B2AFF /* SummaryCell.swift in Sources */,
 				302F24B91A66088C00FBF18A /* PercentInputCell.swift in Sources */,
+				30BC0C081A95AA540078C4A4 /* InfoButton.swift in Sources */,
 				3076ECC21A71D66D00CCC493 /* ColorsAndFonts.swift in Sources */,
 				3007B2781A7D3DB300F4D6B2 /* SizeClass.swift in Sources */,
 				30B5EA7B1A68A939002005B3 /* VestedDataModel.xcdatamodeld in Sources */,

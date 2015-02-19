@@ -12,7 +12,7 @@ class InfoViewV2 : UIView {
     
     @IBOutlet weak var monthsToVestLabel: UILabel!
     @IBOutlet weak var planNameLabel: UILabel!
-    @IBOutlet weak var backgroundButton: UIButton!
+    @IBOutlet weak var backgroundButton: InfoButton!
     @IBOutlet weak var monthsToViestTitleLabel: UILabel!
     @IBOutlet weak var cliffBreachedTitleLabel: UILabel!
     @IBOutlet weak var cliffIndicator: UIImageView!
