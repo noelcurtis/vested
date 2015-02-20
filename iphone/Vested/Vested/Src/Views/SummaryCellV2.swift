@@ -19,7 +19,7 @@ protocol CellDetailButtonDelegate {
 class SummaryCellV2 : UITableViewCell {
     
     let cellBackgroundLower : InfoViewV2!
-    let cellBackgroundUpper = UIImageView(image: UIImage(named: "summary_background_upper"))
+    let cellBackgroundUpper = CellBackgroundUpper(image: UIImage(named: "summary_background_upper"))
     let leftWrapperView = UIView()
     let middleWrapperView = UIView()
     let rightWrapperView = UIView()
@@ -77,6 +77,11 @@ class SummaryCellV2 : UITableViewCell {
         cellBackgroundUpper.userInteractionEnabled = true
         contentView.userInteractionEnabled = true
         detailButton.userInteractionEnabled = true
+        leftWrapperView.userInteractionEnabled = false
+        rightWrapperView.userInteractionEnabled = false
+        middleWrapperView.userInteractionEnabled = false
+        
+        cellBackgroundUpper.viewToDelegateHit = cellBackgroundLower.backgroundButton
         
         vestedLabel.font = UIFont(name: ColorsAndFonts.baseFont, size: ColorsAndFonts.summaryCellSubFontSize)
         vestedLabel.text = "Vested"

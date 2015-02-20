@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3007B2781A7D3DB300F4D6B2 /* SizeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3007B2771A7D3DB300F4D6B2 /* SizeClass.swift */; };
 		300D6CE51A807DCC0027E360 /* InfoViewV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D6CE41A807DCC0027E360 /* InfoViewV2.swift */; };
+		3015A72A1A96CCE9000FCE8F /* CellBackgroundUpper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015A7291A96CCE9000FCE8F /* CellBackgroundUpper.swift */; };
 		3018D07D1A5CC04D00464D64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3018D07C1A5CC04D00464D64 /* AppDelegate.swift */; };
 		3018D0841A5CC04D00464D64 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3018D0831A5CC04D00464D64 /* Images.xcassets */; };
 		3018D0871A5CC04D00464D64 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3018D0851A5CC04D00464D64 /* LaunchScreen.xib */; };
@@ -69,6 +70,7 @@
 		2F004C45D47B4A63EA0F8FBB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3007B2771A7D3DB300F4D6B2 /* SizeClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SizeClass.swift; path = Src/Utils/SizeClass.swift; sourceTree = "<group>"; };
 		300D6CE41A807DCC0027E360 /* InfoViewV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoViewV2.swift; path = Src/Views/InfoViewV2.swift; sourceTree = "<group>"; };
+		3015A7291A96CCE9000FCE8F /* CellBackgroundUpper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellBackgroundUpper.swift; path = Src/Views/CellBackgroundUpper.swift; sourceTree = "<group>"; };
 		3018D0771A5CC04D00464D64 /* Vested.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vested.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3018D07B1A5CC04D00464D64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3018D07C1A5CC04D00464D64 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				300D6CE41A807DCC0027E360 /* InfoViewV2.swift */,
 				30651C371A87BF18007BC617 /* FormCell.swift */,
 				30BC0C071A95AA530078C4A4 /* InfoButton.swift */,
+				3015A7291A96CCE9000FCE8F /* CellBackgroundUpper.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				3018D0AF1A5CD37200464D64 /* VestingCalculatorResult.swift in Sources */,
 				3018D07D1A5CC04D00464D64 /* AppDelegate.swift in Sources */,
 				303CF54F1A6D7BCE003B2AFF /* NumberUtils.swift in Sources */,
+				3015A72A1A96CCE9000FCE8F /* CellBackgroundUpper.swift in Sources */,
 				3018D0B41A5CD57700464D64 /* RestrictedStockOptionGrantCalculator.swift in Sources */,
 				30B5EA7D1A68A98F002005B3 /* PersistenceService.swift in Sources */,
 				30BE11871A6F304400C1E35D /* DatePickerCell.swift in Sources */,
