@@ -33,10 +33,6 @@ class SummaryCellV2 : UITableViewCell {
     
     var cellDetailButtonPressedDelegate : CellDetailButtonDelegate?
     var indexPath: NSIndexPath?
-    
-    let duration = 200.0
-    let delay = 0.0
-    let options = UIViewKeyframeAnimationOptions.LayoutSubviews
     var stockPlan : StockPlan?
     
     var vPlacementDynamic: NSLayoutConstraint?
@@ -72,7 +68,7 @@ class SummaryCellV2 : UITableViewCell {
 //        rightWrapperView.backgroundColor = UIColor.greenColor()
 //        middleWrapperView.backgroundColor = UIColor.grayColor()
 //        detailButton.backgroundColor = UIColor.yellowColor()
-        contentView.backgroundColor = UIColor.yellowColor()
+//        contentView.backgroundColor = UIColor.yellowColor()
         
         cellBackgroundUpper.userInteractionEnabled = true
         contentView.userInteractionEnabled = true
@@ -258,19 +254,18 @@ class SummaryCellV2 : UITableViewCell {
     }
 
     func expandDetailView() {
-        vPlacementDynamic?.constant = 65
-        UIView.animateKeyframesWithDuration(duration, delay: delay, options: options, animations: {
-            self.contentView.layoutIfNeeded()
-            }, completion: {(finished) -> Void in
+        let duration = 0.5
+        UIView.animateWithDuration(duration, animations: {
+            self.vPlacementDynamic?.constant = 65
+            self.cellBackgroundLower.layoutIfNeeded()
         })
     }
     
     func contractDetailView() {
-        vPlacementDynamic?.constant = 0.0
-        UIView.animateKeyframesWithDuration(duration, delay: delay, options: options, animations: {
-            self.contentView.layoutIfNeeded()
-            }, completion: {(finished) -> Void in
-        
+        let duration = 0.5
+        UIView.animateWithDuration(duration, animations: {
+            self.vPlacementDynamic?.constant = 0.0
+            self.cellBackgroundLower.layoutIfNeeded()
         })
     }
         
