@@ -18,7 +18,8 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
     var stockPlans: Array <AnyObject> = []
     var expandedIndexPaths:[NSIndexPath] = []
     
-    var isEditing = false
+    var deleteEditing = false
+    var summaryCellUpdating = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,12 +80,17 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
             stockPlans.removeAtIndex(indexPath.row)
             tableView.reloadData()
         }
-        isEditing = false
+        deleteEditing = false
     }
     
     override func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath) {
         NSLog("Started editing row and index path")
-        isEditing = true
+        deleteEditing = true
+    }
+    
+    override func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
+        NSLog("Ended editing row and index path")
+        deleteEditing = false
     }
     
     // MARK: - UITableViewDatasource
@@ -122,33 +128,49 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
         let summaryCell = tableView.dequeueReusableCellWithIdentifier(SummaryCellV2.REUSE_IDENTIFIER) as SummaryCellV2
         summaryCell.customize(stockPlan, vestingResult: vestingResult, indexPath: indexPath)
         summaryCell.cellDetailButtonPressedDelegate = self
+
         return summaryCell
     }
     
     func infoButtonPressed(cell: UITableViewCell) {
         if let indexPath = (cell as SummaryCellV2).indexPath {
+
+            // indicate that a summary cell is updating
+            summaryCellUpdating = true
+
+            var expanding = false
             
             // check if the cell at indexPath is already expanded
             if (expandedIndexPaths.filter({$0 == indexPath}).count != 0) {
                 // if its already expanded remove it so it can be contracted
                 expandedIndexPaths = expandedIndexPaths.filter({$0 != indexPath})
-                (cell as SummaryCellV2).contractDetailView()
-                tableView.reloadData()
+                expanding = false
             } else {
                 // if its not already expanded add it to the expanded list
                 expandedIndexPaths.append(indexPath)
-                tableView.reloadData()
-                (cell as SummaryCellV2).expandDetailView()
+                expanding = true
             }
-        
+            
+            // reload the row
+            tableView.beginUpdates()
+            
+            // expand or contract the cell
+            if (expanding) {
+                (cell as SummaryCellV2).expandDetailView()
+            } else {
+                (cell as SummaryCellV2).contractDetailView()
+            }
+            
+            tableView.endUpdates()
             
         } else {
+            summaryCellUpdating = false
             NSLog("Cell has no index path, not displaying summary info")
         }
     }
     
     func detailButtonPressed(stockPlan: StockPlan?) {
-        if (!isEditing) {
+        if (!deleteEditing) {
             if let plan = stockPlan {
                 self.navigationController?.pushViewController(
                     RestrictedPlanDetailViewController(

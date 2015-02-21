@@ -254,19 +254,22 @@ class SummaryCellV2 : UITableViewCell {
     }
 
     func expandDetailView() {
-        let duration = 0.5
+        let duration = 0.3
+
         UIView.animateWithDuration(duration, animations: {
             self.vPlacementDynamic?.constant = 65
             self.cellBackgroundLower.layoutIfNeeded()
         })
+        
     }
     
     func contractDetailView() {
-        let duration = 0.5
+        let duration = 0.3
+        
         UIView.animateWithDuration(duration, animations: {
             self.vPlacementDynamic?.constant = 0.0
             self.cellBackgroundLower.layoutIfNeeded()
         })
     }
-        
+    
 }
