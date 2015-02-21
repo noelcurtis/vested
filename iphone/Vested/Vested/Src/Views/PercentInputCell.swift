@@ -15,6 +15,8 @@ class PercentInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
     let inputField = UITextField()
     let percentLabel = UILabel()
     var inputCellFormDelegate : InputCellFormDelegate?
+    let swipeLeftToClearGestureRecognizer: UISwipeGestureRecognizer!
+    
     
     class var REUSE_IDENTIFIER : String {
         return "percent_input_cell"
@@ -24,6 +26,10 @@ class PercentInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = UIColor.clearColor()
         self.selectionStyle = UITableViewCellSelectionStyle.None
+        
+        swipeLeftToClearGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "clearInput")
+        swipeLeftToClearGestureRecognizer.direction = UISwipeGestureRecognizerDirection.Left
+        self.addGestureRecognizer(swipeLeftToClearGestureRecognizer)
         
         percentLabel.font = UIFont(name: "AvenirNext-Medium", size: 26)
         percentLabel.text = "%"
@@ -91,6 +97,10 @@ class PercentInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
     
     func getInputTextField() -> UITextField {
         return inputField
+    }
+    
+    func clearInput() {
+        inputField.text = ""
     }
     
 }

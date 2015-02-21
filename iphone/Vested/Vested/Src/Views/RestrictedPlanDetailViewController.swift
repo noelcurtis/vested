@@ -242,6 +242,7 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
         let cell: ValueInputCell = self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
         cell.customize(label, string: value)
         cell.inputField.enabled = false
+        cell.turnOffGestures()
         return cell
     }
     
@@ -263,32 +264,56 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
 
         if let startAccelerationCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 1)) {
             let a = startAccelerationCell as PercentInputCell
-            restrictedOptionGrant.startingAcceleration = (a.inputField.text as NSString).doubleValue
+            if (a.inputField.text == nil  || a.inputField.text == "") {
+                restrictedOptionGrant.startingAcceleration = 0.0
+            } else {
+                restrictedOptionGrant.startingAcceleration = (a.inputField.text as NSString).doubleValue
+            }
         }
         
         if let cliffCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) {
             let a = cliffCell as MonthsInputCell
-            restrictedOptionGrant.cliff = (a.inputField.text as NSString).integerValue
+            if (a.inputField.text == nil  || a.inputField.text == "") {
+                restrictedOptionGrant.cliff = 12
+            } else {
+                restrictedOptionGrant.cliff = (a.inputField.text as NSString).integerValue
+            }
         }
 
         if let vestingPeriodCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1)) {
             let a = vestingPeriodCell as MonthsInputCell
-            let vestingPeriod = (a.inputField.text as NSString).integerValue
+            var vestingPeriod = 48
+            if (a.inputField.text == nil  || a.inputField.text == "") {
+                // assume default
+            } else {
+                vestingPeriod = (a.inputField.text as NSString).integerValue
+            }
+            // validate vesting period and cliff
             if (vestingPeriod < restrictedOptionGrant.cliff) {
                 restrictedOptionGrant.cliff = vestingPeriod
             }
+            
             restrictedOptionGrant.vestingPeriod = vestingPeriod
         }
 
         if let endingAccelerationCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 3, inSection: 1)) {
             let a = endingAccelerationCell as PercentInputCell
-            restrictedOptionGrant.endingAcceleration = (a.inputField.text as NSString).doubleValue
+            if (a.inputField.text == nil  || a.inputField.text == "") {
+                restrictedOptionGrant.endingAcceleration = 0.0
+            } else {
+                restrictedOptionGrant.endingAcceleration = (a.inputField.text as NSString).doubleValue
+            }
+            
         }
 
         if let grantSharesCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) {
             let a = grantSharesCell as ValueInputCell
-            let value = a.inputField.text.stringByReplacingOccurrencesOfString(",", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-            restrictedOptionGrant.shares = (value as NSString).integerValue
+            if (a.inputField.text == nil  || a.inputField.text == "") {
+                restrictedOptionGrant.shares = 5000
+            } else {
+                let value = a.inputField.text.stringByReplacingOccurrencesOfString(",", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                restrictedOptionGrant.shares = (value as NSString).integerValue
+            }
         }
 
         if let startDateCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) {
@@ -300,7 +325,11 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
         
         if let nameCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) {
             let a = nameCell as PlanNameInputCell
-            restrictedOptionGrant.name = a.titleInputField.text
+            if (a.titleInputField.text == nil  || a.titleInputField.text == "") {
+                restrictedOptionGrant.name = "Option Grant"
+            } else {
+                restrictedOptionGrant.name = a.titleInputField.text
+            }
         }
         
         return restrictedOptionGrant

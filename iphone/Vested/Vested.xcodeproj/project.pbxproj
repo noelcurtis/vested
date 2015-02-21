@@ -260,20 +260,20 @@
 		30A1102D1A61DE1800DEB664 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				30651C371A87BF18007BC617 /* FormCell.swift */,
 				302F24B81A66088C00FBF18A /* PercentInputCell.swift */,
+				30462DDC1A64C30B00DCF5C6 /* ValueInputCell.swift */,
+				30A110381A63119100DEB664 /* PlanNameInputCell.swift */,
+				302F24B61A65FA3700FBF18A /* MonthsInputCell.swift */,
+				30BE11861A6F304400C1E35D /* DatePickerCell.swift */,
 				30A1102E1A61DE3000DEB664 /* SummaryViewController.swift */,
 				30A110311A61EEBA00DEB664 /* RestrictedPlanDetailViewController.swift */,
-				30A110381A63119100DEB664 /* PlanNameInputCell.swift */,
-				30462DDC1A64C30B00DCF5C6 /* ValueInputCell.swift */,
-				302F24B61A65FA3700FBF18A /* MonthsInputCell.swift */,
 				303CF54C1A6D4EC0003B2AFF /* SummaryCell.swift */,
-				30BE11861A6F304400C1E35D /* DatePickerCell.swift */,
 				3076ECBF1A71D62500CCC493 /* SummaryCellV2.swift */,
 				30877F251A7DCC14001166E1 /* InfoView.xib */,
 				30F595031A7E769C00F04BC3 /* SummaryCellInfoView.swift */,
 				30F595051A7EB38100F04BC3 /* InfoViewV2.xib */,
 				300D6CE41A807DCC0027E360 /* InfoViewV2.swift */,
-				30651C371A87BF18007BC617 /* FormCell.swift */,
 				30BC0C071A95AA530078C4A4 /* InfoButton.swift */,
 				3015A7291A96CCE9000FCE8F /* CellBackgroundUpper.swift */,
 			);

@@ -20,6 +20,7 @@ class ValueInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
     let underlineImage = UIImageView(image: UIImage(named: "input_cell_line"))
     let inputField = UITextField()
     var inputCellFormDelegate : InputCellFormDelegate?
+    let swipeLeftToClearGestureRecognizer: UISwipeGestureRecognizer!
     
     class var REUSE_IDENTIFIER : String {
         return "value_input_cell"
@@ -29,6 +30,10 @@ class ValueInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = UIColor.clearColor()
         self.selectionStyle = UITableViewCellSelectionStyle.None
+
+        swipeLeftToClearGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "clearInput")
+        swipeLeftToClearGestureRecognizer.direction = UISwipeGestureRecognizerDirection.Left
+        self.addGestureRecognizer(swipeLeftToClearGestureRecognizer)
 
         labelField.setTranslatesAutoresizingMaskIntoConstraints(false)
         labelField.font = UIFont(name: "AvenirNext-Medium", size: 16)
@@ -62,6 +67,10 @@ class ValueInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
         self.addConstraints(underlineImageHorizontalConstraints)
         self.addConstraints(underlineImageVerticalConstraints)
     }
+    
+    func turnOffGestures() {
+        self.removeGestureRecognizer(swipeLeftToClearGestureRecognizer)
+    }
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -91,7 +100,6 @@ class ValueInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
     
     func textFieldDidBeginEditing(textField: UITextField) {
         if let d = inputCellFormDelegate {
-            println("began editing")
             d.inputFieldDidBeginEditing(textField)
         }
     }
@@ -106,6 +114,10 @@ class ValueInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
     
     func getInputTextField() -> UITextField {
         return inputField
+    }
+    
+    func clearInput() {
+        inputField.text = ""
     }
     
 }

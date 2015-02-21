@@ -15,6 +15,7 @@ class MonthsInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
     let inputField = UITextField()
     let monthsLabel = UILabel()
     var inputCellFormDelegate : InputCellFormDelegate?
+    let swipeLeftToClearGestureRecognizer: UISwipeGestureRecognizer!
     
     class var REUSE_IDENTIFIER : String {
         return "months_input_cell"
@@ -24,6 +25,10 @@ class MonthsInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = UIColor.clearColor()
         self.selectionStyle = UITableViewCellSelectionStyle.None
+        
+        swipeLeftToClearGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "clearInput")
+        swipeLeftToClearGestureRecognizer.direction = UISwipeGestureRecognizerDirection.Left
+        self.addGestureRecognizer(swipeLeftToClearGestureRecognizer)
         
         monthsLabel.font = UIFont(name: "AvenirNext-Medium", size: 16)
         monthsLabel.text = "months"
@@ -85,6 +90,10 @@ class MonthsInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
     
     func getInputTextField() -> UITextField {
         return inputField
+    }
+    
+    func clearInput() {
+        inputField.text = ""
     }
     
 }
