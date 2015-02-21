@@ -79,14 +79,11 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
             stockPlans.removeAtIndex(indexPath.row)
             tableView.reloadData()
         }
-    }
-    
-    override func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
         isEditing = false
     }
     
     override func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath) {
-        println("editing begining")
+        NSLog("Started editing row and index path")
         isEditing = true
     }
     
@@ -161,6 +158,8 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
             } else {
                 NSLog("Cell has no associated stock plan, not displaying detail view")
             }
+        } else {
+            NSLog("Can not show details when editing")
         }
     }
 }
