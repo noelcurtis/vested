@@ -14,7 +14,7 @@ class PersistenceService {
     
     lazy var applicationDocumentsDirectory: NSURL = {
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        println(urls[urls.count-1])
+        print(urls[urls.count-1])
         return urls[urls.count-1] as NSURL
     }()
     
@@ -28,9 +28,13 @@ class PersistenceService {
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("Vested.sqlite")
         var error: NSError? = nil
         var failureReason = "There was an error creating or loading the application's saved data."
-        if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
+        do {
+            let options = [ NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true ]
+            try coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: options)
+        } catch var error1 as NSError {
+            error = error1
             coordinator = nil
-            let dict = NSMutableDictionary()
+            var dict = [String: AnyObject]()
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
             dict[NSUnderlyingErrorKey] = error
@@ -38,6 +42,8 @@ class PersistenceService {
             //TODO (noelcurtis): should not abort here but allow to fail gracefully
             NSLog("Shizt! cant create the persistent store \(error), \(error!.userInfo)")
             abort()
+        } catch {
+            fatalError()
         }
         
         return coordinator
@@ -58,10 +64,15 @@ class PersistenceService {
     lazy var inMemoryManagedObjectContext : NSManagedObjectContext? = {
         var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         var error: NSError? = nil
-        if coordinator!.addPersistentStoreWithType(NSInMemoryStoreType, configuration: nil, URL: nil, options: nil, error: &error) == nil {
+        do {
+            try coordinator!.addPersistentStoreWithType(NSInMemoryStoreType, configuration: nil, URL: nil, options: nil)
+        } catch var error1 as NSError {
+            error = error1
             coordinator = nil
             NSLog("Shizt adding persistent store \(error), \(error!.userInfo)")
             abort()
+        } catch {
+            fatalError()
         }
         
         var managedObjextContext = NSManagedObjectContext()

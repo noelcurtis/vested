@@ -92,6 +92,7 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
         tableView.registerClass(MonthsInputCell.self, forCellReuseIdentifier: MonthsInputCell.REUSE_IDENTIFIER)
         tableView.registerClass(PercentInputCell.self, forCellReuseIdentifier: PercentInputCell.REUSE_IDENTIFIER)
         tableView.registerClass(DatePickerCell.self, forCellReuseIdentifier: DatePickerCell.REUSE_IDENTIFIER)
+        tableView.registerClass(PriceInputCell.self, forCellReuseIdentifier: PriceInputCell.REUSE_IDENTIFIER)
     }
     
     func popViewController() {
@@ -131,7 +132,7 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
             }
         } else if (indexPath.section == 1 || indexPath.section == 0 || (indexPath.section == 2 && indexPath.row == 0)) {
             // make the text view the first responder
-            let inputField = (tableView.cellForRowAtIndexPath(indexPath) as FormCell).getInputTextField()
+            let inputField = (tableView.cellForRowAtIndexPath(indexPath) as! FormCell).getInputTextField()
             inputField.becomeFirstResponder()
         }
     }
@@ -169,7 +170,11 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
         switch(indexPath.section) {
             case 0: return 36
             case 1: return 37
-            case 2: return indexPath.row == 2 ? 130 : 37
+            case 2:
+                if indexPath.row == 2 {
+                    return datePickerShown ? 130 : 0
+                }
+                return 37
             default: return 0
         }
     }
@@ -178,7 +183,7 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
         switch(section) {
             case 0: return 1
             case 1: return 4
-            case 2: return datePickerShown ? 3 : 2
+            case 2: return 4
             default: return 0
         }
     }
@@ -195,7 +200,7 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
                 case 1: return getMonthsInputCell("Vesting Period", value: self.restrictedOptionGrant.vestingPeriod)
                 case 2: return getPercentInputCell("Starting Acceleration", value: self.restrictedOptionGrant.startingAcceleration)
                 case 3: return getPercentInputCell("Ending Acceleration", value: self.restrictedOptionGrant.endingAcceleration)
-                default: return self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
+                default: return self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as! ValueInputCell
             }
             
         } else {
@@ -204,42 +209,43 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
                 case 0: return getValueInputCell("Grant Shares", value: self.restrictedOptionGrant.shares)
                 case 1: return getDateCell("Start Date", string: dateTimeFormatter.stringFromDate(currentDate))
                 case 2: return getDatepickerCell(currentDate)
-                default: return self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
+                case 3: return getPriceInputCell("Share Price", value: self.restrictedOptionGrant.price)
+                default: return self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as! ValueInputCell
             }
             
         }
     }
     
     func getDatepickerCell(date: NSDate) -> DatePickerCell {
-        let cell: DatePickerCell = self.tableView.dequeueReusableCellWithIdentifier(DatePickerCell.REUSE_IDENTIFIER) as DatePickerCell
+        let cell: DatePickerCell = self.tableView.dequeueReusableCellWithIdentifier(DatePickerCell.REUSE_IDENTIFIER) as! DatePickerCell
         cell.customize(date)
         cell.datePicker.addTarget(self, action: Selector("dateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         return cell
     }
     
     func getPlanNameInputCell(name: String) -> PlanNameInputCell {
-        let cell: PlanNameInputCell = self.tableView.dequeueReusableCellWithIdentifier(PlanNameInputCell.REUSE_IDENTIFIER) as PlanNameInputCell
+        let cell: PlanNameInputCell = self.tableView.dequeueReusableCellWithIdentifier(PlanNameInputCell.REUSE_IDENTIFIER) as! PlanNameInputCell
         cell.titleInputField.text = name
         cell.inputCellFormDelegate = self
         return cell
     }
     
     func getValueInputCell(label: String, value: Int) -> ValueInputCell {
-        let cell: ValueInputCell = self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
+        let cell: ValueInputCell = self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as! ValueInputCell
         cell.customize(label, value: value)
         cell.inputCellFormDelegate = self
         return cell
     }
     
     func getValueInputCell(label: String, string value: String) -> ValueInputCell {
-        let cell: ValueInputCell = self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
+        let cell: ValueInputCell = self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as! ValueInputCell
         cell.customize(label, string: value)
         cell.inputCellFormDelegate = self
         return cell
     }
     
     func getDateCell(label: String, string value: String) -> ValueInputCell {
-        let cell: ValueInputCell = self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as ValueInputCell
+        let cell: ValueInputCell = self.tableView.dequeueReusableCellWithIdentifier(ValueInputCell.REUSE_IDENTIFIER) as! ValueInputCell
         cell.customize(label, string: value)
         cell.inputField.enabled = false
         cell.turnOffGestures()
@@ -247,14 +253,21 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
     }
     
     func getMonthsInputCell(label: String, value: Int) -> MonthsInputCell {
-        let cell: MonthsInputCell = self.tableView.dequeueReusableCellWithIdentifier(MonthsInputCell.REUSE_IDENTIFIER) as MonthsInputCell
+        let cell: MonthsInputCell = self.tableView.dequeueReusableCellWithIdentifier(MonthsInputCell.REUSE_IDENTIFIER) as! MonthsInputCell
         cell.customize(label, value: value)
         cell.inputCellFormDelegate = self
         return cell
     }
     
     func getPercentInputCell(label: String, value: Double) -> PercentInputCell {
-        let cell: PercentInputCell = self.tableView.dequeueReusableCellWithIdentifier(PercentInputCell.REUSE_IDENTIFIER) as PercentInputCell
+        let cell: PercentInputCell = self.tableView.dequeueReusableCellWithIdentifier(PercentInputCell.REUSE_IDENTIFIER) as! PercentInputCell
+        cell.customize(label, value: value)
+        cell.inputCellFormDelegate = self
+        return cell
+    }
+    
+    func getPriceInputCell(label: String, value: Double) -> PriceInputCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(PriceInputCell.REUSE_IDENTIFIER) as! PriceInputCell
         cell.customize(label, value: value)
         cell.inputCellFormDelegate = self
         return cell
@@ -263,30 +276,28 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
     func getStockPlanFromCells() -> StockPlan {
 
         if let startAccelerationCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 1)) {
-            let a = startAccelerationCell as PercentInputCell
+            let a = startAccelerationCell as! PercentInputCell
             if (a.inputField.text == nil  || a.inputField.text == "") {
                 restrictedOptionGrant.startingAcceleration = 0.0
             } else {
-                restrictedOptionGrant.startingAcceleration = (a.inputField.text as NSString).doubleValue
+                restrictedOptionGrant.startingAcceleration = Double(a.inputField.text ?? "0") ?? 0.0
             }
         }
         
         if let cliffCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) {
-            let a = cliffCell as MonthsInputCell
+            let a = cliffCell as! MonthsInputCell
             if (a.inputField.text == nil  || a.inputField.text == "") {
                 restrictedOptionGrant.cliff = 12
             } else {
-                restrictedOptionGrant.cliff = (a.inputField.text as NSString).integerValue
+                restrictedOptionGrant.cliff = Int(a.inputField.text ?? "0") ?? 12
             }
         }
 
         if let vestingPeriodCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1)) {
-            let a = vestingPeriodCell as MonthsInputCell
+            let a = vestingPeriodCell as! MonthsInputCell
             var vestingPeriod = 48
-            if (a.inputField.text == nil  || a.inputField.text == "") {
-                // assume default
-            } else {
-                vestingPeriod = (a.inputField.text as NSString).integerValue
+            if let text = a.inputField.text, period = Int(text) {
+                vestingPeriod = period
             }
             // validate vesting period and cliff
             if (vestingPeriod < restrictedOptionGrant.cliff) {
@@ -297,38 +308,41 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
         }
 
         if let endingAccelerationCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 3, inSection: 1)) {
-            let a = endingAccelerationCell as PercentInputCell
+            let a = endingAccelerationCell as! PercentInputCell
             if (a.inputField.text == nil  || a.inputField.text == "") {
                 restrictedOptionGrant.endingAcceleration = 0.0
             } else {
-                restrictedOptionGrant.endingAcceleration = (a.inputField.text as NSString).doubleValue
+                restrictedOptionGrant.endingAcceleration = Double(a.inputField.text ?? "0") ?? 0.0
             }
-            
         }
 
+        if let priceCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 3, inSection: 2)) as? PriceInputCell {
+            restrictedOptionGrant.price = priceCell.price
+        }
+        
         if let grantSharesCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) {
-            let a = grantSharesCell as ValueInputCell
-            if (a.inputField.text == nil  || a.inputField.text == "") {
-                restrictedOptionGrant.shares = 5000
-            } else {
-                let value = a.inputField.text.stringByReplacingOccurrencesOfString(",", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            let a = grantSharesCell as! ValueInputCell
+            if let text = a.inputField.text {
+                let value = text.stringByReplacingOccurrencesOfString(",", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
                 restrictedOptionGrant.shares = (value as NSString).integerValue
+            } else {
+                restrictedOptionGrant.shares = 5000
             }
         }
 
         if let startDateCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) {
-            let a = startDateCell as ValueInputCell
-            if let date : NSDate = dateTimeFormatter.dateFromString(a.inputField.text) {
+            let a = startDateCell as! ValueInputCell
+            if let text = a.inputField.text, let date = dateTimeFormatter.dateFromString(text) {
                 restrictedOptionGrant.startDate = date
             }
         }
         
         if let nameCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) {
-            let a = nameCell as PlanNameInputCell
-            if (a.titleInputField.text == nil  || a.titleInputField.text == "") {
-                restrictedOptionGrant.name = "Option Grant"
+            let a = nameCell as! PlanNameInputCell
+            if let text = a.titleInputField.text {
+                restrictedOptionGrant.name = text
             } else {
-                restrictedOptionGrant.name = a.titleInputField.text
+                restrictedOptionGrant.name = "Option Grant"
             }
         }
         
@@ -339,15 +353,15 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
         let baseView = UIView()
         baseView.addSubview(UIImageView(image: UIImage(named: "form_title_background")))
         let labelField = UILabel()
-        labelField.setTranslatesAutoresizingMaskIntoConstraints(false)
+        labelField.translatesAutoresizingMaskIntoConstraints = false
         labelField.font = UIFont(name: "AvenirNext-Medium", size: 20)
         labelField.text = label
         labelField.textColor = UIColor(rgba: "#4C6DFE")
         baseView.addSubview(labelField)
         
-        let viewsDictionary : [NSObject: AnyObject] = ["label_field": labelField]
-        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[label_field]", options: nil, metrics: nil, views: viewsDictionary)
-        let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[label_field]-0-|", options: nil, metrics: nil, views: viewsDictionary)
+        let viewsDictionary = ["label_field": labelField]
+        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[label_field]", options: [], metrics: nil, views: viewsDictionary)
+        let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[label_field]-0-|", options: [], metrics: nil, views: viewsDictionary)
         
         baseView.addConstraints(hConstraints)
         baseView.addConstraints(vConstraints)
@@ -356,18 +370,18 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
     }
     
     func showDatePicker() {
-        println("Showing date picker")
+        print("Showing date picker")
         datePickerShown = true
         activeTextField?.resignFirstResponder()
-        (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) as ValueInputCell).hideUnderline()
-        tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 2)], withRowAnimation: UITableViewRowAnimation.Fade)
+        tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 2)], withRowAnimation: .Fade)
+        (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) as! ValueInputCell).hideUnderline()
     }
     
     func hideDatePicker() {
-        println("Hiding date picker")
+        print("Hiding date picker")
         datePickerShown = false
-        (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) as ValueInputCell).showUnderline()
-        tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 2)], withRowAnimation: UITableViewRowAnimation.Fade)
+        tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 2)], withRowAnimation: .Fade)
+        (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) as! ValueInputCell).showUnderline()
     }
     
     func keyboardShown() {
@@ -378,6 +392,6 @@ class RestrictedPlanDetailViewController: UITableViewController, InputCellFormDe
     
     func dateChanged(datePicker: UIDatePicker) {
         currentDate = datePicker.date
-        (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) as ValueInputCell).inputField.text = dateTimeFormatter.stringFromDate(datePicker.date)
+        (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) as! ValueInputCell).inputField.text = dateTimeFormatter.stringFromDate(datePicker.date)
     }
 }

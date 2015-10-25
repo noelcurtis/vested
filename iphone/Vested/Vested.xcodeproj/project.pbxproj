@@ -55,6 +55,7 @@
 		30F595041A7E769C00F04BC3 /* SummaryCellInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F595031A7E769C00F04BC3 /* SummaryCellInfoView.swift */; };
 		30F595061A7EB38100F04BC3 /* InfoViewV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30F595051A7EB38100F04BC3 /* InfoViewV2.xib */; };
 		6A46E3E29B516BAA24870270 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F004C45D47B4A63EA0F8FBB /* libPods.a */; };
+		D2BE03091BDAC2FC00C0CB06 /* PriceInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BE03081BDAC2FC00C0CB06 /* PriceInputCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,8 @@
 		30F595051A7EB38100F04BC3 /* InfoViewV2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoViewV2.xib; path = Src/Views/InfoViewV2.xib; sourceTree = "<group>"; };
 		3EC524A0639C79B14BEFE5F8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B0B54C40606F82D6C8161673 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "../../Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D2BE03081BDAC2FC00C0CB06 /* PriceInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PriceInputCell.swift; path = Src/Views/PriceInputCell.swift; sourceTree = "<group>"; };
+		D2C409A41BDD7A0B006F9C36 /* VestedDataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "VestedDataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +283,7 @@
 				300D6CE41A807DCC0027E360 /* InfoViewV2.swift */,
 				30BC0C071A95AA530078C4A4 /* InfoButton.swift */,
 				3015A7291A96CCE9000FCE8F /* CellBackgroundUpper.swift */,
+				D2BE03081BDAC2FC00C0CB06 /* PriceInputCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -305,6 +309,7 @@
 				3018D0741A5CC04D00464D64 /* Frameworks */,
 				3018D0751A5CC04D00464D64 /* Resources */,
 				C88DA02688231123D03C5404 /* Copy Pods Resources */,
+				300B2414BA11B84077EAFDD5 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -339,12 +344,14 @@
 		3018D06F1A5CC04D00464D64 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0710;
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = noelcurtis;
 				TargetAttributes = {
 					3018D0761A5CC04D00464D64 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 48W3M3747Z;
+						DevelopmentTeam = S37675M3E2;
 					};
 					3018D08B1A5CC04D00464D64 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -393,6 +400,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		300B2414BA11B84077EAFDD5 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		99759D55C8023CC5FC654DE0 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -434,6 +456,7 @@
 				30F595041A7E769C00F04BC3 /* SummaryCellInfoView.swift in Sources */,
 				30462DDD1A64C30B00DCF5C6 /* ValueInputCell.swift in Sources */,
 				30324EBC1A6ADC7400FBF9AF /* Vested.RestrictedOptionGrantMO.swift in Sources */,
+				D2BE03091BDAC2FC00C0CB06 /* PriceInputCell.swift in Sources */,
 				302F24B71A65FA3700FBF18A /* MonthsInputCell.swift in Sources */,
 				300D6CE51A807DCC0027E360 /* InfoViewV2.swift in Sources */,
 				303CF54D1A6D4EC0003B2AFF /* SummaryCell.swift in Sources */,
@@ -524,6 +547,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Noel Curtis (GUX7YGJ7FP)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -592,6 +616,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Vested/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.noelcurtis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Vested/Vested-Bridging-Header.h";
@@ -609,6 +634,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Vested/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.noelcurtis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Vested/Vested-Bridging-Header.h";
@@ -629,6 +655,7 @@
 				);
 				INFOPLIST_FILE = VestedTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.noelcurtis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vested.app/Vested";
 			};
@@ -644,6 +671,7 @@
 				);
 				INFOPLIST_FILE = VestedTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.noelcurtis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vested.app/Vested";
 			};
@@ -685,9 +713,10 @@
 		30B5EA791A68A939002005B3 /* VestedDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				D2C409A41BDD7A0B006F9C36 /* VestedDataModel 2.xcdatamodel */,
 				30B5EA7A1A68A939002005B3 /* VestedDataModel.xcdatamodel */,
 			);
-			currentVersion = 30B5EA7A1A68A939002005B3 /* VestedDataModel.xcdatamodel */;
+			currentVersion = D2C409A41BDD7A0B006F9C36 /* VestedDataModel 2.xcdatamodel */;
 			name = VestedDataModel.xcdatamodeld;
 			path = Src/Resources/VestedDataModel.xcdatamodeld;
 			sourceTree = "<group>";

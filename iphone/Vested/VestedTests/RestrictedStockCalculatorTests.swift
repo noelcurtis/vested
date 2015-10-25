@@ -24,7 +24,7 @@ class RestrictedStockCalculatorTests : XCTestCase {
     }
     
     func test_CalculatorWithDefaultInputs_Success() {
-        var defaultInputs = RestrictedOptionGrant().withDefaults().withStartDateOneYearAgo()
+        let defaultInputs = RestrictedOptionGrant().withDefaults().withStartDateOneYearAgo()
         var result: VestingCalculatorResult?
         self.measureBlock() {
             result = self.vestingCalculator?.calculate(defaultInputs)
@@ -36,9 +36,9 @@ class RestrictedStockCalculatorTests : XCTestCase {
     }
     
     func test_CalculatorWith_2YearCliff_Success() {
-        var inputs = RestrictedOptionGrant().withDefaults().withStartDateOneYearAgo().withCliff(24)
+        let inputs = RestrictedOptionGrant().withDefaults().withStartDateOneYearAgo().withCliff(24)
         
-        var result = vestingCalculator?.calculate(inputs)
+        let result = vestingCalculator?.calculate(inputs)
         XCTAssert(result?.vestedShares == 0, "Vested shares should be 0 but \(result?.vestedShares)")
         XCTAssert(result?.startingShares == 0, "Starting shares should be 0 but \(result?.startingShares)")
         XCTAssert(result?.vestedSharesAtCliff == 0, "Vested shares at cliff should be 0 but \(result?.vestedSharesAtCliff)")
@@ -47,7 +47,7 @@ class RestrictedStockCalculatorTests : XCTestCase {
     }
     
     func test_CalculatorWith_CliffAndShareVariations_Success() {
-        var twoYearsAgo = NSDate().dateByAddingTimeInterval(-365 * 2 * 24 * 60 * 60)
+        let twoYearsAgo = NSDate().dateByAddingTimeInterval(-365 * 2 * 24 * 60 * 60)
         var inputs = RestrictedOptionGrant().withDefaults().withStartDate(twoYearsAgo).withCliff(24).withShares(100000)
         
         var result = vestingCalculator?.calculate(inputs)
@@ -61,46 +61,46 @@ class RestrictedStockCalculatorTests : XCTestCase {
     }
     
     func test_CalculatorWith_AccelerationVariations1_Success() {
-        var twoYearsAgo = NSDate().dateByAddingTimeInterval(-365 * 2 * 24 * 60 * 60)
-        var inputs = RestrictedOptionGrant().withDefaults().withStartDate(twoYearsAgo).withCliff(12).withStartingAcceleration(10)
+        let twoYearsAgo = NSDate().dateByAddingTimeInterval(-365 * 2 * 24 * 60 * 60)
+        let inputs = RestrictedOptionGrant().withDefaults().withStartDate(twoYearsAgo).withCliff(12).withStartingAcceleration(10)
         
-        var result = vestingCalculator?.calculate(inputs)
+        let result = vestingCalculator?.calculate(inputs)
         XCTAssert(result?.vestedShares == 2750, "Vested shares should be 2750 but \(result?.vestedShares)")
         XCTAssert(result?.unvestedShares == 2250, "Unvested shares should be 2250 but \(result?.unvestedShares)")
     }
     
     func test_CalculatorWith_AccelerationVariations2_Success() {
-        var twoYearsAgo = NSDate().dateByAddingTimeInterval(-365 * 2 * 24 * 60 * 60)
-        var inputs = RestrictedOptionGrant().withDefaults().withStartDate(twoYearsAgo).withCliff(12).withEndingAcceleration(10)
+        let twoYearsAgo = NSDate().dateByAddingTimeInterval(-365 * 2 * 24 * 60 * 60)
+        let inputs = RestrictedOptionGrant().withDefaults().withStartDate(twoYearsAgo).withCliff(12).withEndingAcceleration(10)
         
-        var result = vestingCalculator?.calculate(inputs)
+        let result = vestingCalculator?.calculate(inputs)
         XCTAssert(result?.vestedShares == 3000, "Vested shares should be 3000 but \(result?.vestedShares)")
         XCTAssert(result?.unvestedShares == 2000, "Unvested shares should be 2000 but \(result?.unvestedShares)")
     }
     
     func test_CalculatorWith_AccelerationVariation3_Success() {
-        var twoYearsAgo = NSDate().dateByAddingTimeInterval(-365 * 2 * 24 * 60 * 60)
-        var inputs = RestrictedOptionGrant().withDefaults().withStartDate(twoYearsAgo).withCliff(12).withAcceleration(10, endingAcceleration: 10)
+        let twoYearsAgo = NSDate().dateByAddingTimeInterval(-365 * 2 * 24 * 60 * 60)
+        let inputs = RestrictedOptionGrant().withDefaults().withStartDate(twoYearsAgo).withCliff(12).withAcceleration(10, endingAcceleration: 10)
         
-        var result = vestingCalculator?.calculate(inputs)
+        let result = vestingCalculator?.calculate(inputs)
         XCTAssert(result?.vestedShares == 3250, "Vested shares should be 3250 but \(result?.vestedShares)")
         XCTAssert(result?.unvestedShares == 1750, "Unvested shares should be 1750 but \(result?.unvestedShares)")
     }
     
     func test_CalculatorWith_AccelerationVariation4_Success() {
-        var fourYearsAgo = NSDate().dateByAddingTimeInterval(-365 * 4 * 24 * 60 * 60)
-        var inputs = RestrictedOptionGrant().withDefaults().withStartDate(fourYearsAgo).withCliff(12).withAcceleration(10, endingAcceleration: 10)
+        let fourYearsAgo = NSDate().dateByAddingTimeInterval(-365 * 4 * 24 * 60 * 60)
+        let inputs = RestrictedOptionGrant().withDefaults().withStartDate(fourYearsAgo).withCliff(12).withAcceleration(10, endingAcceleration: 10)
         
-        var result = vestingCalculator?.calculate(inputs)
+        let result = vestingCalculator?.calculate(inputs)
         XCTAssert(result?.vestedShares == 5000, "Vested shares should be 5000 but \(result?.vestedShares)")
         XCTAssert(result?.unvestedShares == 0, "Unvested shares should be 5000 but \(result?.unvestedShares)")
     }
     
     func test_CalculatorWith_AccelerationVariation5_Success() {
-        var threeYearsAgo = NSDate().dateByAddingTimeInterval(-365 * 3 * 24 * 60 * 60)
-        var inputs = RestrictedOptionGrant().withDefaults().withStartDate(threeYearsAgo).withCliff(12).withAcceleration(10, endingAcceleration: 20)
+        let threeYearsAgo = NSDate().dateByAddingTimeInterval(-365 * 3 * 24 * 60 * 60)
+        let inputs = RestrictedOptionGrant().withDefaults().withStartDate(threeYearsAgo).withCliff(12).withAcceleration(10, endingAcceleration: 20)
         
-        var result = vestingCalculator?.calculate(inputs)
+        let result = vestingCalculator?.calculate(inputs)
         XCTAssert(result?.vestedShares == 4781, "Vested shares should be 4781 but \(result?.vestedShares)")
         XCTAssert(result?.unvestedShares == 219, "Unvested shares should be 219 but \(result?.unvestedShares)")
     }

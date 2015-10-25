@@ -75,7 +75,7 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            let toRemove = stockPlans[indexPath.row] as StockPlan
+            let toRemove = stockPlans[indexPath.row] as! StockPlan
             restrictedStockOptionDao.deleteStockPlan(toRemove)
             stockPlans.removeAtIndex(indexPath.row)
             tableView.reloadData()
@@ -122,10 +122,10 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
     }
     
     func getSummaryCell(indexPath: NSIndexPath) -> UITableViewCell {
-        let stockPlan = stockPlans[indexPath.row] as RestrictedOptionGrant
+        let stockPlan = stockPlans[indexPath.row] as! RestrictedOptionGrant
         let vestingResult = restrictedStockVestingCalulator.calculate(stockPlan)
         
-        let summaryCell = tableView.dequeueReusableCellWithIdentifier(SummaryCellV2.REUSE_IDENTIFIER) as SummaryCellV2
+        let summaryCell = tableView.dequeueReusableCellWithIdentifier(SummaryCellV2.REUSE_IDENTIFIER) as! SummaryCellV2
         summaryCell.customize(stockPlan, vestingResult: vestingResult, indexPath: indexPath)
         summaryCell.cellDetailButtonPressedDelegate = self
 
@@ -133,7 +133,7 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
     }
     
     func infoButtonPressed(cell: UITableViewCell) {
-        if let indexPath = (cell as SummaryCellV2).indexPath {
+        if let indexPath = (cell as! SummaryCellV2).indexPath {
 
             // indicate that a summary cell is updating
             summaryCellUpdating = true
@@ -156,9 +156,9 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
             
             // expand or contract the cell
             if (expanding) {
-                (cell as SummaryCellV2).expandDetailView()
+                (cell as! SummaryCellV2).expandDetailView()
             } else {
-                (cell as SummaryCellV2).contractDetailView()
+                (cell as! SummaryCellV2).contractDetailView()
             }
             
             tableView.endUpdates()
@@ -174,7 +174,7 @@ class SummaryViewController : UITableViewController, CellDetailButtonDelegate {
             if let plan = stockPlan {
                 self.navigationController?.pushViewController(
                     RestrictedPlanDetailViewController(
-                        restrictedOptionGrant: stockPlan as RestrictedOptionGrant, style: UITableViewStyle.Grouped),
+                        restrictedOptionGrant: stockPlan as! RestrictedOptionGrant, style: UITableViewStyle.Grouped),
                     animated: true
                 )
             } else {

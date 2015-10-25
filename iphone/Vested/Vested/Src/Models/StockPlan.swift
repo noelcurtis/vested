@@ -12,6 +12,7 @@ import Foundation
 
     var uuid: String {get set}
     var name: String {get set}
+    
     // plan parameters
     var startingAcceleration: Double {get set}
     var endingAcceleration: Double {get set}
@@ -25,4 +26,5 @@ import Foundation
     /// A textual representation of `self`.
     var description: String { get }
     
+    var price: Double {get set}
 }

@@ -22,7 +22,7 @@ class DatePickerCell : UITableViewCell {
         self.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.6)
         self.selectionStyle = UITableViewCellSelectionStyle.None
         
-        datePicker.setTranslatesAutoresizingMaskIntoConstraints(false)
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.datePickerMode = UIDatePickerMode.Date
         datePicker.date = NSDate()
         
@@ -30,14 +30,14 @@ class DatePickerCell : UITableViewCell {
         
         let viewsDictionary = ["date_picker": datePicker]
         
-        let vConstraint1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[date_picker]-0-|", options: nil, metrics: nil, views: viewsDictionary)
-        let hConstraint1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[date_picker]-0-|", options: nil, metrics: nil, views: viewsDictionary)
+        let vConstraint1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[date_picker]-0-|", options: [], metrics: nil, views: viewsDictionary)
+        let hConstraint1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[date_picker]-0-|", options: [], metrics: nil, views: viewsDictionary)
         
         self.addConstraints(vConstraint1)
         self.addConstraints(hConstraint1)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

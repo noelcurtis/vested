@@ -11,18 +11,19 @@ import Foundation
 class RestrictedOptionGrant : StockPlan {
 
     // plan parameters
-    var uuid: String
-    var name: String
-    var startingAcceleration: Double
-    var endingAcceleration: Double
-    var cliff: Int // in months
-    var vestingPeriod: Int // in months
+    @objc var uuid: String
+    @objc var name: String
+    @objc var startingAcceleration: Double
+    @objc var endingAcceleration: Double
+    @objc var cliff: Int // in months
+    @objc var vestingPeriod: Int // in months
     
     // individual parameters
-    var shares: Int
-    var startDate: NSDate
+    @objc var shares: Int
+    @objc var startDate: NSDate
+    @objc var price: Double
     
-    var description: String { return  "{\"name:\"\(name)\", \"uuid:\"\(uuid)\", \"startingAcceleration:\(startingAcceleration), \"endingAcceleration:\(endingAcceleration), \"cliff:\(cliff), \"vestingPeriod:\(vestingPeriod), \"shares:\(shares), \"startDate:\"\(startDate)\"}" }
+    @objc var description: String { return  "{\"name:\"\(name)\", \"uuid:\"\(uuid)\", \"startingAcceleration:\(startingAcceleration), \"endingAcceleration:\(endingAcceleration), \"cliff:\(cliff), \"vestingPeriod:\(vestingPeriod), \"shares:\(shares), \"startDate:\"\(startDate), \"price:\"\(price)\"}" }
     
     
     init() {
@@ -34,6 +35,7 @@ class RestrictedOptionGrant : StockPlan {
         self.vestingPeriod = 0
         self.shares = 0
         self.startDate = NSDate()
+        self.price = 0
     }
     
     init(stockPlan: RestrictedOptionGrantMO) {
@@ -45,6 +47,7 @@ class RestrictedOptionGrant : StockPlan {
         self.shares = stockPlan.shares.integerValue
         self.startDate = stockPlan.startDate
         self.name = stockPlan.name
+        self.price = stockPlan.price.doubleValue
     }
     
     func withDefaults() -> RestrictedOptionGrant {
@@ -56,12 +59,13 @@ class RestrictedOptionGrant : StockPlan {
         self.shares = 5000
         self.startDate = NSDate()
         self.name = "My Stock Grant"
+        self.price = 0.0
         
         return self
     }
     
     func withStartDateOneYearAgo() -> RestrictedOptionGrant {
-        var oneYearAgo = NSDate().dateByAddingTimeInterval(-365 * 24 * 60 * 60)
+        let oneYearAgo = NSDate().dateByAddingTimeInterval(-365 * 24 * 60 * 60)
         return self.withStartDate(oneYearAgo)
     }
     
@@ -110,6 +114,11 @@ class RestrictedOptionGrant : StockPlan {
     func withAcceleration(startingAcceleration: Double, endingAcceleration: Double) -> RestrictedOptionGrant {
         self.startingAcceleration = startingAcceleration
         self.endingAcceleration = endingAcceleration
+        return self
+    }
+    
+    func withSharePrice(sharePrice: Double) -> RestrictedOptionGrant {
+        self.price = sharePrice
         return self
     }
     

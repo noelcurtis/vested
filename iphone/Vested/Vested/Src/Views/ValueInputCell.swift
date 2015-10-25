@@ -20,7 +20,7 @@ class ValueInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
     let underlineImage = UIImageView(image: UIImage(named: "input_cell_line"))
     let inputField = UITextField()
     var inputCellFormDelegate : InputCellFormDelegate?
-    let swipeLeftToClearGestureRecognizer: UISwipeGestureRecognizer!
+    var swipeLeftToClearGestureRecognizer: UISwipeGestureRecognizer!
     
     class var REUSE_IDENTIFIER : String {
         return "value_input_cell"
@@ -35,15 +35,15 @@ class ValueInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
         swipeLeftToClearGestureRecognizer.direction = UISwipeGestureRecognizerDirection.Left
         self.addGestureRecognizer(swipeLeftToClearGestureRecognizer)
 
-        labelField.setTranslatesAutoresizingMaskIntoConstraints(false)
+        labelField.translatesAutoresizingMaskIntoConstraints = false
         labelField.font = UIFont(name: "AvenirNext-Medium", size: 16)
         labelField.text = "Label"
         labelField.tintColor = UIColor.whiteColor()
         labelField.textColor = UIColor.whiteColor()
         
-        underlineImage.setTranslatesAutoresizingMaskIntoConstraints(false)
+        underlineImage.translatesAutoresizingMaskIntoConstraints = false
 
-        inputField.setTranslatesAutoresizingMaskIntoConstraints(false)
+        inputField.translatesAutoresizingMaskIntoConstraints = false
         inputField.font = UIFont(name: "AvenirNext-Medium", size: 26)
         inputField.text = "10,000"
         inputField.tintColor = UIColor.whiteColor()
@@ -56,11 +56,11 @@ class ValueInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
         self.addSubview(inputField)
         self.addSubview(underlineImage)
     
-        let viewsDictionary : [NSObject: AnyObject] = ["label_field": labelField, "underline_image": underlineImage, "input_field": inputField]
-        let labelInputHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[label_field]-[input_field(==135)]-10-|", options: nil, metrics: nil, views: viewsDictionary)
-        let labelVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-8-[label_field]", options: nil, metrics: nil, views: viewsDictionary)
-        let underlineImageHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[underline_image(==140)]-0-|", options: nil, metrics: nil, views: viewsDictionary)
-        let underlineImageVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[input_field]-0-[underline_image]", options: nil, metrics: nil, views: viewsDictionary)
+        let viewsDictionary = ["label_field": labelField, "underline_image": underlineImage, "input_field": inputField]
+        let labelInputHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[label_field]-[input_field(==135)]-10-|", options: [], metrics: nil, views: viewsDictionary)
+        let labelVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-8-[label_field]", options: [], metrics: nil, views: viewsDictionary)
+        let underlineImageHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[underline_image(==140)]-0-|", options: [], metrics: nil, views: viewsDictionary)
+        let underlineImageVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[input_field]-0-[underline_image]", options: [], metrics: nil, views: viewsDictionary)
         
         self.addConstraints(labelInputHorizontalConstraints)
         self.addConstraints(labelVerticalConstraints)
@@ -72,7 +72,7 @@ class ValueInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
         self.removeGestureRecognizer(swipeLeftToClearGestureRecognizer)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -105,11 +105,13 @@ class ValueInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        var currentText = textField.text
-        currentText = (currentText as NSString).stringByReplacingCharactersInRange(range, withString: string)
-        currentText = currentText.stringByReplacingOccurrencesOfString(",", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        textField.text = NumberUtils.commatoze(string: currentText)
-        return false
+        if var currentText = textField.text {
+            currentText = (currentText as NSString).stringByReplacingCharactersInRange(range, withString: string)
+            currentText = currentText.stringByReplacingOccurrencesOfString(",", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            textField.text = NumberUtils.commatoze(string: currentText)
+            return false
+        }
+        return true
     }
     
     func getInputTextField() -> UITextField {

@@ -12,17 +12,17 @@ class RestrictedStockOptionGrantCalculator : VestingCalculator {
     
     func calculate(stockPlan: StockPlan) -> VestingCalculatorResult {
         
-        var startingShares = Int(round(stockPlan.startingAcceleration / 100 * Double(stockPlan.shares)))
+        let startingShares = Int(round(stockPlan.startingAcceleration / 100 * Double(stockPlan.shares)))
         
-        var remainingUnvestedShares : Int = stockPlan.shares - startingShares
+        let remainingUnvestedShares : Int = stockPlan.shares - startingShares
         
-        var monthlyVestedShares = Double(remainingUnvestedShares)/Double(stockPlan.vestingPeriod)
+        let monthlyVestedShares = Double(remainingUnvestedShares)/Double(stockPlan.vestingPeriod)
         
-        var monthsPassedSinceStart = NSCalendar.currentCalendar().components(
-            NSCalendarUnit.CalendarUnitMonth,
+        let monthsPassedSinceStart = NSCalendar.currentCalendar().components(
+            NSCalendarUnit.Month,
                 fromDate: stockPlan.startDate,
                 toDate: NSDate(),
-                options: nil).month
+                options: []).month
         
         var vestedSharesAtCliff = 0
         if (monthsPassedSinceStart >= stockPlan.cliff) {
@@ -34,9 +34,9 @@ class RestrictedStockOptionGrantCalculator : VestingCalculator {
             monthsBetweenCliffAndNow = monthsPassedSinceStart - stockPlan.cliff
         }
         
-        var vestedSharesBetweenCliffAndNow = Int(round(monthlyVestedShares * Double(monthsBetweenCliffAndNow)))
+        let vestedSharesBetweenCliffAndNow = Int(round(monthlyVestedShares * Double(monthsBetweenCliffAndNow)))
         
-        var endingShares = 0
+        let endingShares = 0
         
         var vestedShares = startingShares + vestedSharesAtCliff + vestedSharesBetweenCliffAndNow + endingShares
         
@@ -46,11 +46,11 @@ class RestrictedStockOptionGrantCalculator : VestingCalculator {
         
         vestedShares = min(vestedShares, stockPlan.shares)
         
-        var unvestedShares = stockPlan.shares - vestedShares
+        let unvestedShares = stockPlan.shares - vestedShares
         
-        var vestedPercent = Double(vestedShares) / Double(stockPlan.shares) * 100
+        let vestedPercent = Double(vestedShares) / Double(stockPlan.shares) * 100
         
-        var monthsLeftToVest = stockPlan.vestingPeriod - monthsPassedSinceStart
+        let monthsLeftToVest = stockPlan.vestingPeriod - monthsPassedSinceStart
         
         return VestingCalculatorResult(
             startingShares: startingShares,

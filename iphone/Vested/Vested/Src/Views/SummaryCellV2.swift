@@ -30,6 +30,8 @@ class SummaryCellV2 : UITableViewCell {
     let radialGraphView = MDRadialProgressView()
     let percentLabel = UILabel()
     let detailButton = UIButton()
+    let vestedDollarAmountLabel = UILabel()
+    let unvestedDollarAmountLabel = UILabel()
     
     var cellDetailButtonPressedDelegate : CellDetailButtonDelegate?
     var indexPath: NSIndexPath?
@@ -42,26 +44,28 @@ class SummaryCellV2 : UITableViewCell {
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
-        
         let bundle = NSBundle(forClass: self.dynamicType)
         cellBackgroundLower = bundle.loadNibNamed("InfoViewV2", owner: nil, options: nil)[0] as? InfoViewV2
+        
+        super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         
         self.backgroundColor = UIColor.clearColor()
         self.selectionStyle = UITableViewCellSelectionStyle.None
         
-        cellBackgroundUpper.setTranslatesAutoresizingMaskIntoConstraints(false)
-        leftWrapperView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        middleWrapperView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        rightWrapperView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        vestedLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        unvestedLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        vestedAmountLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        unvestedAmountLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        radialGraphView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        percentLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        cellBackgroundLower.setTranslatesAutoresizingMaskIntoConstraints(false)
-        detailButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        cellBackgroundUpper.translatesAutoresizingMaskIntoConstraints = false
+        leftWrapperView.translatesAutoresizingMaskIntoConstraints = false
+        middleWrapperView.translatesAutoresizingMaskIntoConstraints = false
+        rightWrapperView.translatesAutoresizingMaskIntoConstraints = false
+        vestedLabel.translatesAutoresizingMaskIntoConstraints = false
+        unvestedLabel.translatesAutoresizingMaskIntoConstraints = false
+        vestedAmountLabel.translatesAutoresizingMaskIntoConstraints = false
+        unvestedAmountLabel.translatesAutoresizingMaskIntoConstraints = false
+        radialGraphView.translatesAutoresizingMaskIntoConstraints = false
+        percentLabel.translatesAutoresizingMaskIntoConstraints = false
+        cellBackgroundLower.translatesAutoresizingMaskIntoConstraints = false
+        detailButton.translatesAutoresizingMaskIntoConstraints = false
+        vestedDollarAmountLabel.translatesAutoresizingMaskIntoConstraints = false
+        unvestedDollarAmountLabel.translatesAutoresizingMaskIntoConstraints = false
 
 //        infoButton.backgroundColor = UIColor.blackColor()
 //        leftWrapperView.backgroundColor = UIColor.purpleColor()
@@ -117,11 +121,25 @@ class SummaryCellV2 : UITableViewCell {
         radialGraphView.label.hidden = true
         radialGraphView.theme.thickness = 8
         radialGraphView.clockwise = false
+        
+        vestedDollarAmountLabel.font = UIFont(name: ColorsAndFonts.baseFont, size: ColorsAndFonts.infoTextSize)
+        vestedDollarAmountLabel.text = ""
+        vestedDollarAmountLabel.tintColor = ColorsAndFonts.vestedGreen
+        vestedDollarAmountLabel.textColor = ColorsAndFonts.vestedGreen
+        vestedDollarAmountLabel.textAlignment = .Right
+        
+        unvestedDollarAmountLabel.font = UIFont(name: ColorsAndFonts.baseFont, size: ColorsAndFonts.infoTextSize)
+        unvestedDollarAmountLabel.text = ""
+        unvestedDollarAmountLabel.tintColor = ColorsAndFonts.unvestedRed
+        unvestedDollarAmountLabel.textColor = ColorsAndFonts.unvestedRed
+        unvestedDollarAmountLabel.textAlignment = .Left
 
         leftWrapperView.addSubview(vestedLabel)
         leftWrapperView.addSubview(vestedAmountLabel)
+        leftWrapperView.addSubview(vestedDollarAmountLabel)
         rightWrapperView.addSubview(unvestedLabel)
         rightWrapperView.addSubview(unvestedAmountLabel)
+        rightWrapperView.addSubview(unvestedDollarAmountLabel)
         middleWrapperView.addSubview(radialGraphView)
         middleWrapperView.addSubview(percentLabel)
         contentView.addSubview(cellBackgroundLower)
@@ -139,48 +157,52 @@ class SummaryCellV2 : UITableViewCell {
             "middle_wrapper": middleWrapperView,
             "vested_label": vestedLabel,
             "vested_amount_label": vestedAmountLabel,
+            "vested_dollar_amount_label": vestedDollarAmountLabel,
             "unvested_label": unvestedLabel,
             "unvested_amount_label": unvestedAmountLabel,
+            "unvested_dollar_amount_label": unvestedDollarAmountLabel,
             "radial_graph_view": radialGraphView,
             "percent_label": percentLabel,
-            "detail_button": detailButton
+            "detail_button": detailButton,
         ]
         
-        let hPlacement1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-2-[summary_background_upper]-2-|", options: nil, metrics: nil, views: viewsDictionary)
-        let hPlacement2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-8-[summary_background_lower]-8-|", options: nil, metrics: nil, views: viewsDictionary)
+        let hPlacement1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-2-[summary_background_upper]-2-|", options: [], metrics: nil, views: viewsDictionary)
+        let hPlacement2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-8-[summary_background_lower]-8-|", options: [], metrics: nil, views: viewsDictionary)
         let hPlacement3 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-5-[left_wrapper(==right_wrapper)]-[middle_wrapper]-[right_wrapper(==left_wrapper)]-5-|",
-            options: nil, metrics: nil, views: viewsDictionary)
-        let hPlacement4 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[vested_label]-2-|", options: nil, metrics: nil, views: viewsDictionary)
-        let hPlacement5 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[vested_amount_label]-2-|", options: nil, metrics: nil, views: viewsDictionary)
-        let hPlacement6 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-2-[unvested_label]-0-|", options: nil, metrics: nil, views: viewsDictionary)
-        let hPlacement7 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-2-[unvested_amount_label]-0-|", options: nil, metrics: nil, views: viewsDictionary)
+            options: [], metrics: nil, views: viewsDictionary)
+        let hPlacement4 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[vested_label]-2-|", options: [], metrics: nil, views: viewsDictionary)
+        let hPlacement5 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[vested_amount_label]-2-|", options: [], metrics: nil, views: viewsDictionary)
+        let hPlacement55 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[vested_dollar_amount_label]-2-|", options: [], metrics: nil, views: viewsDictionary)
+        let hPlacement6 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-2-[unvested_label]-0-|", options: [], metrics: nil, views: viewsDictionary)
+        let hPlacement7 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-2-[unvested_amount_label]-0-|", options: [], metrics: nil, views: viewsDictionary)
+        let hPlacement77 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-2-[unvested_dollar_amount_label]-0-|", options: [], metrics: nil, views: viewsDictionary)
         let hPlacement8 = NSLayoutConstraint(item: radialGraphView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: middleWrapperView, attribute: NSLayoutAttribute.Height, multiplier: 1.0, constant: 0.0)
-        let hPlacement9 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[radial_graph_view]", options: nil, metrics: nil, views: viewsDictionary)
-        let hPlacement13 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[percent_label]-0-|", options: nil, metrics: nil, views: viewsDictionary)
+        let hPlacement9 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[radial_graph_view]", options: [], metrics: nil, views: viewsDictionary)
+        let hPlacement13 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[percent_label]-0-|", options: [], metrics: nil, views: viewsDictionary)
         let hPlacement14 = NSLayoutConstraint(item: middleWrapperView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Width, multiplier: 0.20, constant: 0.0)
-        let hPlacement15 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[detail_button]-0-|", options: nil, metrics: nil, views: viewsDictionary)
+        let hPlacement15 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[detail_button]-0-|", options: [], metrics: nil, views: viewsDictionary)
 
-        let vPlacement1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[summary_background_upper]", options: nil, metrics: nil, views: viewsDictionary)
-        let vPlacement2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-28-[summary_background_lower]", options: nil, metrics: nil, views: viewsDictionary)
+        let vPlacement1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[summary_background_upper]", options: [], metrics: nil, views: viewsDictionary)
+        let vPlacement2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-28-[summary_background_lower]", options: [], metrics: nil, views: viewsDictionary)
 //        let vPlacement3 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[left_wrapper]-|", options: nil, metrics: nil, views: viewsDictionary)
 //        let vPlacement4 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[right_wrapper]-|", options: nil, metrics: nil, views: viewsDictionary)
-        let vPlacement5 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-2-[middle_wrapper]", options: nil, metrics: nil, views: viewsDictionary)
+        let vPlacement5 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-2-[middle_wrapper]", options: [], metrics: nil, views: viewsDictionary)
         let vPlacement6 = NSLayoutConstraint(item: leftWrapperView, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: 0.0)
         let vPlacement7 = NSLayoutConstraint(item: rightWrapperView, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: 0.0)
         
 //        let vPlacement6 = NSLayoutConstraint(item: leftWrapperView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Height, multiplier: 0.93, constant: 0.0)
 //        let vPlacement7 = NSLayoutConstraint(item: rightWrapperView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Height, multiplier: 0.93, constant: 0.0)
         let vPlacement8 = NSLayoutConstraint(item: middleWrapperView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Height, multiplier: 0.93, constant: 0.0)
-        let vPlacement9 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[vested_label]-(-2)-[vested_amount_label]-0-|", options: nil, metrics: nil, views: viewsDictionary)
-        let vPlacement10 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[unvested_label]-(-2)-[unvested_amount_label]-0-|", options: nil, metrics: nil, views: viewsDictionary)
+        let vPlacement9 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[vested_label]-(-2)-[vested_amount_label]-0-[vested_dollar_amount_label]-0-|", options: [], metrics: nil, views: viewsDictionary)
+        let vPlacement10 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[unvested_label]-(-2)-[unvested_amount_label]-0-[unvested_dollar_amount_label]-0-|", options: [], metrics: nil, views: viewsDictionary)
         let vPlacement11 = NSLayoutConstraint(item: radialGraphView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: middleWrapperView, attribute: NSLayoutAttribute.Height, multiplier: 1.0, constant: 0.0)
-        let vPlacement12 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[radial_graph_view]", options: nil, metrics: nil, views: viewsDictionary)
-        let vPlacement16 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[percent_label]-0-|", options: nil, metrics: nil, views: viewsDictionary)
+        let vPlacement12 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[radial_graph_view]", options: [], metrics: nil, views: viewsDictionary)
+        let vPlacement16 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[percent_label]-0-|", options: [], metrics: nil, views: viewsDictionary)
         let vPlacement17 = NSLayoutConstraint(item: middleWrapperView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: middleWrapperView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0.0)
         //let vPlacement19 = NSLayoutConstraint(item: vestedLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Top, multiplier: 4.5, constant: 0.0)
         
         let vPlacement20 = NSLayoutConstraint(item: unvestedLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: vestedLabel, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0.0)
-        let vPlacement21 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-2-[detail_button]", options: nil, metrics: nil, views: viewsDictionary)
+        let vPlacement21 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-2-[detail_button]", options: [], metrics: nil, views: viewsDictionary)
         let vPlacement22 = NSLayoutConstraint(item: detailButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Height, multiplier: 0.80, constant: 0.0)
         
         vPlacementDynamic = NSLayoutConstraint(item: cellBackgroundLower, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: cellBackgroundUpper, attribute: NSLayoutAttribute.Height, multiplier: 1.0, constant: 0.0)
@@ -190,8 +212,10 @@ class SummaryCellV2 : UITableViewCell {
         contentView.addConstraints(hPlacement3)
         contentView.addConstraints(hPlacement4)
         contentView.addConstraints(hPlacement5)
+        contentView.addConstraints(hPlacement55)
         contentView.addConstraints(hPlacement6)
         contentView.addConstraints(hPlacement7)
+        contentView.addConstraints(hPlacement77)
         contentView.addConstraint(hPlacement8)
         contentView.addConstraints(hPlacement9)
         contentView.addConstraints(hPlacement13)
@@ -219,13 +243,15 @@ class SummaryCellV2 : UITableViewCell {
         contentView.addConstraint(vPlacement22)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func customize(stockPlan: StockPlan, vestingResult: VestingCalculatorResult, indexPath: NSIndexPath) {
         vestedAmountLabel.text = NumberUtils.commatoze(vestingResult.vestedShares)
+        vestedDollarAmountLabel.text = currencyNumberFormatter.stringFromNumber(stockPlan.price * Double(vestingResult.vestedShares))
         unvestedAmountLabel.text = NumberUtils.commatoze(vestingResult.unvestedShares)
+        unvestedDollarAmountLabel.text = currencyNumberFormatter.stringFromNumber(stockPlan.price * Double(vestingResult.unvestedShares))
         radialGraphView.progressCounter =  max(UInt(round(vestingResult.vestedPercent)), 1)
         percentLabel.text = "\(round(vestingResult.vestedPercent * 10) / 10)%"
         

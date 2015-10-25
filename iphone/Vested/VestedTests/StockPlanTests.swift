@@ -12,7 +12,7 @@ import XCTest
 class StockPlanTests : XCTestCase {
  
     func test_RestrictedOptionGrant_Defaults_Success() {
-        var stockGrant = RestrictedOptionGrant().withDefaults()
+        let stockGrant = RestrictedOptionGrant().withDefaults()
         
         XCTAssertEqual(stockGrant.shares, 5000, "Default shares count should be 4000")
         XCTAssertEqual(stockGrant.startingAcceleration, 0, "Acceleration should be 0")
@@ -21,7 +21,7 @@ class StockPlanTests : XCTestCase {
         XCTAssertEqual(stockGrant.cliff, 12, "Default cliff should be 1")
         XCTAssertNotNil(stockGrant.startDate, "Start date can not be nil")
         XCTAssertNotNil(stockGrant.uuid, "UUID can not be nil")
-        XCTAssertEqual(stockGrant.name, "Plan Name", "Name should be Plan Name")
+        XCTAssertEqual(stockGrant.name, "My Stock Grant", "Name should be My Stock Grant")
     }
     
 }

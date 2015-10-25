@@ -8,11 +8,11 @@
 
 import Foundation
 
-class SizeClass : Printable {
+class SizeClass : CustomStringConvertible {
     
-    let rowHeight: CGFloat = 110.0
-    let rowHeightExpanded: CGFloat = 129.0
-    let summaryButtomOffset: CGFloat = 40.0
+    var rowHeight: CGFloat = 110.0
+    var rowHeightExpanded: CGFloat = 129.0
+    var summaryButtomOffset: CGFloat = 40.0
     class var screenWidth: CGFloat {
         return UIScreen.mainScreen().bounds.size.width
     }

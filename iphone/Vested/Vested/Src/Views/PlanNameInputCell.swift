@@ -23,9 +23,9 @@ class PlanNameInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
         self.backgroundColor = UIColor.clearColor()
         self.selectionStyle = UITableViewCellSelectionStyle.None
         
-        underLineImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        underLineImageView.translatesAutoresizingMaskIntoConstraints = false
 
-        titleInputField.setTranslatesAutoresizingMaskIntoConstraints(false)
+        titleInputField.translatesAutoresizingMaskIntoConstraints = false
         titleInputField.font = UIFont(name: "AvenirNext-Medium", size: 26)
         titleInputField.text = "Plan Name"
         titleInputField.tintColor = UIColor.whiteColor()
@@ -35,15 +35,15 @@ class PlanNameInputCell : UITableViewCell, UITextFieldDelegate, FormCell {
 
         self.addSubview(titleInputField)
         
-        let viewsDictionary : [NSObject: AnyObject] = ["input_field": titleInputField, "underline_image": underLineImageView]
-        let labelHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[input_field]-10-|", options: nil, metrics: nil, views: viewsDictionary)
-        let labelVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[input_field]-0-|", options: nil, metrics: nil, views: viewsDictionary)
+        let viewsDictionary = ["input_field": titleInputField, "underline_image": underLineImageView]
+        let labelHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[input_field]-10-|", options: [], metrics: nil, views: viewsDictionary)
+        let labelVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[input_field]-0-|", options: [], metrics: nil, views: viewsDictionary)
         
         self.addConstraints(labelHorizontalConstraints)
         self.addConstraints(labelVerticalConstraints)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
